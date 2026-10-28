@@ -1,0 +1,26 @@
+diff -ru -x __pycache__ runs/D2/gp_lite/gp.py C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/D2/gp_lite/gp.py
+--- runs/D2/gp_lite/gp.py	2026-10-27 13:35:43.671193600 +0100
++++ C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/D2/gp_lite/gp.py	2026-10-27 13:46:53.246028600 +0100
+@@ -17,8 +17,8 @@
+ # (valeur par défaut, assumant des entrées ~ [0, 1] et un y normalisé)
+ LOG_BOUNDS = {
+     "lengthscales": (-5.0, 5.0),
+-    "variance": (-5.0, 5.0),
+-    "noise": (-14.0, 0.0),
++    "variance": (-5.0, 9.0),
++    "noise": (-23.0, 0.0),
+ }
+ NLL_FAILURE = 1e10
+ 
+diff -ru -x __pycache__ runs/D2/gp_lite/kernels.py C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/D2/gp_lite/kernels.py
+--- runs/D2/gp_lite/kernels.py	2026-10-27 13:26:25.299177400 +0100
++++ C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/D2/gp_lite/kernels.py	2026-10-27 13:45:46.189074800 +0100
+@@ -111,7 +111,7 @@
+     def K(self, X1, X2):
+         """Compute the covariance matrix (n1, n2) between X1 and X2."""
+         rho = np.sqrt(5.0) * self._scaled_distance(X1, X2)
+-        return self.variance * (1.0 + rho + 5.0 * rho * rho / 3.0) * np.exp(-rho)
++        return self.variance * (1.0 + rho + rho * rho / 3.0) * np.exp(-rho)
+ 
+     def diag(self, X):
+         """Return the diagonal of K(X, X), i.e. variance repeated n times."""

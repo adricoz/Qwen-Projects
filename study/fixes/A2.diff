@@ -1,0 +1,12 @@
+diff -ru -x __pycache__ runs/A2/gp_lite/gp.py C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/A2/gp_lite/gp.py
+--- runs/A2/gp_lite/gp.py	2026-10-27 12:05:31.931210600 +0100
++++ C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/A2/gp_lite/gp.py	2026-10-27 13:45:46.084094400 +0100
+@@ -3,7 +3,7 @@
+ from scipy.linalg import cho_factor, cho_solve
+ 
+ _JITTER_STEPS = (0.0, 1e-8, 1e-6, 1e-4)
+-_LOG_BOUNDS = (-6.0, 4.0)  # bornes pour log(lengthscales), log(variance), log(noise)
++_LOG_BOUNDS = (-20.0, 7.0)  # bornes pour log(lengthscales), log(variance), log(noise)
+ 
+ 
+ class GPRegressor:

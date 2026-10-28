@@ -1,0 +1,30 @@
+diff -ru -x __pycache__ runs/A1/gp_lite/gp.py C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/A1/gp_lite/gp.py
+--- runs/A1/gp_lite/gp.py	2026-10-27 09:57:19.067046500 +0100
++++ C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/A1/gp_lite/gp.py	2026-10-27 13:46:26.070816700 +0100
+@@ -12,7 +12,7 @@
+ # log(l) dans [-6, 6], log(variance) dans [-8, 8], log(noise) dans [-12, 0].
+ _LS_BOUNDS = (-6.0, 6.0)
+ _VAR_BOUNDS = (-8.0, 8.0)
+-_NOISE_BOUNDS = (-12.0, 0.0)
++_NOISE_BOUNDS = (-23.0, 0.0)
+ 
+ 
+ class GPRegressor:
+@@ -76,7 +76,7 @@
+         a = np.linalg.solve(L, y)
+         a = np.linalg.solve(L.T, a)
+         n = y.shape[0]
+-        return 0.5 * float(y @ a) + log_det + 0.5 * n * np.log(2.0 * np.pi)
++        return 0.5 * float(y @ a) + 0.5 * log_det + 0.5 * n * np.log(2.0 * np.pi)
+ 
+     @staticmethod
+     def _safe_cholesky(K):
+@@ -235,7 +235,7 @@
+         n = y.shape[0]
+         return -(
+             0.5 * float(y @ a)
+-            + 2.0 * float(np.sum(np.log(np.diag(self._L))))
++            + float(np.sum(np.log(np.diag(self._L))))
+             + 0.5 * n * np.log(2.0 * np.pi)
+         )
+ 

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="10" skipped="0" tests="23" time="1.129" timestamp="2026-10-27T09:59:17.542832+01:00" hostname="Terminator"><testcase classname="test_acceptance" name="test_kernel_values[se]" time="0.001" /><testcase classname="test_acceptance" name="test_kernel_values[m32]" time="0.001" /><testcase classname="test_acceptance" name="test_kernel_values[m52]" time="0.001" /><testcase classname="test_acceptance" name="test_lml_fixed[se-False]" time="0.001"><failure message="assert np.float64(-3.477723988815133) == -11.076916154159878 ± 1.1e-05&#10;  &#10;  comparison failed&#10;  Obtained: -3.477723988815133&#10;  Expected: -11.076916154159878 ± 1.1e-05">name = 'se', normalize = False
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_lml_fixed(name, normalize):
+        X, y = toy_data()
+        gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+        ref = ref_lml(name, X, y, np.array(LS), VAR, NOISE, normalize)
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(ref, rel=1e-6, abs=1e-6)
+E       assert np.float64(-3.477723988815133) == -11.076916154159878 ± 1.1e-05
+E         
+E         comparison failed
+E         Obtained: -3.477723988815133
+E         Expected: -11.076916154159878 ± 1.1e-05
+
+test_acceptance.py:119: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_lml_fixed[se-True]" time="0.001"><failure message="assert np.float64(-7.581814008629884) == -15.181006173974497 ± 1.5e-05&#10;  &#10;  comparison failed&#10;  Obtained: -7.581814008629884&#10;  Expected: -15.181006173974497 ± 1.5e-05">name = 'se', normalize = True
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_lml_fixed(name, normalize):
+        X, y = toy_data()
+        gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+        ref = ref_lml(name, X, y, np.array(LS), VAR, NOISE, normalize)
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(ref, rel=1e-6, abs=1e-6)
+E       assert np.float64(-7.581814008629884) == -15.181006173974497 ± 1.5e-05
+E         
+E         comparison failed
+E         Obtained: -7.581814008629884
+E         Expected: -15.181006173974497 ± 1.5e-05
+
+test_acceptance.py:119: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_lml_fixed[m52-False]" time="0.001"><failure message="assert np.float64(-9.053169342490811) == -13.33754344878406 ± 1.3e-05&#10;  &#10;  comparison failed&#10;  Obtained: -9.053169342490811&#10;  Expected: -13.33754344878406 ± 1.3e-05">name = 'm52', normalize = False
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_lml_fixed(name, normalize):
+        X, y = toy_data()
+        gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+        ref = ref_lml(name, X, y, np.array(LS), VAR, NOISE, normalize)
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(ref, rel=1e-6, abs=1e-6)
+E       assert np.float64(-9.053169342490811) == -13.33754344878406 ± 1.3e-05
+E         
+E         comparison failed
+E         Obtained: -9.053169342490811
+E         Expected: -13.33754344878406 ± 1.3e-05
+
+test_acceptance.py:119: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_lml_fixed[m52-True]" time="0.001"><failure message="assert np.float64(-1...3128637067587) == -15.517502743360838 ± 1.6e-05&#10;  &#10;  comparison failed&#10;  Obtained: -11.233128637067587&#10;  Expected: -15.517502743360838 ± 1.6e-05">name = 'm52', normalize = True
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_lml_fixed(name, normalize):
+        X, y = toy_data()
+        gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+        ref = ref_lml(name, X, y, np.array(LS), VAR, NOISE, normalize)
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(ref, rel=1e-6, abs=1e-6)
+E       assert np.float64(-1...3128637067587) == -15.517502743360838 ± 1.6e-05
+E         
+E         comparison failed
+E         Obtained: -11.233128637067587
+E         Expected: -15.517502743360838 ± 1.6e-05
+
+test_acceptance.py:119: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_predict_fixed[se-False]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[se-True]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[m32-False]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[m32-True]" time="0.001" /><testcase classname="test_acceptance" name="test_interpolation_zero_noise" time="0.001" /><testcase classname="test_acceptance" name="test_loo_fixed[se-False]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[se-True]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[m52-False]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[m52-True]" time="0.002" /><testcase classname="test_acceptance" name="test_near_singular_does_not_crash" time="0.001" /><testcase classname="test_acceptance" name="test_fit_branin[se-0]" time="0.084"><failure message="assert np.float64(80.46173903062623) == 13.040444183100885 ± 5.0e-02&#10;  &#10;  comparison failed&#10;  Obtained: 80.46173903062623&#10;  Expected: 13.040444183100885 ± 5.0e-02">name = 'se', seed = 0
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+E       assert np.float64(80.46173903062623) == 13.040444183100885 ± 5.0e-02
+E         
+E         comparison failed
+E         Obtained: 80.46173903062623
+E         Expected: 13.040444183100885 ± 5.0e-02
+
+test_acceptance.py:184: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[se-1]" time="0.074"><failure message="assert np.float64(96.04595863137166) == 22.196733263868477 ± 5.0e-02&#10;  &#10;  comparison failed&#10;  Obtained: 96.04595863137166&#10;  Expected: 22.196733263868477 ± 5.0e-02">name = 'se', seed = 1
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+E       assert np.float64(96.04595863137166) == 22.196733263868477 ± 5.0e-02
+E         
+E         comparison failed
+E         Obtained: 96.04595863137166
+E         Expected: 22.196733263868477 ± 5.0e-02
+
+test_acceptance.py:184: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[se-2]" time="0.086"><failure message="assert np.float64(88.08869343894831) == 17.28594485361968 ± 5.0e-02&#10;  &#10;  comparison failed&#10;  Obtained: 88.08869343894831&#10;  Expected: 17.28594485361968 ± 5.0e-02">name = 'se', seed = 2
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+E       assert np.float64(88.08869343894831) == 17.28594485361968 ± 5.0e-02
+E         
+E         comparison failed
+E         Obtained: 88.08869343894831
+E         Expected: 17.28594485361968 ± 5.0e-02
+
+test_acceptance.py:184: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-0]" time="0.066"><failure message="assert np.float64(68.92302721571285) == 7.342449146844327 ± 5.0e-02&#10;  &#10;  comparison failed&#10;  Obtained: 68.92302721571285&#10;  Expected: 7.342449146844327 ± 5.0e-02">name = 'm52', seed = 0
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+E       assert np.float64(68.92302721571285) == 7.342449146844327 ± 5.0e-02
+E         
+E         comparison failed
+E         Obtained: 68.92302721571285
+E         Expected: 7.342449146844327 ± 5.0e-02
+
+test_acceptance.py:184: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-1]" time="0.066"><failure message="assert np.float64(80.51642632802215) == 12.422892397622416 ± 5.0e-02&#10;  &#10;  comparison failed&#10;  Obtained: 80.51642632802215&#10;  Expected: 12.422892397622416 ± 5.0e-02">name = 'm52', seed = 1
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+E       assert np.float64(80.51642632802215) == 12.422892397622416 ± 5.0e-02
+E         
+E         comparison failed
+E         Obtained: 80.51642632802215
+E         Expected: 12.422892397622416 ± 5.0e-02
+
+test_acceptance.py:184: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-2]" time="0.073"><failure message="assert np.float64(64.64987706074719) == 3.6401589736498714 ± 5.0e-02&#10;  &#10;  comparison failed&#10;  Obtained: 64.64987706074719&#10;  Expected: 3.6401589736498714 ± 5.0e-02">name = 'm52', seed = 2
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+&gt;       assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+E       assert np.float64(64.64987706074719) == 3.6401589736498714 ± 5.0e-02
+E         
+E         comparison failed
+E         Obtained: 64.64987706074719
+E         Expected: 3.6401589736498714 ± 5.0e-02
+
+test_acceptance.py:184: AssertionError</failure></testcase></testsuite></testsuites>

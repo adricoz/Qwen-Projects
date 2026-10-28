@@ -1,0 +1,7 @@
+This is the log of an autonomous coding agent (numbered steps with thinking excerpts, tool calls and their outputs) building a small Python Gaussian-process package `gp_lite`. Extract, citing step numbers:
+1. Timeline: the main phases (which deliverable was built or fixed at which steps).
+2. Problems: each significant error or test failure the agent hit (step, error in a few words, how it was resolved or abandoned, number of steps spent on it).
+3. Verification: what checks it ran on the log-likelihood and on `fit` (against what reference: scikit-learn with fixed hyperparameters, scikit-learn optimised, naive solve/slogdet, its own code...) and their results.
+4. Every explanation it gave for a failure that blames something other than its own code (BLAS, numerical noise, floating point, versions, the test being wrong, the harness), quoted verbatim with the step.
+5. Harness interventions (lines starting with "[agent guard]"): which kind, at which steps.
+Answer with compact bullet lists. Do not judge whether formulas are correct; report only what the log shows.

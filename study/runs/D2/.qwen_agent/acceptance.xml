@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="9" skipped="0" tests="23" time="3.459" timestamp="2026-10-27T13:42:19.024666+01:00" hostname="Terminator"><testcase classname="test_acceptance" name="test_kernel_values[se]" time="0.001" /><testcase classname="test_acceptance" name="test_kernel_values[m32]" time="0.001" /><testcase classname="test_acceptance" name="test_kernel_values[m52]" time="0.002"><failure message="AssertionError: &#10;Not equal to tolerance rtol=1e-10, atol=1e-12&#10;&#10;Mismatched elements: 35 / 35 (100%)&#10;First 5 mismatches are at indices:&#10; [0, 0]: 0.55531929665804 (ACTUAL), 0.16729298920852545 (DESIRED)&#10; [0, 1]: 4.4380244206944214e-08 (ACTUAL), 9.762746336844252e-09 (DESIRED)&#10; [0, 2]: 0.27361877529109235 (ACTUAL), 0.07741694415670525 (DESIRED)&#10; [0, 3]: 0.00028264300869836707 (ACTUAL), 6.602617109369922e-05 (DESIRED)&#10; [0, 4]: 0.0015003742471256783 (ACTUAL), 0.00035841134162750845 (DESIRED)&#10;Max absolute difference among violations: 1.12575777&#10;Max relative difference among violations: 3.57695215&#10; ACTUAL: array([[5.553193e-01, 4.438024e-08, 2.736188e-01, 2.826430e-04,&#10;        1.500374e-03],&#10;       [7.654143e-02, 5.694152e-04, 1.455676e-01, 7.392349e-09,...&#10; DESIRED: array([[1.672930e-01, 9.762746e-09, 7.741694e-02, 6.602617e-05,&#10;        3.584113e-04],&#10;       [2.019563e-02, 1.341650e-04, 3.960088e-02, 1.615125e-09,...">name = 'm52'
+
+    @pytest.mark.parametrize("name", KERNELS)
+    def test_kernel_values(name):
+        rng = np.random.default_rng(1)
+        X1, X2 = rng.normal(size=(7, 3)), rng.normal(size=(5, 3))
+        k = KERNELS[name](np.array(LS), VAR)
+        K = np.asarray(k.K(X1, X2))
+        assert K.shape == (7, 5)
+&gt;       np.testing.assert_allclose(K, ref_k(name, X1, X2, np.array(LS), VAR), rtol=1e-10, atol=1e-12)
+E       AssertionError: 
+E       Not equal to tolerance rtol=1e-10, atol=1e-12
+E       
+E       Mismatched elements: 35 / 35 (100%)
+E       First 5 mismatches are at indices:
+E        [0, 0]: 0.55531929665804 (ACTUAL), 0.16729298920852545 (DESIRED)
+E        [0, 1]: 4.4380244206944214e-08 (ACTUAL), 9.762746336844252e-09 (DESIRED)
+E        [0, 2]: 0.27361877529109235 (ACTUAL), 0.07741694415670525 (DESIRED)
+E        [0, 3]: 0.00028264300869836707 (ACTUAL), 6.602617109369922e-05 (DESIRED)
+E        [0, 4]: 0.0015003742471256783 (ACTUAL), 0.00035841134162750845 (DESIRED)
+E       Max absolute difference among violations: 1.12575777
+E       Max relative difference among violations: 3.57695215
+E        ACTUAL: array([[5.553193e-01, 4.438024e-08, 2.736188e-01, 2.826430e-04,
+E               1.500374e-03],
+E              [7.654143e-02, 5.694152e-04, 1.455676e-01, 7.392349e-09,...
+E        DESIRED: array([[1.672930e-01, 9.762746e-09, 7.741694e-02, 6.602617e-05,
+E               3.584113e-04],
+E              [2.019563e-02, 1.341650e-04, 3.960088e-02, 1.615125e-09,...
+
+test_acceptance.py:105: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_lml_fixed[se-False]" time="0.005" /><testcase classname="test_acceptance" name="test_lml_fixed[se-True]" time="0.001" /><testcase classname="test_acceptance" name="test_lml_fixed[m52-False]" time="0.001"><failure message="numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)">name = 'm52', normalize = False
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_lml_fixed(name, normalize):
+        X, y = toy_data()
+&gt;       gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+
+test_acceptance.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test_acceptance.py:89: in fixed_gp
+    gp.fit(X, y, optimize=False)
+..\study\runs\D2\gp_lite\gp.py:162: in fit
+    self._condition()
+..\study\runs\D2\gp_lite\gp.py:208: in _condition
+    L = _factorize_positive_definite(C)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+C = array([[1.701     , 0.51002493, 2.34337991, 1.72641805, 2.18595778,
+        0.98787964, 1.90276839, 0.91742099, 2.3724...7768, 2.23711711,
+        0.87051489, 1.48127   , 0.739701  , 2.37513028, 2.19401123,
+        2.02587421, 1.701     ]])
+max_jitter = 1e-06
+
+    def _factorize_positive_definite(C, max_jitter=1e-6):
+        """Cholesky (facteur bas) de C, en ajoutant un jitter si la factorisation échoue."""
+        n = C.shape[0]
+        for jitter in (0.0, 1e-10, 1e-8, 1e-6):
+            try:
+                return cholesky(C + jitter * np.eye(n), lower=True, check_finite=False)
+            except np.linalg.LinAlgError:
+                continue
+&gt;       raise np.linalg.LinAlgError("cannot factorize the covariance matrix (all jitters failed)")
+E       numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)
+
+..\study\runs\D2\gp_lite\gp.py:34: LinAlgError</failure></testcase><testcase classname="test_acceptance" name="test_lml_fixed[m52-True]" time="0.001"><failure message="numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)">name = 'm52', normalize = True
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_lml_fixed(name, normalize):
+        X, y = toy_data()
+&gt;       gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+
+test_acceptance.py:117: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test_acceptance.py:89: in fixed_gp
+    gp.fit(X, y, optimize=False)
+..\study\runs\D2\gp_lite\gp.py:162: in fit
+    self._condition()
+..\study\runs\D2\gp_lite\gp.py:208: in _condition
+    L = _factorize_positive_definite(C)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+C = array([[1.701     , 0.51002493, 2.34337991, 1.72641805, 2.18595778,
+        0.98787964, 1.90276839, 0.91742099, 2.3724...7768, 2.23711711,
+        0.87051489, 1.48127   , 0.739701  , 2.37513028, 2.19401123,
+        2.02587421, 1.701     ]])
+max_jitter = 1e-06
+
+    def _factorize_positive_definite(C, max_jitter=1e-6):
+        """Cholesky (facteur bas) de C, en ajoutant un jitter si la factorisation échoue."""
+        n = C.shape[0]
+        for jitter in (0.0, 1e-10, 1e-8, 1e-6):
+            try:
+                return cholesky(C + jitter * np.eye(n), lower=True, check_finite=False)
+            except np.linalg.LinAlgError:
+                continue
+&gt;       raise np.linalg.LinAlgError("cannot factorize the covariance matrix (all jitters failed)")
+E       numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)
+
+..\study\runs\D2\gp_lite\gp.py:34: LinAlgError</failure></testcase><testcase classname="test_acceptance" name="test_predict_fixed[se-False]" time="0.009" /><testcase classname="test_acceptance" name="test_predict_fixed[se-True]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[m32-False]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[m32-True]" time="0.001" /><testcase classname="test_acceptance" name="test_interpolation_zero_noise" time="0.001" /><testcase classname="test_acceptance" name="test_loo_fixed[se-False]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[se-True]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[m52-False]" time="0.001"><failure message="numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)">name = 'm52', normalize = False
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_loo_fixed(name, normalize):
+        X, y = toy_data()
+&gt;       gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+
+test_acceptance.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test_acceptance.py:89: in fixed_gp
+    gp.fit(X, y, optimize=False)
+..\study\runs\D2\gp_lite\gp.py:162: in fit
+    self._condition()
+..\study\runs\D2\gp_lite\gp.py:208: in _condition
+    L = _factorize_positive_definite(C)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+C = array([[1.701     , 0.51002493, 2.34337991, 1.72641805, 2.18595778,
+        0.98787964, 1.90276839, 0.91742099, 2.3724...7768, 2.23711711,
+        0.87051489, 1.48127   , 0.739701  , 2.37513028, 2.19401123,
+        2.02587421, 1.701     ]])
+max_jitter = 1e-06
+
+    def _factorize_positive_definite(C, max_jitter=1e-6):
+        """Cholesky (facteur bas) de C, en ajoutant un jitter si la factorisation échoue."""
+        n = C.shape[0]
+        for jitter in (0.0, 1e-10, 1e-8, 1e-6):
+            try:
+                return cholesky(C + jitter * np.eye(n), lower=True, check_finite=False)
+            except np.linalg.LinAlgError:
+                continue
+&gt;       raise np.linalg.LinAlgError("cannot factorize the covariance matrix (all jitters failed)")
+E       numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)
+
+..\study\runs\D2\gp_lite\gp.py:34: LinAlgError</failure></testcase><testcase classname="test_acceptance" name="test_loo_fixed[m52-True]" time="0.001"><failure message="numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)">name = 'm52', normalize = True
+
+    @pytest.mark.parametrize("normalize", [False, True])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_loo_fixed(name, normalize):
+        X, y = toy_data()
+&gt;       gp = fixed_gp(name, X, y, LS, VAR, NOISE, normalize)
+
+test_acceptance.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test_acceptance.py:89: in fixed_gp
+    gp.fit(X, y, optimize=False)
+..\study\runs\D2\gp_lite\gp.py:162: in fit
+    self._condition()
+..\study\runs\D2\gp_lite\gp.py:208: in _condition
+    L = _factorize_positive_definite(C)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+C = array([[1.701     , 0.51002493, 2.34337991, 1.72641805, 2.18595778,
+        0.98787964, 1.90276839, 0.91742099, 2.3724...7768, 2.23711711,
+        0.87051489, 1.48127   , 0.739701  , 2.37513028, 2.19401123,
+        2.02587421, 1.701     ]])
+max_jitter = 1e-06
+
+    def _factorize_positive_definite(C, max_jitter=1e-6):
+        """Cholesky (facteur bas) de C, en ajoutant un jitter si la factorisation échoue."""
+        n = C.shape[0]
+        for jitter in (0.0, 1e-10, 1e-8, 1e-6):
+            try:
+                return cholesky(C + jitter * np.eye(n), lower=True, check_finite=False)
+            except np.linalg.LinAlgError:
+                continue
+&gt;       raise np.linalg.LinAlgError("cannot factorize the covariance matrix (all jitters failed)")
+E       numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)
+
+..\study\runs\D2\gp_lite\gp.py:34: LinAlgError</failure></testcase><testcase classname="test_acceptance" name="test_near_singular_does_not_crash" time="0.001" /><testcase classname="test_acceptance" name="test_fit_branin[se-0]" time="1.540" /><testcase classname="test_acceptance" name="test_fit_branin[se-1]" time="0.447"><failure message="AssertionError: LML 30.55 &lt; scikit-learn optimum 34.10&#10;assert np.float64(30.553491918460846) &gt;= (np.float64(34.10367744664592) - 2.0)">name = 'se', seed = 1
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+        assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+        # 2. it reaches the optimum found by scikit-learn (same model), within 2 nats
+        sk = ref_lml(name, X, y, *sklearn_optimum(name, X, y), True)
+&gt;       assert mine &gt;= sk - 2.0, f"LML {mine:.2f} &lt; scikit-learn optimum {sk:.2f}"
+E       AssertionError: LML 30.55 &lt; scikit-learn optimum 34.10
+E       assert np.float64(30.553491918460846) &gt;= (np.float64(34.10367744664592) - 2.0)
+
+test_acceptance.py:187: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[se-2]" time="0.415" /><testcase classname="test_acceptance" name="test_fit_branin[m52-0]" time="0.005"><failure message="numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)">name = 'm52', seed = 0
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+&gt;       gp.fit(X, y)
+
+test_acceptance.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\study\runs\D2\gp_lite\gp.py:162: in fit
+    self._condition()
+..\study\runs\D2\gp_lite\gp.py:208: in _condition
+    L = _factorize_positive_definite(C)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+C = array([[1.00000100e+00, 5.48227665e-05, 1.80592454e-09, 6.63837068e-07,
+        3.71902337e-02, 6.49447202e-05, 8.9763...e+00,
+        1.11103398e-02, 1.17063961e-02, 1.09899241e-05, 1.74695058e-09,
+        1.54421283e-01, 1.00000100e+00]])
+max_jitter = 1e-06
+
+    def _factorize_positive_definite(C, max_jitter=1e-6):
+        """Cholesky (facteur bas) de C, en ajoutant un jitter si la factorisation échoue."""
+        n = C.shape[0]
+        for jitter in (0.0, 1e-10, 1e-8, 1e-6):
+            try:
+                return cholesky(C + jitter * np.eye(n), lower=True, check_finite=False)
+            except np.linalg.LinAlgError:
+                continue
+&gt;       raise np.linalg.LinAlgError("cannot factorize the covariance matrix (all jitters failed)")
+E       numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)
+
+..\study\runs\D2\gp_lite\gp.py:34: LinAlgError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-1]" time="0.009"><failure message="numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)">name = 'm52', seed = 1
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+&gt;       gp.fit(X, y)
+
+test_acceptance.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\study\runs\D2\gp_lite\gp.py:162: in fit
+    self._condition()
+..\study\runs\D2\gp_lite\gp.py:208: in _condition
+    L = _factorize_positive_definite(C)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+C = array([[1.00000100e+00, 1.52910342e-06, 7.60811918e-04, 1.95974584e-05,
+        5.85117964e-02, 3.42916586e-04, 2.9784...e-03,
+        1.28859575e-02, 8.00659795e-05, 2.68819892e-06, 3.19327816e-09,
+        1.03532577e-10, 1.00000100e+00]])
+max_jitter = 1e-06
+
+    def _factorize_positive_definite(C, max_jitter=1e-6):
+        """Cholesky (facteur bas) de C, en ajoutant un jitter si la factorisation échoue."""
+        n = C.shape[0]
+        for jitter in (0.0, 1e-10, 1e-8, 1e-6):
+            try:
+                return cholesky(C + jitter * np.eye(n), lower=True, check_finite=False)
+            except np.linalg.LinAlgError:
+                continue
+&gt;       raise np.linalg.LinAlgError("cannot factorize the covariance matrix (all jitters failed)")
+E       numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)
+
+..\study\runs\D2\gp_lite\gp.py:34: LinAlgError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-2]" time="0.007"><failure message="numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)">name = 'm52', seed = 2
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+&gt;       gp.fit(X, y)
+
+test_acceptance.py:180: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\study\runs\D2\gp_lite\gp.py:162: in fit
+    self._condition()
+..\study\runs\D2\gp_lite\gp.py:208: in _condition
+    L = _factorize_positive_definite(C)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+C = array([[1.00000100e+00, 9.93921785e-08, 2.33826887e-08, 1.54178269e-07,
+        4.60981775e-06, 1.89360681e-05, 4.0702...e-11,
+        1.14388715e-02, 8.49101197e-14, 7.84269406e-06, 1.48264412e-09,
+        7.72090931e-02, 1.00000100e+00]])
+max_jitter = 1e-06
+
+    def _factorize_positive_definite(C, max_jitter=1e-6):
+        """Cholesky (facteur bas) de C, en ajoutant un jitter si la factorisation échoue."""
+        n = C.shape[0]
+        for jitter in (0.0, 1e-10, 1e-8, 1e-6):
+            try:
+                return cholesky(C + jitter * np.eye(n), lower=True, check_finite=False)
+            except np.linalg.LinAlgError:
+                continue
+&gt;       raise np.linalg.LinAlgError("cannot factorize the covariance matrix (all jitters failed)")
+E       numpy.linalg.LinAlgError: cannot factorize the covariance matrix (all jitters failed)
+
+..\study\runs\D2\gp_lite\gp.py:34: LinAlgError</failure></testcase></testsuite></testsuites>

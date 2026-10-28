@@ -1,0 +1,41 @@
+{
+ "run": "B1",
+ "arm": "B",
+ "wall_minutes": 41.80751126607259,
+ "stop": "max steps (90) reached",
+ "steps": 90,
+ "minutes": 41.66290750106176,
+ "deliverables_missing": [
+  "examples/branin_demo.py",
+  "README.md"
+ ],
+ "own_tests": "1 failed, 12 passed, 1 warning in 2.72s",
+ "acceptance": {
+  "test_kernel_values[se]": true,
+  "test_kernel_values[m32]": true,
+  "test_kernel_values[m52]": true,
+  "test_lml_fixed[se-False]": true,
+  "test_lml_fixed[se-True]": true,
+  "test_lml_fixed[m52-False]": true,
+  "test_lml_fixed[m52-True]": true,
+  "test_predict_fixed[se-False]": true,
+  "test_predict_fixed[se-True]": true,
+  "test_predict_fixed[m32-False]": true,
+  "test_predict_fixed[m32-True]": true,
+  "test_interpolation_zero_noise": true,
+  "test_loo_fixed[se-False]": true,
+  "test_loo_fixed[se-True]": true,
+  "test_loo_fixed[m52-False]": true,
+  "test_loo_fixed[m52-True]": true,
+  "test_near_singular_does_not_crash": true,
+  "test_fit_branin[se-0]": false,
+  "test_fit_branin[se-1]": false,
+  "test_fit_branin[se-2]": false,
+  "test_fit_branin[m52-0]": false,
+  "test_fit_branin[m52-1]": false,
+  "test_fit_branin[m52-2]": false
+ },
+ "acceptance_passed": 17,
+ "acceptance_total": 23,
+ "report": "# Rapport final — `gp_lite`\n\n## Ce qui a été construit\n\n- `gp_lite/__init__.py`, `gp_lite/kernels.py` : `SquaredExponentialARD`, `Matern32ARD`, `Matern52ARD` avec `K(X1,X2)` et `diag(X)`.\n- `gp_lite/gp.py` : `GPRegressor` — `fit(X, y, optimize=...)`, `predict(X, return_std=...)`, `log_marginal_likelihood()`, `loo()` (formules de Rasmussen & Williams §5.4.2, sans refitting). Optimisation L-BFGS-B en espace log avec 10 redemarrages et jitter.\n- `tests/test_gp_lite.py` : 12 tests (symétrie, diagonale, Matérn-5/2 à r=0, interpolation bruit nul, LOO vs refit, LML vs référence, comparaison scikit-learn à hyperparamètres fixes, Branin de bout en bout).\n- `conftest.py` : rend `gp_lite` importable depuis les dossiers de tests.\n- Debug important : remplacé `scipy.linalg.cho_factor/cho_solve` (comportement incohérent dans cet environnement — factor non triangulaire, `info` booléen) par `np.linalg.cholesky`/`np.linalg.solve`. Après ce changement, **29/36 tests passent** au lieu de 21/36.\n\n## Vérification\n\nCommande : `python -m pytest -q tests tests_acceptance`\nDernier résultat : **7 failed, 29 passed** (exit 1).\nLes 7 échecs sont tous sur l'optimisation d'hypér-paramètres de Branin (1 dans `tests/` et 6 dans `tests_acceptance/test_fit_branin`).\n\n## Ce qui manque / est cassé\n\n1. **`examples/branin_demo.py`** — non livré (manque de temps/steps).\n2. **`README.md`** — non livré.\n3. **Optimisation de Branin** : l'optimiseur de `gp_lite` ne converge pas vers le même optimum que scikit-learn sur 6 des 6 cas de Branin (test d'acceptation `test_fit_branin[*]`). Le test attend `LML(mine) >= LML(sklearn) - 2.0` ; mon code produit un LML inférieur. Un scratch local a montré que des redemarrages larges (uniforme dans [-7,7]^4) trouvent bien LML ≈ 55, ce qui est supérieur à sklearn (18-34) — mais le code embarqué ne parvient pas à le faire de façon fiable, probablement à cause d'un état résiduel du kernel entre itérations ou d'un mauvais choix de points de départ. Le cas précis n'a pas pu être stabilisé avant la fin du run.\n4. **`test_branin_end_to_end`** (mon propre test dans `tests/`) échoue avec NRMSE ≈ 0.15 (seuil 0.1), conséquence directe du point 3.\n\nLes tests non-optimisation (noyaux, interpolation, LOO, LML fixes, comparaison scikit-learn à hyperparamètres fixes) passent tous, ce qui valide la correctessse numérique du cœur du paquet (conditionnement, prédictions, LOO, vraisemblance).\n\n## Limites à lever dans un prochain run\n\n- Stabiliser `_optimize` sur Branin (redemarrages, gestion de l'état du kernel, éventuellement optimisation séparée par échelle).\n- Écrire `examples/branin_demo.py` (matplotlib Agg) et `README.md` (français : installation, API, formules, sortie pytest, RMSE).\n- Relancer `python -m pytest -q tests tests_acceptance` pour viser 36/36."
+}

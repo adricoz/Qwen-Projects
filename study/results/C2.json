@@ -1,0 +1,40 @@
+{
+ "run": "C2",
+ "arm": "C",
+ "wall_minutes": 43.60316657622655,
+ "stop": "max steps (90) reached",
+ "steps": 90,
+ "minutes": 43.562247069676715,
+ "deliverables_missing": [
+  "README.md"
+ ],
+ "own_tests": "9 passed in 1.46s",
+ "acceptance": {
+  "test_kernel_values[se]": true,
+  "test_kernel_values[m32]": true,
+  "test_kernel_values[m52]": true,
+  "test_lml_fixed[se-False]": true,
+  "test_lml_fixed[se-True]": true,
+  "test_lml_fixed[m52-False]": true,
+  "test_lml_fixed[m52-True]": true,
+  "test_predict_fixed[se-False]": true,
+  "test_predict_fixed[se-True]": true,
+  "test_predict_fixed[m32-False]": true,
+  "test_predict_fixed[m32-True]": true,
+  "test_interpolation_zero_noise": true,
+  "test_loo_fixed[se-False]": true,
+  "test_loo_fixed[se-True]": true,
+  "test_loo_fixed[m52-False]": true,
+  "test_loo_fixed[m52-True]": true,
+  "test_near_singular_does_not_crash": true,
+  "test_fit_branin[se-0]": false,
+  "test_fit_branin[se-1]": false,
+  "test_fit_branin[se-2]": false,
+  "test_fit_branin[m52-0]": false,
+  "test_fit_branin[m52-1]": false,
+  "test_fit_branin[m52-2]": false
+ },
+ "acceptance_passed": 17,
+ "acceptance_total": 23,
+ "report": "## Rapport final\n\n### Ce qui a été construit\n\nLe paquet autonome **`gp_lite`** (NumPy + SciPy, sans scikit-learn dans le code) :\n\n- **`gp_lite/kernels.py`** — `SquaredExponentialARD`, `Matern32ARD`, `Matern52ARD`, avec `K(X1, X2)`, `diag(X)` et attributs publics `lengthscales` (ndarray d) / `variance` (float).\n- **`gp_lite/gp.py`** — `GPRegressor(kernel, noise, normalize_y)` avec :\n  - `fit(X, y, optimize=True)` : optimise `(log l_i, log σ², log σ_n²)` par L-BFGS-B avec bornes, 3 redémarrages aléatoires (graine fixée, meilleur retenu) ; jitter de Cholesky si la factorisation échoue ;\n  - `predict(X, return_std)` : moyenne et écart-type de f (sans bruit) a posteriori ;\n  - `log_marginal_likelihood()` ;\n  - `loo()` : résidus leave-one-out en forme fermée (R&W 5.12) via `[K⁻¹]_ii`.\n- **`gp_lite/lhs.py`** — échantillonnage hypercube latin (numpy) réutilisé par tests et démo.\n- **`tests/test_gp_lite.py`** — 9 tests : symétrie/diagonale des noyaux, Matérn 5/2 à r=0 et formule, interpolation à bruit nul, `loo` ≡ re-entraînement explicite, comparaison scikit-learn (HP fixés), bout-en-bout Branin.\n- **`examples/branin_demo.py`** — entraîne le GP sur Branin (30 pts LHS) et écrit `examples/branin_demo.png`.\n- **`conftest.py`** — met le dossier projet sur `sys.path` pour pytest.\n\n### Vérification (commandes + résultats)\n\n- `python -m pytest -q tests` → **`9 passed in 1.51s`**, exit 0.\n- `python examples/branin_demo.py` → exit 0 ; affiche :\n  - hyperparamètres ajustés : `lengthscales=[2.75, 10.0]`, `variance=100`, `noise≈6.3e-08` ;\n  - `RMSE = 0.0017` (**normalisée = 0.0003**, bien < 0.1) ;\n  - `branin_demo.png` écrit.\n\nPoints délicats résolus en cours de route (toutes vérifiés numériquement) : la convention de la variance a posteriori (c'est `k(x*,x*) − k*ᵀK⁻¹k*`, pas `‖K⁻¹k*‖²`), la diagonale de `K⁻¹` via `np.linalg.inv`, et l'échelle du noyau dans la comparaison sklearn (factor `variance` devant `RBF`).\n\n### Ce qui manque / limitations\n\n- **`README.md` n'a PAS été écrit** (limite d'étapes atteinte avant ce dernier livrable). Il devrait contenir : installation (aucune), API, formules, commande de test (`python -m pytest -q tests`), et la sortie obtenue ci-dessus.\n- `fit` utilise `np.linalg.inv(K)` (inverse pleine matrice) plutôt qu'une résolution triangulaire pure — correct mais O(n³) ; acceptable pour n modeste, moins adapté à de très grands jeux.\n- Pas de gradient analytique de la log-vraisemblance (L-BFGS-B en mode numérique) ; convergence validée par les tests mais plus lente.\n\nLe cœur demandable (paquet fonctionnel + tests verts + démo) est livré ; seule la documentation README reste à rédiger."
+}

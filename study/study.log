@@ -1,0 +1,18 @@
+[09:43:58] study: runs ['A1', 'B1', 'C1', 'D1', 'A2', 'B2', 'C2', 'D2']
+[09:43:58] A1: agent start
+[09:59:20] A1: finished | 54 steps | 15 min | acceptance 13/23 | own tests: 10 passed, 1 warning in 1.53s | missing: none
+[09:59:20] B1: agent start
+[10:41:19] B1: max steps (90) reached | 90 steps | 42 min | acceptance 17/23 | own tests: 1 failed, 12 passed, 1 warning in 2.72s | missing: ['examples/branin_demo.py', 'README.md']
+[10:41:19] C1: agent start
+[10:56:01] C1: finished | 48 steps | 15 min | acceptance 23/23 | own tests: 6 passed, 1 warning in 1.58s | missing: none
+[10:56:01] D1: agent start
+[11:31:39] D1: finished | 87 steps | 36 min | acceptance 23/23 | own tests: 49 passed, 4 warnings in 2.70s | missing: none
+[11:31:39] A2: agent start
+[12:08:39] A2: finished | 89 steps | 37 min | acceptance 17/23 | own tests: 10 passed, 1 warning in 1.52s | missing: none
+[12:08:39] B2: agent start
+[12:23:42] B2: finished | 49 steps | 15 min | acceptance 23/23 | own tests: 14 passed, 1 warning in 1.58s | missing: none
+[12:23:42] C2: agent start
+[13:07:24] C2: max steps (90) reached | 90 steps | 44 min | acceptance 17/23 | own tests: 9 passed in 1.46s | missing: ['README.md']
+[13:07:24] D2: agent start
+[13:42:29] D2: finished | 72 steps | 35 min | acceptance 14/23 | own tests: 22 passed, 6 warnings in 4.91s | missing: none
+[13:42:29] study: done
