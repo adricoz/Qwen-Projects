@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bimodal Sailing Domain Discretizer</title>
+  <title>Sailing Operating Profile Editor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
 </head>
@@ -13,77 +13,57 @@
     <!-- ==================== SIDEBAR ==================== -->
     <aside class="w-80 shrink-0 overflow-y-auto border-r border-gray-300 bg-gray-50 p-4">
       <h1 class="text-base font-semibold">Operating profile editor</h1>
-      <p class="mt-1 mb-4 text-xs text-gray-600">
-        Bimodal truncated-normal model — export is loadable as-is by
-        <span class="font-mono text-[11px]">operating_profile.OperatingProfile</span>
+      <p class="mt-1 mb-3 text-xs text-gray-600">
+        Where the boat sails, as a few modes. <b>Drag the shapes on the map</b>; set each mode's weight here.
+        The broad "background" mode keeps some information outside the main sailing zones.
       </p>
 
-      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
-        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
-          Plotted domain <span class="font-normal normal-case text-gray-400">(display only)</span>
-        </h2>
-        <div id="secDomain"></div>
-      </section>
+      <div class="mb-3 flex gap-2">
+        <button id="loadBtn" class="flex-1 rounded border border-gray-400 px-2 py-1.5 text-sm hover:bg-gray-100">
+          Load JSON
+        </button>
+        <button id="exportBtn"
+                class="flex-1 rounded bg-blue-600 px-2 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">
+          Export JSON
+        </button>
+      </div>
+      <input id="fileInput" type="file" accept=".json,application/json" class="hidden" />
+
+      <div id="modes"></div>
+      <button id="addMode"
+              class="mb-4 w-full rounded border border-dashed border-gray-400 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
+        + Add mode
+      </button>
 
       <section class="mb-4 rounded border border-gray-300 bg-white p-3">
-        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Quadrature nodes</h2>
         <div id="secNodes"></div>
         <p class="text-[11px] leading-snug text-gray-500">
-          Total 2·n² = <span id="nodesCount">18</span> nodes (n × n per mode), each with weight w_m / n²,
-          summing to 1.
+          <span id="nodesText"></span> nodes = VPP conditions solved per section.
         </p>
       </section>
 
-      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
-        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Global weight</h2>
-        <div id="secWeight"></div>
-      </section>
-
-      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
-        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Mode 1 · upwind</h2>
-        <p id="m1Warn" class="hidden mb-2 rounded border border-red-200 bg-red-50 px-2 py-1 text-xs text-red-600">
-          Mode has (near) zero mass inside its bounds. Export is disabled.
-        </p>
-        <div id="secM1"></div>
-      </section>
-
-      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
-        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Mode 2 · downwind</h2>
-        <p id="m2Warn" class="hidden mb-2 rounded border border-red-200 bg-red-50 px-2 py-1 text-xs text-red-600">
-          Mode has (near) zero mass inside its bounds. Export is disabled.
-        </p>
-        <div id="secM2"></div>
-      </section>
-
-      <section class="mb-3 rounded border border-gray-300 bg-white p-3">
-        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Profile</h2>
-
-        <label for="profileName" class="block mb-0.5 text-xs text-gray-600">Profile name</label>
-        <input id="profileName" type="text" value="bimodal_profile"
+      <details class="mb-4 rounded border border-gray-300 bg-white p-3">
+        <summary class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Profile name, comment, reset
+        </summary>
+        <label for="profileName" class="mt-2 block mb-0.5 text-xs text-gray-600">Profile name (file name)</label>
+        <input id="profileName" type="text" value="trimodal_profile"
                class="mb-2 w-full rounded border border-gray-300 px-2 py-1 text-sm" />
-
         <label for="profileComment" class="block mb-0.5 text-xs text-gray-600">Comment</label>
         <textarea id="profileComment" rows="2"
-                  class="mb-3 w-full rounded border border-gray-300 px-2 py-1 text-sm"></textarea>
-
-        <button id="exportBtn"
-                class="mb-2 w-full rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">
-          Export profile JSON
-        </button>
-        <button id="loadBtn"
-                class="mb-2 w-full rounded border border-gray-400 px-3 py-1.5 text-sm hover:bg-gray-100">
-          Load profile JSON
-        </button>
-        <input id="fileInput" type="file" accept=".json,application/json" class="hidden" />
+                  class="mb-2 w-full rounded border border-gray-300 px-2 py-1 text-sm"></textarea>
         <button id="resetDefaults"
                 class="w-full rounded border border-gray-400 px-3 py-1.5 text-xs hover:bg-gray-100">
           Reset to defaults
         </button>
-        <p class="mt-2 text-[11px] leading-snug text-gray-500">
-          Export writes <span class="font-mono">[name].json</span>; in Chrome/Edge a save dialog lets you choose
-          the folder, other browsers download it.
-        </p>
-      </section>
+      </details>
+
+      <details class="mb-4 rounded border border-gray-300 bg-white p-3">
+        <summary class="cursor-pointer text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Plotted domain (display only)
+        </summary>
+        <div id="secDomain" class="mt-2"></div>
+      </details>
     </aside>
 
     <!-- ==================== MAIN PANEL ==================== -->
@@ -91,7 +71,13 @@
       <div id="banner" class="hidden border-b px-4 py-2 text-sm"></div>
 
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-300 px-4 py-2">
-        <span id="statLine" class="text-sm text-gray-700"></span>
+        <div>
+          <div id="statLine" class="text-sm text-gray-700"></div>
+          <div class="text-[11px] text-gray-500">
+            Map: drag a filled ellipse to move a mode (its bounds follow), pull its edges to change the spread
+            (±1 sd); drag or resize the dashed rectangle to change the bounds alone.
+          </div>
+        </div>
         <div class="flex items-center gap-3">
           <label for="cmap" class="text-xs text-gray-600">Colormap</label>
           <select id="cmap" class="rounded border border-gray-300 px-2 py-1 text-xs">
@@ -105,8 +91,8 @@
         </div>
       </div>
 
-      <div id="plot3d" class="min-h-0" style="flex: 3 1 0;"></div>
-      <div id="plot2d" class="min-h-0 border-t border-gray-300" style="flex: 2 1 0;"></div>
+      <div id="plot2d" class="min-h-0" style="flex: 3 1 0;"></div>
+      <div id="plot3d" class="min-h-0 border-t border-gray-300" style="flex: 2 1 0;"></div>
     </main>
   </div>
 
@@ -119,6 +105,7 @@
      * ========================================================= */
     const $ = (id) => document.getElementById(id);
     const fmtVal = (v) => String(Math.round(v * 1e4) / 1e4);
+    const escAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
     const SQRT2PI = Math.sqrt(2 * Math.PI);
     const LN_SQRT_PI = 0.5 * Math.log(Math.PI);
 
@@ -268,24 +255,72 @@
     }
 
     /* =========================================================
-     * 3. Controls: spec, state, defaults, clamping
+     * 3. Modes: definitions, defaults, weights
+     *
+     * A mode definition: { name, weight, twa: [mean, sd, lo, hi], tws: [mean, sd, lo, hi] }.
+     * Weights are relative: the model (as OperatingProfile) divides them by their sum.
+     * ========================================================= */
+
+    const PALETTE = ['#2563eb', '#f97316', '#16a34a', '#9333ea', '#dc2626', '#0891b2', '#ca8a04', '#db2777'];
+    const modeColor = (i) => PALETTE[i % PALETTE.length];
+    function rgba(hex, a) {
+      const v = parseInt(hex.slice(1), 16);
+      return `rgba(${v >> 16},${(v >> 8) & 255},${v & 255},${a})`;
+    }
+
+    const DEFAULT_MODES = [
+      { name: 'upwind', weight: 0.45, twa: [45, 4, 38, 52], tws: [13, 3, 8, 18] },
+      { name: 'downwind', weight: 0.45, twa: [135, 7, 120, 148], tws: [13, 3, 8, 18] },
+      // broad and light: information between and around the two sailing zones (reaching, other winds)
+      { name: 'background', weight: 0.10, twa: [95, 40, 38, 148], tws: [13, 6, 8, 18] }
+    ];
+
+    const law = ([mean, sd, lo, hi]) => ({ mean, sd, lo, hi, mass: truncMass(mean, sd, lo, hi) });
+
+    function modesFromDefs(defs) {
+      const total = defs.reduce((s, d) => s + d.weight, 0);
+      return defs.map((d, i) => {
+        const twa = law(d.twa), tws = law(d.tws);
+        return { name: d.name, weight: total > 0 ? d.weight / total : 0, twa, tws, color: modeColor(i),
+                 degenerate: twa.mass < 1e-12 || tws.mass < 1e-12 };
+      });
+    }
+
+    function buildNodes(n, modes) {
+      const nodes = [];
+      for (const m of modes) {
+        if (m.degenerate) continue;
+        const w = m.weight / (n * n);
+        const size = 4 + 70 * w;   // marker size grows with the node weight
+        for (const x of truncNodes(m.twa, n)) for (const y of truncNodes(m.tws, n)) {
+          nodes.push({ mode: m.name, color: m.color, twa: x, tws: y, z: pAt(x, y, modes), weight: w, size });
+        }
+      }
+      return nodes;
+    }
+
+    const sanitizeName = (s) => s.replace(/[^A-Za-z0-9_-]/g, '');
+    const r2 = (v) => Math.round(v * 100) / 100;
+    const r4 = (v) => Math.round(v * 1e4) / 1e4;
+
+    // The JSON read by OperatingProfile.from_json (weights normalised to 1).
+    function profileFromDefs(name, comment, n, defs) {
+      const lawJson = ([mean, sd, lo, hi]) => ({ mean: r2(mean), std: r2(sd), lower: r2(lo), upper: r2(hi) });
+      return {
+        name: sanitizeName(name) || 'profile',
+        comment: comment,
+        nodes_per_dim: n,
+        modes: modesFromDefs(defs).map((m, i) => ({
+          name: m.name, weight: r4(m.weight), twa: lawJson(defs[i].twa), tws: lawJson(defs[i].tws) }))
+      };
+    }
+
+    /* =========================================================
+     * 4. Controls (sliders + editable fields), static and per mode
      * ========================================================= */
 
     // [id, label, min, max, step, default]
-    function modeSpecs(k, twa, tws) {
-      return [
-        [k + 'TwaMean', 'TWA mean (deg)', 0, 180, 1, twa[0]],
-        [k + 'TwaSd', 'TWA sd (deg)', 1, 45, 0.5, twa[1]],
-        [k + 'TwaLo', 'TWA min (deg)', 0, 180, 1, twa[2]],
-        [k + 'TwaHi', 'TWA max (deg)', 0, 180, 1, twa[3]],
-        [k + 'TwsMean', 'TWS mean (kts)', 0, 40, 0.5, tws[0]],
-        [k + 'TwsSd', 'TWS sd (kts)', 0.5, 15, 0.5, tws[1]],
-        [k + 'TwsLo', 'TWS min (kts)', 0, 40, 0.5, tws[2]],
-        [k + 'TwsHi', 'TWS max (kts)', 0, 40, 0.5, tws[3]]
-      ];
-    }
-
-    const SPECS = {
+    const STATIC_SPECS = {
       secDomain: [
         ['N', 'Mesh resolution N', 10, 80, 1, 40],
         ['domTwaLo', 'TWA min (deg)', 0, 180, 1, 25],
@@ -293,36 +328,96 @@
         ['domTwsLo', 'TWS min (kts)', 0, 40, 0.5, 4],
         ['domTwsHi', 'TWS max (kts)', 0, 40, 0.5, 36]
       ],
-      secNodes: [['nNodes', 'Nodes per dimension n', 2, 6, 1, 3]],
-      secWeight: [['w1', 'w1 (upwind), w2 = 1 − w1', 0, 1, 0.01, 0.5]],
-      secM1: modeSpecs('m1', [45, 4, 38, 52], [13, 3, 8, 18]),
-      secM2: modeSpecs('m2', [135, 7, 120, 148], [13, 3, 8, 18])
+      secNodes: [['nNodes', 'Nodes per dimension n', 2, 6, 1, 3]]
     };
-
-    const ALL_SPECS = Object.values(SPECS).flat();
-    const CONTROL_IDS = ALL_SPECS.map((s) => s[0]);
-    const DEFAULTS = Object.fromEntries(ALL_SPECS.map((s) => [s[0], s[5]]));
-    const DEFAULT_NAME = 'bimodal_profile';
+    const STATIC_IDS = Object.values(STATIC_SPECS).flat().map((s) => s[0]);
+    const STATIC_DEFAULTS = Object.fromEntries(Object.values(STATIC_SPECS).flat().map((s) => [s[0], s[5]]));
+    const DEFAULT_NAME = 'trimodal_profile';
     const DOMAIN_SPAN = { Twa: 5, Tws: 2 };    // smallest plotted domain [deg], [kts]
     const MODE_SPAN = { Twa: 1, Tws: 0.5 };    // smallest mode bounds = one slider step
 
-    function buildControls() {
-      for (const [sec, specs] of Object.entries(SPECS)) {
-        $(sec).innerHTML = specs.map(([id, label, min, max, step, def]) => `
-          <div class="mb-2">
-            <div class="mb-0.5 flex items-center justify-between">
-              <label for="${id}" class="text-xs text-gray-600">${label}</label>
-              <input id="${id}_f" type="text" inputmode="decimal" value="${def}"
-                     class="w-16 rounded border border-gray-300 px-1 py-0.5 text-right text-xs" />
-            </div>
-            <input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${def}" class="w-full" />
-          </div>`).join('');
+    function modeSpecs(i, d) {
+      const k = 'm' + i;
+      return [
+        [k + 'Weight', 'weight (relative)', 0, 1, 0.01, d.weight],
+        [k + 'TwaMean', 'TWA mean (deg)', 0, 180, 1, d.twa[0]],
+        [k + 'TwaSd', 'TWA sd (deg)', 1, 45, 0.5, d.twa[1]],
+        [k + 'TwaLo', 'TWA min (deg)', 0, 180, 1, d.twa[2]],
+        [k + 'TwaHi', 'TWA max (deg)', 0, 180, 1, d.twa[3]],
+        [k + 'TwsMean', 'TWS mean (kts)', 0, 40, 0.5, d.tws[0]],
+        [k + 'TwsSd', 'TWS sd (kts)', 0.5, 15, 0.5, d.tws[1]],
+        [k + 'TwsLo', 'TWS min (kts)', 0, 40, 0.5, d.tws[2]],
+        [k + 'TwsHi', 'TWS max (kts)', 0, 40, 0.5, d.tws[3]]
+      ];
+    }
+
+    const rowHtml = ([id, label, min, max, step, def]) => `
+      <div class="mb-2">
+        <div class="mb-0.5 flex items-center justify-between">
+          <label for="${id}" class="text-xs text-gray-600">${label}</label>
+          <input id="${id}_f" type="text" inputmode="decimal" value="${fmtVal(def)}"
+                 class="w-16 rounded border border-gray-300 px-1 py-0.5 text-right text-xs" />
+        </div>
+        <input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${def}" class="w-full" />
+      </div>`;
+
+    let modeCount = 0;
+
+    function buildStaticControls() {
+      for (const [sec, specs] of Object.entries(STATIC_SPECS)) $(sec).innerHTML = specs.map(rowHtml).join('');
+      STATIC_IDS.forEach(bindCtl);
+    }
+
+    // (Re)build the mode cards; returns the controls whose requested value had to be clamped.
+    function buildModeCards(defs) {
+      modeCount = defs.length;
+      $('modes').innerHTML = defs.map((d, i) => `
+        <section class="mb-4 rounded border border-gray-300 bg-white p-3">
+          <div class="mb-2 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 shrink-0 rounded-full" style="background:${modeColor(i)}"></span>
+            <input id="m${i}Name" type="text" value="${escAttr(d.name)}" title="Mode name"
+                   class="min-w-0 flex-1 rounded border border-gray-300 px-1 py-0.5 text-xs font-semibold" />
+            <span id="m${i}Share" class="w-10 text-right text-xs text-gray-500"></span>
+            <button data-remove="${i}" title="Remove this mode" ${defs.length === 1 ? 'disabled' : ''}
+                    class="rounded border border-gray-300 px-1.5 text-xs text-gray-600 hover:bg-gray-100 disabled:opacity-40">✕</button>
+          </div>
+          <p id="m${i}Warn" class="hidden mb-2 rounded border border-red-200 bg-red-50 px-2 py-1 text-xs text-red-600">
+            Mode has (near) zero mass inside its bounds. Export is disabled.
+          </p>
+          ${rowHtml(modeSpecs(i, d)[0])}
+          <details>
+            <summary class="cursor-pointer text-xs text-gray-500">Fine-tune: mean, spread, bounds</summary>
+            <div class="mt-2">${modeSpecs(i, d).slice(1).map(rowHtml).join('')}</div>
+          </details>
+        </section>`).join('');
+      const moved = [];
+      defs.forEach((d, i) => {
+        for (const s of modeSpecs(i, d)) {
+          bindCtl(s[0]);
+          if (Math.abs(+$(s[0]).value - s[5]) > 1e-9) moved.push(`${d.name} ${s[1]} ${fmtVal(s[5])} → ${$(s[0]).value}`);
+        }
+        $(`m${i}Name`).addEventListener('input', scheduleUpdate);
+      });
+      return moved;
+    }
+
+    function readModeDefs() {
+      const defs = [];
+      for (let i = 0; i < modeCount; i++) {
+        const v = (s) => +$(`m${i}${s}`).value;
+        defs.push({
+          name: $(`m${i}Name`).value.trim() || `mode${i + 1}`,
+          weight: v('Weight'),
+          twa: [v('TwaMean'), v('TwaSd'), v('TwaLo'), v('TwaHi')],
+          tws: [v('TwsMean'), v('TwsSd'), v('TwsLo'), v('TwsHi')]
+        });
       }
+      return defs;
     }
 
     function readState() {
       const st = {};
-      for (const id of CONTROL_IDS) st[id] = +$(id).value;
+      for (const id of STATIC_IDS) st[id] = +$(id).value;
       return st;
     }
 
@@ -353,35 +448,70 @@
         const [lo, hi] = clampBounds(+$(loId).value, +s.value, +s.min, +s.max, DOMAIN_SPAN[ax]);
         setCtl(loId, lo);
         setCtl(hiId, hi);
-        for (const k of ['m1', 'm2']) {
-          const [mlo, mhi] = clampBounds(+$(k + ax + 'Lo').value, +$(k + ax + 'Hi').value, lo, hi, MODE_SPAN[ax]);
-          setCtl(k + ax + 'Lo', mlo);
-          setCtl(k + ax + 'Hi', mhi);
+        for (let i = 0; i < modeCount; i++) {
+          const k = 'm' + i + ax;
+          const [mlo, mhi] = clampBounds(+$(k + 'Lo').value, +$(k + 'Hi').value, lo, hi, MODE_SPAN[ax]);
+          setCtl(k + 'Lo', mlo);
+          setCtl(k + 'Hi', mhi);
         }
       }
     }
 
-    function modeLaw(st, k, ax) {
-      const c = { mean: st[k + ax + 'Mean'], sd: st[k + ax + 'Sd'], lo: st[k + ax + 'Lo'], hi: st[k + ax + 'Hi'] };
-      c.mass = truncMass(c.mean, c.sd, c.lo, c.hi);
-      return c;
+    function bindCtl(id) {
+      const s = $(id);
+      const f = $(id + '_f');
+
+      s.addEventListener('input', () => { f.value = fmtVal(+s.value); onAnyChange(); });
+
+      const commit = () => {
+        const raw = f.value.trim().replace(',', '.');
+        const v = Number(raw);
+        if (raw === '' || !Number.isFinite(v)) { f.value = fmtVal(+s.value); return; }
+        const min = +s.min, max = +s.max, step = +s.step;
+        let snap = min + Math.round((v - min) / step) * step;
+        snap = Math.round(Math.min(max, Math.max(min, snap)) * 1e6) / 1e6;
+        setCtl(id, snap);
+        onAnyChange();
+      };
+
+      f.addEventListener('change', commit);
+      f.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); f.blur(); }   // blur fires "change" -> commit
+      });
     }
 
-    function computeModes(st) {
-      const mk = (k, name, weight, color, tint) => {
-        const twa = modeLaw(st, k, 'Twa'), tws = modeLaw(st, k, 'Tws');
-        return { name, weight, twa, tws, color, tint, degenerate: twa.mass < 1e-12 || tws.mass < 1e-12 };
-      };
-      return [mk('m1', 'upwind', st.w1, '#2563eb', 'rgba(37,99,235,0.04)'),
-              mk('m2', 'downwind', 1 - st.w1, '#f97316', 'rgba(249,115,22,0.04)')];
+    function addMode() {
+      const st = readState();
+      const snap = (v, step) => Math.round(v / step) * step;
+      const defs = readModeDefs();
+      defs.push({
+        name: `mode${defs.length + 1}`, weight: 0.1,
+        twa: [snap((st.domTwaLo + st.domTwaHi) / 2, 1), Math.min(45, snap((st.domTwaHi - st.domTwaLo) / 4, 0.5)),
+              st.domTwaLo, st.domTwaHi],
+        tws: [snap((st.domTwsLo + st.domTwsHi) / 2, 0.5), Math.min(15, snap((st.domTwsHi - st.domTwsLo) / 4, 0.5)),
+              st.domTwsLo, st.domTwsHi]
+      });
+      buildModeCards(defs);
+      onAnyChange();
+    }
+
+    function removeMode(i) {
+      const defs = readModeDefs();
+      if (defs.length <= 1) return;
+      defs.splice(i, 1);
+      buildModeCards(defs);
+      onAnyChange();
     }
 
     /* =========================================================
-     * 4. Grid + nodes + rendering
+     * 5. Grid + rendering
      * ========================================================= */
 
     const DEFAULT_CAMERA = { eye: { x: 1.55, y: -1.55, z: 0.72 }, up: { x: 0, y: 0, z: 1 } };
     const PLOTLY_CFG = { responsive: true, displaylogo: false };
+    const MAP_CFG = { responsive: true, displaylogo: false, edits: { shapePosition: true } };
+    let shapeMap = [];
+    let editRev = 0;
 
     // uirevision: Plotly keeps the user's camera / zoom while it is unchanged; bumped on "Reset view" and when
     // the plotted domain changes, so the fitted ranges are applied again.
@@ -423,47 +553,32 @@
       return { twa, tws, z, peak };
     }
 
-    function buildNodes(st, modes) {
-      const n = Math.round(st.nNodes);
-      const nodes = [];
-      for (const m of modes) {
-        if (m.degenerate) continue;
-        const w = m.weight / (n * n);
-        const size = 3 + 70 * w;   // marker size proportional to the node weight
-        for (const x of truncNodes(m.twa, n)) for (const y of truncNodes(m.tws, n)) {
-          nodes.push({ mode: m.name, twa: x, tws: y, z: pAt(x, y, modes), weight: w, size });
-        }
-      }
-      return nodes;
+    function nodeTraces(modes, nodes, is3d) {
+      return modes.map((m) => {
+        const list = nodes.filter((nd) => nd.mode === m.name && nd.color === m.color);
+        const t = {
+          type: is3d ? 'scatter3d' : 'scatter', mode: 'markers',
+          x: list.map((nd) => nd.twa),
+          y: list.map((nd) => nd.tws),
+          text: list.map(() => m.name),
+          customdata: list.map((nd) => nd.weight),
+          marker: { size: list.map((nd) => nd.size), color: m.color, opacity: 0.95,
+                    line: { color: '#ffffff', width: 1 } },
+          hovertemplate: '%{text}<br>TWA %{x:.2f}° · TWS %{y:.2f} kt<br>weight %{customdata:.4f}<extra></extra>'
+        };
+        if (is3d) t.z = list.map((nd) => nd.z);
+        return t;
+      });
     }
 
-    function nodeTrace(list, name, color, is3d) {
-      const t = {
-        type: is3d ? 'scatter3d' : 'scatter', mode: 'markers',
-        x: list.map((nd) => nd.twa),
-        y: list.map((nd) => nd.tws),
-        text: list.map(() => name),
-        customdata: list.map((nd) => nd.weight),
-        marker: { size: list.map((nd) => nd.size), color: color, opacity: 0.95,
-                  line: { color: '#ffffff', width: 1 } },
-        hovertemplate: '%{text}<br>TWA %{x:.2f}° · TWS %{y:.2f} kt<br>weight %{customdata:.4f}<extra></extra>'
-      };
-      if (is3d) t.z = list.map((nd) => nd.z);
-      return t;
-    }
-
-    function render3d(grid, nodes) {
-      const traces = [
-        {
-          type: 'surface',
-          x: grid.twa, y: grid.tws, z: grid.z,
-          colorscale: $('cmap').value,
-          colorbar: { title: { text: 'p', side: 'right' }, thickness: 12, len: 0.65 },
-          hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>p %{z:.6f}<extra></extra>'
-        },
-        nodeTrace(nodes.filter((nd) => nd.mode === 'upwind'), 'upwind', '#2563eb', true),
-        nodeTrace(nodes.filter((nd) => nd.mode === 'downwind'), 'downwind', '#f97316', true)
-      ];
+    function render3d(modes, grid, nodes) {
+      const traces = [{
+        type: 'surface',
+        x: grid.twa, y: grid.tws, z: grid.z,
+        colorscale: $('cmap').value,
+        colorbar: { title: { text: 'p', side: 'right' }, thickness: 12, len: 0.65 },
+        hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>p %{z:.6f}<extra></extra>'
+      }].concat(nodeTraces(modes, nodes, true));
       const layout = {
         uirevision: uiRev,
         margin: { l: 0, r: 0, t: 0, b: 0 },
@@ -480,24 +595,28 @@
     }
 
     function render2d(modes, grid, nodes) {
-      const traces = [
-        {
-          type: 'heatmap',
-          x: grid.twa, y: grid.tws, z: grid.z,
-          colorscale: $('cmap').value, showscale: false,
-          hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>p %{z:.6f}<extra></extra>'
-        },
-        nodeTrace(nodes.filter((nd) => nd.mode === 'upwind'), 'upwind', '#2563eb', false),
-        nodeTrace(nodes.filter((nd) => nd.mode === 'downwind'), 'downwind', '#f97316', false)
-      ];
-      const shapes = modes.map((m) => ({
-        type: 'rect', xref: 'x', yref: 'y',
-        x0: m.twa.lo, x1: m.twa.hi, y0: m.tws.lo, y1: m.tws.hi,
-        line: { color: m.color, width: 1.5, dash: 'dash' },
-        fillcolor: m.tint
-      }));
+      const traces = [{
+        type: 'heatmap',
+        x: grid.twa, y: grid.tws, z: grid.z,
+        colorscale: $('cmap').value, showscale: false,
+        hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>p %{z:.6f}<extra></extra>'
+      }].concat(nodeTraces(modes, nodes, false));
+      // Draggable shapes: every bounds rectangle under every ellipse (mean ± 1 sd), each kind largest first,
+      // so a small shape is never hidden under a large one. shapeMap[k] says what shapes[k] edits.
+      const area = (s) => (s.x1 - s.x0) * (s.y1 - s.y0);
+      const rects = modes.map((m, i) => ({
+        i, kind: 'bounds', type: 'rect', x0: m.twa.lo, x1: m.twa.hi, y0: m.tws.lo, y1: m.tws.hi,
+        line: { color: m.color, width: 1.5, dash: 'dash' }, fillcolor: rgba(m.color, 0.04) }));
+      const ellipses = modes.map((m, i) => ({
+        i, kind: 'spread', type: 'circle',
+        x0: m.twa.mean - m.twa.sd, x1: m.twa.mean + m.twa.sd, y0: m.tws.mean - m.tws.sd, y1: m.tws.mean + m.tws.sd,
+        line: { color: m.color, width: 2 }, fillcolor: rgba(m.color, 0.18) }));
+      const ordered = [...rects.sort((a, b) => area(b) - area(a)), ...ellipses.sort((a, b) => area(b) - area(a))];
+      shapeMap = ordered.map(({ i, kind }) => ({ i, kind }));
+      const shapes = ordered.map(({ i, kind, ...s }) => Object.assign({ xref: 'x', yref: 'y' }, s));
       const layout = {
         uirevision: uiRev,
+        editrevision: ++editRev,   // the shapes always follow the sliders, never a stale drag
         margin: { l: 55, r: 20, t: 10, b: 40 },
         paper_bgcolor: '#ffffff',
         plot_bgcolor: '#ffffff',
@@ -506,7 +625,40 @@
         yaxis: { title: { text: 'TWS (kts)' }, range: ranges.y },
         shapes
       };
-      Plotly.react($('plot2d'), traces, layout, PLOTLY_CFG);
+      Plotly.react($('plot2d'), traces, layout, MAP_CFG);
+    }
+
+    // A shape dragged or resized on the map -> the sliders of its mode (snapped and clamped like a typed value).
+    function onMapEdit(ev) {
+      const touched = new Set();
+      for (const key of Object.keys(ev)) {
+        const m = /^shapes\[(\d+)\]\.[xy][01]$/.exec(key);
+        if (m) touched.add(+m[1]);
+      }
+      if (!touched.size) return;
+      const shapes = $('plot2d').layout.shapes;
+      for (const k of touched) {
+        const s = shapes[k], target = shapeMap[k];
+        if (!s || !target) continue;
+        const xa = Math.min(s.x0, s.x1), xb = Math.max(s.x0, s.x1);
+        const ya = Math.min(s.y0, s.y1), yb = Math.max(s.y0, s.y1);
+        const p = 'm' + target.i;
+        if (target.kind === 'bounds') {
+          setCtl(p + 'TwaLo', xa); setCtl(p + 'TwaHi', xb);
+          setCtl(p + 'TwsLo', ya); setCtl(p + 'TwsHi', yb);
+        } else {
+          const v = (s) => +$(p + s).value;
+          // a pure move (same size) carries the mode's bounds along; a resize only changes the spread
+          if (Math.abs((xb - xa) / 2 - v('TwaSd')) < 1e-6 && Math.abs((yb - ya) / 2 - v('TwsSd')) < 1e-6) {
+            const dx = (xa + xb) / 2 - v('TwaMean'), dy = (ya + yb) / 2 - v('TwsMean');
+            setCtl(p + 'TwaLo', v('TwaLo') + dx); setCtl(p + 'TwaHi', v('TwaHi') + dx);
+            setCtl(p + 'TwsLo', v('TwsLo') + dy); setCtl(p + 'TwsHi', v('TwsHi') + dy);
+          }
+          setCtl(p + 'TwaMean', (xa + xb) / 2); setCtl(p + 'TwaSd', (xb - xa) / 2);
+          setCtl(p + 'TwsMean', (ya + yb) / 2); setCtl(p + 'TwsSd', (yb - ya) / 2);
+        }
+      }
+      onAnyChange();
     }
 
     let rafPending = false;
@@ -524,19 +676,24 @@
         ranges = fitRanges(st);
         uiRev++;
       }
-      const modes = computeModes(st);
+      const defs = readModeDefs();
+      const modes = modesFromDefs(defs);
+      const n = Math.round(st.nNodes);
       const grid = buildGrid(st, modes);
-      const nodes = buildNodes(st, modes);
+      const nodes = buildNodes(n, modes);
 
-      render3d(grid, nodes);
+      render3d(modes, grid, nodes);
       render2d(modes, grid, nodes);
 
-      const n = Math.round(st.nNodes);
-      $('statLine').textContent = `2 n² = ${2 * n * n} nodes · peak p = ${grid.peak.toFixed(6)}`;
-      $('nodesCount').textContent = String(2 * n * n);
-      $('m1Warn').classList.toggle('hidden', !modes[0].degenerate);
-      $('m2Warn').classList.toggle('hidden', !modes[1].degenerate);
-      $('exportBtn').disabled = modes.some((m) => m.degenerate);
+      const total = defs.reduce((s, d) => s + d.weight, 0);
+      const k = modes.length * n * n;
+      $('statLine').textContent = `${modes.length} modes × n² = ${k} nodes · peak p = ${grid.peak.toFixed(6)}`;
+      $('nodesText').textContent = `${modes.length} modes × ${n}² = ${k}`;
+      modes.forEach((m, i) => {
+        $(`m${i}Share`).textContent = `${(100 * m.weight).toFixed(0)} %`;
+        $(`m${i}Warn`).classList.toggle('hidden', !m.degenerate);
+      });
+      $('exportBtn').disabled = total <= 0 || modes.some((m) => m.degenerate);
     }
 
     function onAnyChange() {
@@ -551,37 +708,11 @@
     }
 
     function resetDefaults() {
-      for (const id of CONTROL_IDS) setCtl(id, DEFAULTS[id]);
+      for (const id of STATIC_IDS) setCtl(id, STATIC_DEFAULTS[id]);
+      buildModeCards(DEFAULT_MODES);
       $('profileName').value = DEFAULT_NAME;
       $('profileComment').value = '';
       onAnyChange();
-    }
-
-    /* =========================================================
-     * 5. Control binding (slider + editable text field)
-     * ========================================================= */
-
-    function bindCtl(id) {
-      const s = $(id);
-      const f = $(id + '_f');
-
-      s.addEventListener('input', () => { f.value = fmtVal(+s.value); onAnyChange(); });
-
-      const commit = () => {
-        const raw = f.value.trim().replace(',', '.');
-        const v = Number(raw);
-        if (raw === '' || !Number.isFinite(v)) { f.value = fmtVal(+s.value); return; }
-        const min = +s.min, max = +s.max, step = +s.step;
-        let snap = min + Math.round((v - min) / step) * step;
-        snap = Math.round(Math.min(max, Math.max(min, snap)) * 1e6) / 1e6;
-        setCtl(id, snap);
-        onAnyChange();
-      };
-
-      f.addEventListener('change', commit);
-      f.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') { e.preventDefault(); f.blur(); }   // blur fires "change" -> commit
-      });
     }
 
     /* =========================================================
@@ -600,25 +731,10 @@
       if (!sticky) bannerTimer = setTimeout(() => b.classList.add('hidden'), 6000);
     }
 
-    const sanitizeName = (s) => s.replace(/[^A-Za-z0-9_-]/g, '');
-    const r2 = (v) => Math.round(v * 100) / 100;
-    const r4 = (v) => Math.round(v * 1e4) / 1e4;
-
-    function profileObject() {
-      const st = readState();
-      const modes = computeModes(st);
-      const law = (c) => ({ mean: r2(c.mean), std: r2(c.sd), lower: r2(c.lo), upper: r2(c.hi) });
-      return {
-        name: sanitizeName($('profileName').value) || DEFAULT_NAME,
-        comment: $('profileComment').value,
-        nodes_per_dim: Math.round(st.nNodes),
-        modes: modes.map((m) => ({ name: m.name, weight: r4(m.weight), twa: law(m.twa), tws: law(m.tws) }))
-      };
-    }
-
     async function exportProfile() {
       if ($('exportBtn').disabled) return;
-      const obj = profileObject();
+      const obj = profileFromDefs($('profileName').value || DEFAULT_NAME, $('profileComment').value,
+                                  Math.round(readState().nNodes), readModeDefs());
       $('profileName').value = obj.name;
       const text = JSON.stringify(obj, null, 1) + '\n';
       const fname = obj.name + '.json';
@@ -650,14 +766,16 @@
       notice('ok', `Downloaded ${fname}`);
     }
 
-    // Throws an Error naming the first problem of a profile file (2 modes, the first upwind).
+    // Throws an Error naming the first problem of a profile file (the OperatingProfile "modes" format).
     function validateProfile(d) {
       const num = (v, path) => {
         if (typeof v !== 'number' || !Number.isFinite(v)) throw new Error(`${path} must be a number`);
         return v;
       };
       if (!d || typeof d !== 'object' || Array.isArray(d)) throw new Error('top level must be an object');
-      if (!Array.isArray(d.modes) || d.modes.length !== 2) throw new Error('"modes" must hold exactly 2 modes');
+      if (d.modes === undefined && Array.isArray(d.nodes))
+        throw new Error('this profile lists explicit "nodes" (no modes): only profiles with "modes" can be edited here');
+      if (!Array.isArray(d.modes) || d.modes.length === 0) throw new Error('"modes" must be a non-empty list');
       if (d.nodes_per_dim !== undefined && !Number.isInteger(d.nodes_per_dim)) throw new Error('"nodes_per_dim" must be an integer');
       d.modes.forEach((m, i) => {
         if (!m || typeof m !== 'object') throw new Error(`modes[${i}] must be an object`);
@@ -670,13 +788,13 @@
           if (num(c.upper, p + '.upper') <= num(c.lower, p + '.lower')) throw new Error(`${p}: lower must be < upper`);
         }
       });
-      if (d.modes[0].weight + d.modes[1].weight <= 0) throw new Error('the mode weights sum to 0');
+      if (d.modes.reduce((s, m) => s + m.weight, 0) <= 0) throw new Error('the mode weights sum to 0');
     }
 
-    function applyProfile(d) {
+    function applyProfile(d, fileName) {
       const moved = [];
       const set = (id, v) => { if (setCtl(id, v)) moved.push(`${id} ${fmtVal(v)} → ${$(id + '_f').value}`); };
-      // widen the plotted domain so it holds both modes' bounds
+      // widen the plotted domain so it holds every mode's bounds
       const lows = (ax) => Math.min(...d.modes.map((m) => m[ax].lower));
       const highs = (ax) => Math.max(...d.modes.map((m) => m[ax].upper));
       set('domTwaLo', Math.min(+$('domTwaLo').value, lows('twa')));
@@ -684,18 +802,17 @@
       set('domTwsLo', Math.min(+$('domTwsLo').value, lows('tws')));
       set('domTwsHi', Math.max(+$('domTwsHi').value, highs('tws')));
       set('nNodes', d.nodes_per_dim === undefined ? 3 : d.nodes_per_dim);
-      set('w1', d.modes[0].weight / (d.modes[0].weight + d.modes[1].weight));   // OperatingProfile normalises
-      d.modes.forEach((m, i) => {
-        const k = 'm' + (i + 1);
-        for (const [ax, c] of [['Twa', m.twa], ['Tws', m.tws]]) {
-          set(k + ax + 'Mean', c.mean);
-          set(k + ax + 'Sd', c.std);
-          set(k + ax + 'Lo', c.lower);
-          set(k + ax + 'Hi', c.upper);
-        }
-      });
-      $('profileName').value = sanitizeName(String(d.name || '')) || DEFAULT_NAME;
+      const total = d.modes.reduce((s, m) => s + m.weight, 0);   // OperatingProfile normalises too
+      const defs = d.modes.map((m, i) => ({
+        name: typeof m.name === 'string' && m.name.trim() ? m.name.trim() : `mode${i + 1}`,
+        weight: m.weight / total,
+        twa: [m.twa.mean, m.twa.std, m.twa.lower, m.twa.upper],
+        tws: [m.tws.mean, m.tws.std, m.tws.lower, m.tws.upper]
+      }));
+      moved.push(...buildModeCards(defs));
+      $('profileName').value = sanitizeName(String(d.name || fileName.replace(/\.json$/i, ''))) || DEFAULT_NAME;
       $('profileComment').value = typeof d.comment === 'string' ? d.comment : '';
+      resetView();
       onAnyChange();
       return moved;
     }
@@ -711,9 +828,10 @@
           notice('err', `Invalid profile file ${file.name}: ${e.message}. Nothing changed.`, true);
           return;
         }
-        const moved = applyProfile(d);
-        if (moved.length) notice('warn', `Loaded ${file.name}; values clamped to the slider ranges: ${moved.join('; ')}`, true);
-        else notice('ok', `Loaded ${file.name}`);
+        const moved = applyProfile(d, file.name);
+        const what = `Loaded ${file.name} (${d.modes.length} modes)`;
+        if (moved.length) notice('warn', `${what}; values clamped to the slider ranges: ${moved.join('; ')}`, true);
+        else notice('ok', what);
       };
       reader.onerror = () => notice('err', `Cannot read ${file.name}`, true);
       reader.readAsText(file);
@@ -732,19 +850,18 @@
       close(Phi(-3), 0.0013498980316301, 1e-12, 'Phi(-3)');
       close(Phi(-6), 9.865876450376946e-10, 1e-15, 'Phi(-6)');
 
-      const modes = computeModes(DEFAULTS);
       const refs = [
-        ['upwind TWA', modes[0].twa, 3, [41.5379, 45.0000, 48.4621]],
-        ['upwind TWS', modes[0].tws, 3, [10.4593, 13.0000, 15.5407]],
-        ['downwind TWA', modes[1].twa, 3, [128.4518, 134.8633, 141.1360]],
-        ['downwind TWS', modes[1].tws, 3, [10.4593, 13.0000, 15.5407]],
-        ['extra case', { mean: 140, sd: 25, lo: 25, hi: 165 }, 4, [108.6842, 127.9924, 141.6205, 155.7901]]
+        ['upwind TWA', law([45, 4, 38, 52]), 3, [41.5379, 45.0000, 48.4621]],
+        ['upwind TWS', law([13, 3, 8, 18]), 3, [10.4593, 13.0000, 15.5407]],
+        ['downwind TWA', law([135, 7, 120, 148]), 3, [128.4518, 134.8633, 141.1360]],
+        ['extra case', law([140, 25, 25, 165]), 4, [108.6842, 127.9924, 141.6205, 155.7901]],
+        ['background TWA', law([95, 40, 38, 148]), 3, [63.4963, 94.2225, 124.4256]]
       ];
       for (const [what, c, n, ref] of refs) {
         truncNodes(c, n).forEach((x, i) => close(x, ref[i], 1e-3, `${what} node ${i}`));
       }
-      const nodes = buildNodes(DEFAULTS, modes);
-      if (nodes.length !== 2 * DEFAULTS.nNodes ** 2) fails.push(`node count ${nodes.length}`);
+      const nodes = buildNodes(3, modesFromDefs(DEFAULT_MODES));
+      if (nodes.length !== DEFAULT_MODES.length * 9) fails.push(`node count ${nodes.length}`);
       close(nodes.reduce((s, nd) => s + nd.weight, 0), 1, 1e-12, 'sum of the weights');
 
       if (fails.length) {
@@ -760,8 +877,13 @@
      * 8. Wiring + init
      * ========================================================= */
 
-    buildControls();
-    CONTROL_IDS.forEach(bindCtl);
+    buildStaticControls();
+    buildModeCards(DEFAULT_MODES);
+    $('modes').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-remove]');
+      if (btn) removeMode(+btn.dataset.remove);
+    });
+    $('addMode').addEventListener('click', addMode);
     $('cmap').addEventListener('change', scheduleUpdate);
     $('resetView').addEventListener('click', resetView);
     $('resetDefaults').addEventListener('click', resetDefaults);
@@ -779,6 +901,7 @@
 
     selfTest();
     updateAll();
+    $('plot2d').on('plotly_relayout', onMapEdit);   // .on exists once Plotly has drawn the map
   </script>
 </body>
 </html>
