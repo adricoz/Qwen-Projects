@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="23" time="3.462" timestamp="2026-10-27T13:07:18.843389+01:00" hostname="Terminator"><testcase classname="test_acceptance" name="test_kernel_values[se]" time="0.001" /><testcase classname="test_acceptance" name="test_kernel_values[m32]" time="0.001" /><testcase classname="test_acceptance" name="test_kernel_values[m52]" time="0.001" /><testcase classname="test_acceptance" name="test_lml_fixed[se-False]" time="0.001" /><testcase classname="test_acceptance" name="test_lml_fixed[se-True]" time="0.001" /><testcase classname="test_acceptance" name="test_lml_fixed[m52-False]" time="0.001" /><testcase classname="test_acceptance" name="test_lml_fixed[m52-True]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[se-False]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[se-True]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[m32-False]" time="0.001" /><testcase classname="test_acceptance" name="test_predict_fixed[m32-True]" time="0.001" /><testcase classname="test_acceptance" name="test_interpolation_zero_noise" time="0.001" /><testcase classname="test_acceptance" name="test_loo_fixed[se-False]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[se-True]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[m52-False]" time="0.002" /><testcase classname="test_acceptance" name="test_loo_fixed[m52-True]" time="0.002" /><testcase classname="test_acceptance" name="test_near_singular_does_not_crash" time="0.001" /><testcase classname="test_acceptance" name="test_fit_branin[se-0]" time="1.138"><failure message="AssertionError: LML 12.94 &lt; scikit-learn optimum 18.39&#10;assert np.float64(12.944057286559268) &gt;= (np.float64(18.386428831473918) - 2.0)">name = 'se', seed = 0
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+        assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+        # 2. it reaches the optimum found by scikit-learn (same model), within 2 nats
+        sk = ref_lml(name, X, y, *sklearn_optimum(name, X, y), True)
+&gt;       assert mine &gt;= sk - 2.0, f"LML {mine:.2f} &lt; scikit-learn optimum {sk:.2f}"
+E       AssertionError: LML 12.94 &lt; scikit-learn optimum 18.39
+E       assert np.float64(12.944057286559268) &gt;= (np.float64(18.386428831473918) - 2.0)
+
+test_acceptance.py:187: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[se-1]" time="0.273"><failure message="AssertionError: LML 21.77 &lt; scikit-learn optimum 34.10&#10;assert np.float64(21.772790699094298) &gt;= (np.float64(34.10367744664592) - 2.0)">name = 'se', seed = 1
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+        assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+        # 2. it reaches the optimum found by scikit-learn (same model), within 2 nats
+        sk = ref_lml(name, X, y, *sklearn_optimum(name, X, y), True)
+&gt;       assert mine &gt;= sk - 2.0, f"LML {mine:.2f} &lt; scikit-learn optimum {sk:.2f}"
+E       AssertionError: LML 21.77 &lt; scikit-learn optimum 34.10
+E       assert np.float64(21.772790699094298) &gt;= (np.float64(34.10367744664592) - 2.0)
+
+test_acceptance.py:187: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[se-2]" time="0.296"><failure message="AssertionError: LML 11.44 &lt; scikit-learn optimum 23.22&#10;assert np.float64(11.443203240440017) &gt;= (np.float64(23.22071221154547) - 2.0)">name = 'se', seed = 2
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+        assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+        # 2. it reaches the optimum found by scikit-learn (same model), within 2 nats
+        sk = ref_lml(name, X, y, *sklearn_optimum(name, X, y), True)
+&gt;       assert mine &gt;= sk - 2.0, f"LML {mine:.2f} &lt; scikit-learn optimum {sk:.2f}"
+E       AssertionError: LML 11.44 &lt; scikit-learn optimum 23.22
+E       assert np.float64(11.443203240440017) &gt;= (np.float64(23.22071221154547) - 2.0)
+
+test_acceptance.py:187: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-0]" time="0.321"><failure message="AssertionError: LML -5.38 &lt; scikit-learn optimum 11.51&#10;assert np.float64(-5.375088260367384) &gt;= (np.float64(11.507961334100582) - 2.0)">name = 'm52', seed = 0
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+        assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+        # 2. it reaches the optimum found by scikit-learn (same model), within 2 nats
+        sk = ref_lml(name, X, y, *sklearn_optimum(name, X, y), True)
+&gt;       assert mine &gt;= sk - 2.0, f"LML {mine:.2f} &lt; scikit-learn optimum {sk:.2f}"
+E       AssertionError: LML -5.38 &lt; scikit-learn optimum 11.51
+E       assert np.float64(-5.375088260367384) &gt;= (np.float64(11.507961334100582) - 2.0)
+
+test_acceptance.py:187: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-1]" time="0.321"><failure message="AssertionError: LML 3.35 &lt; scikit-learn optimum 17.90&#10;assert np.float64(3.354666095080141) &gt;= (np.float64(17.903252872353615) - 2.0)">name = 'm52', seed = 1
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+        assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+        # 2. it reaches the optimum found by scikit-learn (same model), within 2 nats
+        sk = ref_lml(name, X, y, *sklearn_optimum(name, X, y), True)
+&gt;       assert mine &gt;= sk - 2.0, f"LML {mine:.2f} &lt; scikit-learn optimum {sk:.2f}"
+E       AssertionError: LML 3.35 &lt; scikit-learn optimum 17.90
+E       assert np.float64(3.354666095080141) &gt;= (np.float64(17.903252872353615) - 2.0)
+
+test_acceptance.py:187: AssertionError</failure></testcase><testcase classname="test_acceptance" name="test_fit_branin[m52-2]" time="0.321"><failure message="AssertionError: LML -4.19 &lt; scikit-learn optimum 8.51&#10;assert np.float64(-4.19335585222548) &gt;= (np.float64(8.513275828906014) - 2.0)">name = 'm52', seed = 2
+
+    @pytest.mark.parametrize("seed", [0, 1, 2])
+    @pytest.mark.parametrize("name", ["se", "m52"])
+    def test_fit_branin(name, seed):
+        X = branin_design(30, seed)
+        y = branin(X)
+        gp = GPRegressor(KERNELS[name](np.ones(2), 1.0), noise=1e-6, normalize_y=True)
+        gp.fit(X, y)
+        ls, var, noise = np.asarray(gp.kernel.lengthscales), float(gp.kernel.variance), float(gp.noise)
+        mine = ref_lml(name, X, y, ls, var, noise, True)
+        # 1. the objective it optimised is the true log marginal likelihood
+        assert gp.log_marginal_likelihood() == pytest.approx(mine, rel=1e-3, abs=0.05)
+        # 2. it reaches the optimum found by scikit-learn (same model), within 2 nats
+        sk = ref_lml(name, X, y, *sklearn_optimum(name, X, y), True)
+&gt;       assert mine &gt;= sk - 2.0, f"LML {mine:.2f} &lt; scikit-learn optimum {sk:.2f}"
+E       AssertionError: LML -4.19 &lt; scikit-learn optimum 8.51
+E       assert np.float64(-4.19335585222548) &gt;= (np.float64(8.513275828906014) - 2.0)
+
+test_acceptance.py:187: AssertionError</failure></testcase></testsuite></testsuites>

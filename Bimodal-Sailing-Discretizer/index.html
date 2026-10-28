@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <title>Bimodal Sailing Domain Discretizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <style>
+    /* ---------- custom range sliders ---------- */
+    input[type="range"].ctl {
+      -webkit-appearance: none; appearance: none;
+      width: 100%; height: 6px; border-radius: 9999px;
+      background: #1e293b; outline: none; cursor: pointer;
+    }
+    input[type="range"].ctl::-webkit-slider-thumb {
+      -webkit-appearance: none; appearance: none;
+      width: 15px; height: 15px; border-radius: 9999px;
+      background: #22d3ee; border: 2px solid #164e63;
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.45); cursor: grab;
+    }
+    input[type="range"].ctl::-webkit-slider-thumb:active { cursor: grabbing; }
+    input[type="range"].ctl::-moz-range-thumb {
+      width: 15px; height: 15px; border-radius: 9999px;
+      background: #22d3ee; border: 2px solid #164e63;
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.45); cursor: grab;
+    }
+    /* ---------- stat chips ---------- */
+    .chip {
+      display: inline-flex; align-items: center; gap: 4px;
+      border-radius: 9999px; border: 1px solid #1e293b;
+      background: rgba(30, 41, 59, 0.6); padding: 2px 10px;
+      font-size: 11px; color: #94a3b8;
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bimodal Sailing Domain Discretizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+</head>
+<body class="bg-white font-sans text-gray-900">
+  <div class="flex h-screen">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="w-80 shrink-0 space-y-4 overflow-y-auto border-r border-gray-300 bg-gray-50 p-4">
+
+      <header class="border-b border-gray-300 pb-3">
+        <h1 class="text-base font-bold">Bimodal Sailing Domain Discretizer</h1>
+        <p class="mt-1 text-xs text-gray-600">Operational profile: bimodal PDF over TWA × TWS</p>
+      </header>
+
+      <!-- ============ GRID SETTINGS ============ -->
+      <section class="rounded border border-gray-300 bg-white p-3">
+        <h2 class="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-600">Grid Settings</h2>
+        <div class="space-y-3">
+
+          <div>
+            <div class="mb-1 flex items-center justify-between">
+              <label for="n" class="text-sm">Mesh Resolution (N)</label>
+              <input id="n-val" type="text" inputmode="numeric" data-fmt="int" value="20" class="w-16 rounded border border-gray-300 px-1 py-0.5 text-right text-sm" />
+            </div>
+            <input id="n" type="range" min="5" max="50" step="1" value="20" class="w-full" />
+          </div>
+
+          <div>
+            <div class="mb-1 flex items-center justify-between">
+              <label for="twaMin" class="text-sm">TWA Min (0–90°)</label>
+              <input id="twaMin-val" type="text" inputmode="decimal" data-fmt="int" value="25" class="w-16 rounded border border-gray-300 px-1 py-0.5 text-right text-sm" />
+            </div>
+            <input id="twaMin" type="range" min="0" max="90" step="1" value="25" class="w-full" />
+    /* ---------- slim sidebar scrollbar ---------- */
+    .scroll-slim::-webkit-scrollbar { width: 8px; }
+    .scroll-slim::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 8px; }
+    .scroll-slim::-webkit-scrollbar-track { background: transparent; }
+    select { color-scheme: dark; }
+  </style>
+</head>
+<body class="h-screen w-screen overflow-hidden bg-slate-950 font-sans text-slate-200 antialiased">
+  <div class="flex h-full">
+
+    <!-- ==================== SIDEBAR ==================== -->
+    <aside class="scroll-slim flex w-[22rem] shrink-0 flex-col gap-4 overflow-y-auto border-r border-slate-800 bg-slate-900/60 p-4">
+
+      <!-- Header -->
+      <header class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-300 ring-1 ring-cyan-500/30">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="5" r="3"></circle>
+            <line x1="12" y1="22" x2="12" y2="8"></line>
+            <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-sm font-bold tracking-tight text-white">Bimodal Sailing Domain Discretizer</h1>
+          <p class="text-[11px] text-slate-400">TWA × TWS operational PDF · hydrofoil tuning profile</p>
+        </div>
+      </header>
+
+      <!-- ============ GRID SETTINGS ============ -->
+      <section class="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
+        <h2 class="mb-3 text-[11px] font-semibold uppercase tracking-widest text-cyan-400/80">Grid Settings</h2>
+        <div class="space-y-4">
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="n" class="text-slate-300">Mesh Resolution <span class="text-xs text-slate-500">N × N</span></label>
+              <span id="n-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">20</span>
+            </div>
+            <input id="n" class="ctl" type="range" min="5" max="50" step="1" value="20" data-fmt="int" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="twaMin" class="text-slate-300">TWA Min <span class="text-xs text-slate-500">0° – 90°</span></label>
+              <span id="twaMin-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">25</span>
+            </div>
+            <input id="twaMin" class="ctl" type="range" min="0" max="90" step="1" value="25" data-fmt="int" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="twaMax" class="text-slate-300">TWA Max <span class="text-xs text-slate-500">90° – 180°</span></label>
+              <span id="twaMax-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">165</span>
+            </div>
+            <input id="twaMax" class="ctl" type="range" min="90" max="180" step="1" value="165" data-fmt="int" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="twsMin" class="text-slate-300">TWS Min <span class="text-xs text-slate-500">0 – 15 kts</span></label>
+              <span id="twsMin-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">4</span>
+            </div>
+            <input id="twsMin" class="ctl" type="range" min="0" max="15" step="0.5" value="4" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="twsMax" class="text-slate-300">TWS Max <span class="text-xs text-slate-500">15 – 40 kts</span></label>
+              <span id="twsMax-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">36</span>
+            </div>
+            <input id="twsMax" class="ctl" type="range" min="15" max="40" step="0.5" value="36" />
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ GLOBAL WEIGHT ============ -->
+      <section class="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
+        <h2 class="mb-3 text-[11px] font-semibold uppercase tracking-widest text-cyan-400/80">Global Weight</h2>
+        <div class="mb-1.5 flex items-center justify-between text-sm">
+          <label for="w1" class="text-slate-300">Mode 1 weight <span class="text-xs text-slate-500">w₁</span></label>
+          <span id="w1-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">0.55</span>
+        </div>
+        <input id="w1" class="ctl" type="range" min="0" max="1" step="0.01" value="0.55" data-fmt="f2" />
+        <div class="mt-3 flex h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+          <div id="w1-bar" class="h-full bg-cyan-400 transition-all" style="width:55%"></div>
+          <div id="w2-bar" class="h-full bg-amber-400 transition-all" style="width:45%"></div>
+        </div>
+        <div class="mt-1 flex justify-between font-mono text-[10px] text-slate-500">
+          <span id="w1-pct">w1 = 0.55 (upwind)</span>
+          <span id="w2-pct">w2 = 0.45 (downwind)</span>
+        </div>
+      </section>
+
+      <!-- ============ MODE 1 · UPWIND ============ -->
+      <section class="rounded-xl border border-cyan-900/40 bg-slate-900 p-4 shadow-sm">
+        <div class="mb-3 flex items-center justify-between">
+          <h2 class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-cyan-400/80">
+            <span class="h-2 w-2 rounded-full bg-cyan-400"></span> Mode 1 · Upwind Peak
+          </h2>
+          <span id="m1Status" class="font-mono text-[10px] text-emerald-400">● in box</span>
+        </div>
+        <div class="space-y-4">
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m1Twa" class="text-slate-300">Center TWA 1</label>
+              <span id="m1Twa-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">45</span>
+            </div>
+            <input id="m1Twa" class="ctl" type="range" min="0" max="180" step="1" value="45" data-fmt="int" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m1Tws" class="text-slate-300">Center TWS 1</label>
+              <span id="m1Tws-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">12</span>
+            </div>
+            <input id="m1Tws" class="ctl" type="range" min="0" max="40" step="0.5" value="12" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m1SigTwa" class="text-slate-300">Spread σ TWA 1</label>
+              <span id="m1SigTwa-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">25</span>
+            </div>
+            <input id="m1SigTwa" class="ctl" type="range" min="1" max="45" step="0.5" value="25" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m1SigTws" class="text-slate-300">Spread σ TWS 1</label>
+              <span id="m1SigTws-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">4.5</span>
+            </div>
+            <input id="m1SigTws" class="ctl" type="range" min="1" max="15" step="0.5" value="4.5" />
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ MODE 2 · DOWNWIND ============ -->
+      <section class="rounded-xl border border-amber-900/40 bg-slate-900 p-4 shadow-sm">
+        <div class="mb-3 flex items-center justify-between">
+          <h2 class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-amber-400/80">
+            <span class="h-2 w-2 rounded-full bg-amber-400"></span> Mode 2 · Downwind Peak
+          </h2>
+          <span id="m2Status" class="font-mono text-[10px] text-emerald-400">● in box</span>
+        </div>
+        <div class="space-y-4">
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m2Twa" class="text-slate-300">Center TWA 2</label>
+              <span id="m2Twa-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">140</span>
+            </div>
+            <input id="m2Twa" class="ctl" type="range" min="0" max="180" step="1" value="140" data-fmt="int" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m2Tws" class="text-slate-300">Center TWS 2</label>
+              <span id="m2Tws-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">18</span>
+            </div>
+            <input id="m2Tws" class="ctl" type="range" min="0" max="40" step="0.5" value="18" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m2SigTwa" class="text-slate-300">Spread σ TWA 2</label>
+              <span id="m2SigTwa-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">25</span>
+            </div>
+            <input id="m2SigTwa" class="ctl" type="range" min="1" max="45" step="0.5" value="25" />
+          </div>
+
+          <div>
+            <div class="mb-1.5 flex items-center justify-between text-sm">
+              <label for="m2SigTws" class="text-slate-300">Spread σ TWS 2</label>
+              <span id="m2SigTws-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">5</span>
+            </div>
+            <input id="m2SigTws" class="ctl" type="range" min="1" max="15" step="0.5" value="5" />
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ EXPORT ============ -->
+      <div class="mt-auto space-y-2 pt-1">
+        <button id="exportBtn"
+                class="flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-500 px-4 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/25 transition hover:bg-cyan-400 active:scale-[0.98]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Export JSON
+        </button>
+        <p class="text-center text-[10px] leading-relaxed text-slate-500">
+          sailing_discretization_mesh.json<br />flat array · id / twa / tws / pdf · 4-decimal precision
+        </p>
+        <button id="resetBtn"
+                class="w-full rounded-lg border border-slate-700 bg-slate-800/60 px-4 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-slate-800">
+          Reset to defaults
+        </button>
+      </div>
+    </aside>
+
+    <!-- ==================== MAIN PANEL ==================== -->
+    <main class="flex min-w-0 flex-1 flex-col bg-slate-950">
+
+      <!-- plot header -->
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 bg-slate-900/40 px-4 py-2.5">
+        <div class="flex flex-wrap items-center gap-2">
+          <span id="stat-points" class="chip">—</span>
+          <span id="stat-box" class="chip">—</span>
+          <span id="stat-peak" class="chip">—</span>
+          <span id="stat-sum" class="chip border-emerald-500/30 bg-emerald-500/10 text-emerald-300">Σ PDF = 1.0000</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="cmap" class="text-[11px] text-slate-400">Colormap</label>
+          <select id="cmap" class="rounded-md border border-slate-700 bg-slate-800 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-cyan-500">
+            <option value="Viridis" selected>Viridis</option>
+            <option value="Jet">Jet</option>
+            <option value="Rainbow">Rainbow</option>
+            <option value="Electric">Electric</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 3D plot -->
+      <div id="plot" class="min-h-0 flex-1"></div>
+    </main>
+  </div>
+
+  <!-- ==================== LOGIC ==================== -->
+  <script>
+    'use strict';
+
+    const TAU  = 2 * Math.PI;
+    const $    = (id) => document.getElementById(id);
+    const round4  = (v) => Math.round(v * 1e4) / 1e4;
+    const round1  = (v) => Math.round(v * 10) / 10;
+    const clamp   = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+    const DEFAULTS = {
+      n: '20', twaMin: '25', twaMax: '165', twsMin: '4', twsMax: '36', w1: '0.55',
+      m1Twa: '45', m1Tws: '12', m1SigTwa: '25', m1SigTws: '4.5',
+      m2Twa: '140', m2Tws: '18', m2SigTwa: '25', m2SigTws: '5'
+    };
+
+    /* ---------- math core ---------- */
+
+    // Deterministic regular grid: N values linearly spaced between a and b (inclusive).
+    function linspace(a, b, n) {
+      if (n === 1) return [a];
+      const step = (b - a) / (n - 1);
+      const out = new Array(n);
+      for (let i = 0; i < n; i++) out[i] = a + i * step;
+      return out;
+    }
+
+    // 2D Gaussian PDF: exp(-0.5*((x-μx)/σx)² - 0.5*((y-μy)/σy)²) / (2π·σx·σy)
+    function gaussian2d(x, y, muX, sigX, muY, sigY) {
+      const e = -0.5 * Math.pow((x - muX) / sigX, 2) - 0.5 * Math.pow((y - muY) / sigY, 2);
+      return Math.exp(e) / (TAU * sigX * sigY);
+    }
+
+    // Enforce a minimum span so the grid never degenerates (min < max, strictly).
+    function resolveBounds(minId, maxId, hardLo, hardHi, minSpan) {
+      let lo = clamp(+$ (minId).value, hardLo, hardHi - minSpan);
+      let hi = clamp(+$ (maxId).value, hardLo + minSpan, hardHi);
+      if (hi - lo < minSpan) hi = Math.min(hardHi, lo + minSpan);
+      return [lo, hi];
+    }
+
+    function readParams() {
+      const N    = Math.round(+$('n').value);
+      const twa  = resolveBounds('twaMin', 'twaMax', 0, 180, 5);
+      const tws  = resolveBounds('twsMin', 'twsMax', 0, 40, 5);
+      return {
+        N,
+        twaLo: twa[0], twaHi: twa[1],
+        twsLo: tws[0], twsHi: tws[1],
+        w1: +$('w1').value,
+        m1: { muT: +$('m1Twa').value, muS: +$('m1Tws').value, sigT: +$('m1SigTwa').value, sigS: +$('m1SigTws').value },
+        m2: { muT: +$('m2Twa').value, muS: +$('m2Tws').value, sigT: +$('m2SigTwa').value, sigS: +$('m2SigTws').value }
+      };
+    }
+
+    // Build the N×N mixture PDF grid, then normalize so Σ_grid = 1.0 exactly.
+    function computeGrid(p) {
+      const { N, twaLo, twaHi, twsLo, twsHi, w1, m1, m2 } = p;
+      const w2 = 1 - w1;
+      const twa = linspace(twaLo, twaHi, N);   // x-axis : TWA (deg)
+      const tws = linspace(twsLo, twsHi, N);   // y-axis : TWS (kts)
+      const z = Array.from({ length: N }, () => new Array(N).fill(0));
+
+      let total = 0, zmax = 0, peakI = 0, peakJ = 0;
+      for (let j = 0; j < N; j++) {
+        for (let i = 0; i < N; i++) {
+          const x = twa[i], y = tws[j];
+          const v = w1 * gaussian2d(x, y, m1.muT, m1.sigT, m1.muS, m1.sigS)
+                  + w2 * gaussian2d(x, y, m2.muT, m2.sigT, m2.muS, m2.sigS);
+          z[j][i] = v;
+          total  += v;
+          if (v > zmax) { zmax = v; peakI = i; peakJ = j; }
+        }
+      }
+      if (!Number.isFinite(total) || total <= 0) throw new Error('Degenerate grid — check bounds.');
+
+      for (let j = 0; j < N; j++)
+        for (let i = 0; i < N; i++)
+          z[j][i] /= total;
+
+      return { N, twa, tws, z, peak: { twa: twa[peakI], tws: tws[peakJ], pdf: zmax / total } };
+    }
+
+    /* ---------- plotly rendering ---------- */
+
+    const PLOTLY_CFG = { responsive: true, displaylogo: false, scrollZoom: true };
+
+    function buildPlot(g, p) {
+      const padT = (p.twaHi - p.twaLo) * 0.06 + 1;
+      const padS = (p.twsHi - p.twsLo) * 0.06 + 0.5;
+
+      const data = [
+        {
+          type: 'surface',
+          x: g.twa, y: g.tws, z: g.z,
+          colorscale: $('cmap').value,
+          showscale: true,
+          colorbar: { title: { text: 'PDF', side: 'right' }, thickness: 14, len: 0.8, outlinewidth: 0, x: 1.02 },
+          hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>PDF %{z:.5f}<extra>mesh</extra>'
+        },
+        {
+          type: 'scatter3d', mode: 'markers',
+          x: [g.peak.twa], y: [g.peak.tws], z: [g.peak.pdf],
+          marker: { size: 6, color: '#f8fafc', line: { color: '#0f172a', width: 1 } },
+          hovertemplate: 'Grid peak · %{x:.1f}° / %{y:.1f} kt<extra></extra>'
+        }
+      ];
+
+      const axisBase = {
+        showbackground: true, backgroundcolor: 'rgba(15,23,42,0.25)',
+        gridcolor: '#293548', zerolinecolor: '#293548', linecolor: '#293548',
+        titlefont: { color: '#94a3b8', size: 13 },
+        tickfont:  { color: '#64748b', size: 11 }
+      };
+
+      const layout = {
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor:  'rgba(0,0,0,0)',
+        margin: { l: 0, r: 0, t: 8, b: 0 },
+        scene: {
+          xaxis: Object.assign({ title: { text: 'TWA (°)' },   range: [p.twaLo - padT, p.twaHi + padT] }, axisBase),
+          yaxis: Object.assign({ title: { text: 'TWS (kts)' }, range: [p.twsLo - padS, p.twsHi + padS] }, axisBase),
+          zaxis: Object.assign({ title: { text: 'PDF (normalized)' }, range: [0, g.peak.pdf * 1.12] }, axisBase),
+          camera: { eye: { x: 1.55, y: -1.55, z: 0.72 }, up: { x: 0, y: 0, z: 1 } },
+          bgcolor: 'rgba(0,0,0,0)'
+        }
+      };
+
+      return { data, layout };
+    }
+
+    /* ---------- UI glue ---------- */
+
+    let lastGrid = null;
+    let rafPending = false;
+
+    function scheduleUpdate() {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => { rafPending = false; updateAll(); });
+    }
+
+    function updateAll() {
+      const p = readParams();
+      const g = computeGrid(p);
+      lastGrid = g;
+
+      const { data, layout } = buildPlot(g, p);
+      Plotly.react($('plot'), data, layout, PLOTLY_CFG);
+
+      // header stats
+      $('stat-points').textContent = `${p.N} × ${p.N} = ${p.N * p.N} pts`;
+      $('stat-box').textContent    = `box ${round1(p.twaHi - p.twaLo)}° × ${round1(p.twsHi - p.twsLo)} kt`;
+      $('stat-peak').textContent   = `peak @ ${g.peak.twa.toFixed(1)}° / ${g.peak.tws.toFixed(1)} kt`;
+
+      let sum = 0;
+      for (let j = 0; j < g.N; j++) for (let i = 0; i < g.N; i++) sum += g.z[j][i];
+      $('stat-sum').textContent = `Σ PDF = ${sum.toFixed(4)}`;
+
+      // weight split bar
+      $('w1-bar').style.width = (p.w1 * 100) + '%';
+      $('w2-bar').style.width = ((1 - p.w1) * 100) + '%';
+      $('w1-pct').textContent = `w1 = ${p.w1.toFixed(2)} (upwind)`;
+      $('w2-pct').textContent = `w2 = ${(1 - p.w1).toFixed(2)} (downwind)`;
+
+      modeStatus('m1', p);
+      modeStatus('m2', p);
+    }
+
+    function modeStatus(prefix, p) {
+      const muT = +$(prefix + 'Twa').value;
+      const muS = +$(prefix + 'Tws').value;
+      const inside = muT >= p.twaLo && muT <= p.twaHi && muS >= p.twsLo && muS <= p.twsHi;
+      const el = $(prefix + 'Status');
+      el.textContent = inside ? '● in box' : '○ out of box';
+      el.classList.toggle('text-emerald-400', inside);
+      el.classList.toggle('text-amber-400', !inside);
+    }
+
+    function refreshBadge(el) {
+      const v = +el.value;
+      const f = el.dataset.fmt;
+      const out = f === 'int' ? String(v) : f === 'f2' ? v.toFixed(2) : String(v);
+      const badge = $(el.id + '-val');
+      if (badge) badge.textContent = out;
+    }
+
+    function applyFill(el) {
+      const min = +el.min, max = +el.max, v = +el.value;
+      const pct = ((v - min) / (max - min)) * 100;
+      el.style.background =
+        `linear-gradient(to right, #06b6d4 0%, #06b6d4 ${pct}%, #1e293b ${pct}%, #1e293b 100%)`;
+    }
+
+    /* ---------- wiring ---------- */
+
+    document.querySelectorAll('input[type="range"].ctl').forEach(el => {
+      el.addEventListener('input', () => { refreshBadge(el); applyFill(el); scheduleUpdate(); });
+      refreshBadge(el);
+      applyFill(el);
+    });
+
+    $('cmap').addEventListener('change', scheduleUpdate);
+
+    $('resetBtn').addEventListener('click', () => {
+      Object.entries(DEFAULTS).forEach(([id, v]) => {
+        const el = $(id);
+        el.value = v;
+        refreshBadge(el);
+        applyFill(el);
+      });
+      updateAll();
+    });
+
+    /* ---------- strict JSON export ---------- */
+
+    $('exportBtn').addEventListener('click', () => {
+      if (!lastGrid) updateAll();
+      const { N, twa, tws, z } = lastGrid;
+
+      // Flat array, ordered: TWA outer loop, TWS inner loop · 4-decimal precision.
+      const points = new Array(N * N);
+      let id = 1;
+      for (let i = 0; i < N; i++) {
+        for (let j = 0; j < N; j++) {
+          points[id - 1] = { id: id, twa: round4(twa[i]), tws: round4(tws[j]), pdf: round4(z[j][i]) };
+          id++;
+        }
+      }
+
+      const blob = new Blob([JSON.stringify(points)], { type: 'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = 'sailing_discretization_mesh.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+
+      const btn = $('exportBtn');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ Downloaded';
+      setTimeout(() => { btn.innerHTML = original; }, 1400);
+    });
+
+    /* ---------- init ---------- */
+    updateAll();
+  </script>
+</body>
+</html>

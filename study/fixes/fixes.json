@@ -1,0 +1,10 @@
+{
+ "A1": {"after": 23, "lines": 3, "cause": "log-déterminant compté deux fois (2 lignes) + borne basse du bruit e^-12"},
+ "A2": {"after": 23, "lines": 1, "cause": "bornes log communes (-6, 4) : bruit >= 2,5e-3, variance <= 55"},
+ "B1": {"after": 23, "lines": 1, "cause": "bornes log communes (-7, 7) : bruit >= 9e-4"},
+ "B2": {"after": 23, "lines": 0, "cause": ""},
+ "C1": {"after": 23, "lines": 0, "cause": ""},
+ "C2": {"after": 23, "lines": 3, "cause": "bornes : longueur <= 10, variance <= 100, bruit <= 1e-2"},
+ "D1": {"after": 23, "lines": 0, "cause": ""},
+ "D2": {"after": 23, "lines": 3, "cause": "Matérn 5/2 : 5ρ²/3 avec ρ = √5 r (1 ligne) + bornes variance et bruit"}
+}

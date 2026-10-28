@@ -1,0 +1,16 @@
+diff -ru -x __pycache__ runs/C2/gp_lite/gp.py C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/C2/gp_lite/gp.py
+--- runs/C2/gp_lite/gp.py	2026-10-27 13:00:43.510555100 +0100
++++ C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/C2/gp_lite/gp.py	2026-10-27 13:45:46.155565200 +0100
+@@ -39,9 +39,9 @@
+     JITTERS = (0.0, 1e-10, 1e-8, 1e-6)
+     NLL_FAILURE = 1e10
+     # bornes de recherche (valeurs, pas logs) des hyperparamètres
+-    LENGTHSCALE_BOUNDS = (1e-2, 1e1)
+-    SIGNAL_VARIANCE_BOUNDS = (1e-4, 1e2)
+-    NOISE_BOUNDS = (1e-8, 1e-2)
++    LENGTHSCALE_BOUNDS = (1e-2, 1e3)
++    SIGNAL_VARIANCE_BOUNDS = (1e-4, 1e4)
++    NOISE_BOUNDS = (1e-10, 1e-1)
+ 
+     def __init__(self, kernel, noise=1e-6, normalize_y=True):
+         if not isinstance(kernel, Kernel):

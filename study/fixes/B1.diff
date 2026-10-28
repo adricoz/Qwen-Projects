@@ -1,0 +1,12 @@
+diff -ru -x __pycache__ runs/B1/gp_lite/gp.py C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/B1/gp_lite/gp.py
+--- runs/B1/gp_lite/gp.py	2026-10-27 10:38:32.504047000 +0100
++++ C:/Users/SIM/AppData/Local/Temp/claude/c--Users-SIM-Desktop-Code-Adri/6afe9f86-d5ba-4844-b270-e18485ca1747/scratchpad/fixed/B1/gp_lite/gp.py	2026-10-27 13:45:46.117313300 +0100
+@@ -14,7 +14,7 @@
+ # NLL returned when the covariance matrix cannot be factorised at all.
+ _NLL_FAILURE = 1e10
+ # Bounds of the log hyperparameters (lengthscales, variance, noise in [1e-3, 1e3]).
+-_LOG_BOUNDS = (-7.0, 7.0)
++_LOG_BOUNDS = (-20.0, 7.0)
+ 
+ 
+ def _solve_LL(L, b):
