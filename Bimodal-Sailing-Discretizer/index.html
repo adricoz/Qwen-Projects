@@ -67,7 +67,8 @@
     </aside>
 
     <!-- ==================== MAIN PANEL ==================== -->
-    <main class="flex min-w-0 flex-1 flex-col bg-white">
+    <main class="min-w-0 flex-1 overflow-y-auto bg-white">
+     <div class="sticky top-0 z-10 bg-white">
       <div id="banner" class="hidden border-b px-4 py-2 text-sm"></div>
 
       <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-300 px-4 py-2">
@@ -90,9 +91,14 @@
           </button>
         </div>
       </div>
+     </div>
 
-      <div id="plot2d" class="min-h-0" style="flex: 3 1 0;"></div>
-      <div id="plot3d" class="min-h-0 border-t border-gray-300" style="flex: 2 1 0;"></div>
+      <!-- fixed heights, clipped: Plotly sizes itself to its box and the panel scrolls -->
+      <div id="plot2d" class="overflow-hidden" style="height: 62vh; min-height: 380px;"></div>
+      <div class="border-t border-gray-300 px-4 py-1.5 text-[11px] text-gray-500">
+        3D view — the mouse wheel zooms while over the plot; scroll the page from the margins or the scroll bar.
+      </div>
+      <div id="plot3d" class="overflow-hidden" style="height: 70vh; min-height: 420px;"></div>
     </main>
   </div>
 
