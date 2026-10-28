@@ -3,302 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="dark" />
-  <title>Bimodal Sailing Domain Discretizer</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
-  <style>
-    /* ---------- custom range sliders ---------- */
-    input[type="range"].ctl {
-      -webkit-appearance: none; appearance: none;
-      width: 100%; height: 6px; border-radius: 9999px;
-      background: #1e293b; outline: none; cursor: pointer;
-    }
-    input[type="range"].ctl::-webkit-slider-thumb {
-      -webkit-appearance: none; appearance: none;
-      width: 15px; height: 15px; border-radius: 9999px;
-      background: #22d3ee; border: 2px solid #164e63;
-      box-shadow: 0 0 10px rgba(34, 211, 238, 0.45); cursor: grab;
-    }
-    input[type="range"].ctl::-webkit-slider-thumb:active { cursor: grabbing; }
-    input[type="range"].ctl::-moz-range-thumb {
-      width: 15px; height: 15px; border-radius: 9999px;
-      background: #22d3ee; border: 2px solid #164e63;
-      box-shadow: 0 0 10px rgba(34, 211, 238, 0.45); cursor: grab;
-    }
-    /* ---------- stat chips ---------- */
-    .chip {
-      display: inline-flex; align-items: center; gap: 4px;
-      border-radius: 9999px; border: 1px solid #1e293b;
-      background: rgba(30, 41, 59, 0.6); padding: 2px 10px;
-      font-size: 11px; color: #94a3b8;
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bimodal Sailing Domain Discretizer</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
 </head>
-<body class="bg-white font-sans text-gray-900">
+<body class="bg-white text-gray-900">
   <div class="flex h-screen">
 
     <!-- ==================== SIDEBAR ==================== -->
-    <aside class="w-80 shrink-0 space-y-4 overflow-y-auto border-r border-gray-300 bg-gray-50 p-4">
+    <aside class="w-80 shrink-0 overflow-y-auto border-r border-gray-300 bg-gray-50 p-4">
+      <h1 class="text-base font-semibold">Operating profile editor</h1>
+      <p class="mt-1 mb-4 text-xs text-gray-600">
+        Bimodal truncated-normal model — export is loadable as-is by
+        <span class="font-mono text-[11px]">operating_profile.OperatingProfile</span>
+      </p>
 
-      <header class="border-b border-gray-300 pb-3">
-        <h1 class="text-base font-bold">Bimodal Sailing Domain Discretizer</h1>
-        <p class="mt-1 text-xs text-gray-600">Operational profile: bimodal PDF over TWA × TWS</p>
-      </header>
-
-      <!-- ============ GRID SETTINGS ============ -->
-      <section class="rounded border border-gray-300 bg-white p-3">
-        <h2 class="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-600">Grid Settings</h2>
-        <div class="space-y-3">
-
-          <div>
-            <div class="mb-1 flex items-center justify-between">
-              <label for="n" class="text-sm">Mesh Resolution (N)</label>
-              <input id="n-val" type="text" inputmode="numeric" data-fmt="int" value="20" class="w-16 rounded border border-gray-300 px-1 py-0.5 text-right text-sm" />
-            </div>
-            <input id="n" type="range" min="5" max="50" step="1" value="20" class="w-full" />
-          </div>
-
-          <div>
-            <div class="mb-1 flex items-center justify-between">
-              <label for="twaMin" class="text-sm">TWA Min (0–90°)</label>
-              <input id="twaMin-val" type="text" inputmode="decimal" data-fmt="int" value="25" class="w-16 rounded border border-gray-300 px-1 py-0.5 text-right text-sm" />
-            </div>
-            <input id="twaMin" type="range" min="0" max="90" step="1" value="25" class="w-full" />
-    /* ---------- slim sidebar scrollbar ---------- */
-    .scroll-slim::-webkit-scrollbar { width: 8px; }
-    .scroll-slim::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 8px; }
-    .scroll-slim::-webkit-scrollbar-track { background: transparent; }
-    select { color-scheme: dark; }
-  </style>
-</head>
-<body class="h-screen w-screen overflow-hidden bg-slate-950 font-sans text-slate-200 antialiased">
-  <div class="flex h-full">
-
-    <!-- ==================== SIDEBAR ==================== -->
-    <aside class="scroll-slim flex w-[22rem] shrink-0 flex-col gap-4 overflow-y-auto border-r border-slate-800 bg-slate-900/60 p-4">
-
-      <!-- Header -->
-      <header class="flex items-center gap-3">
-        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-cyan-500/15 text-cyan-300 ring-1 ring-cyan-500/30">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="5" r="3"></circle>
-            <line x1="12" y1="22" x2="12" y2="8"></line>
-            <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
-          </svg>
-        </div>
-        <div>
-          <h1 class="text-sm font-bold tracking-tight text-white">Bimodal Sailing Domain Discretizer</h1>
-          <p class="text-[11px] text-slate-400">TWA × TWS operational PDF · hydrofoil tuning profile</p>
-        </div>
-      </header>
-
-      <!-- ============ GRID SETTINGS ============ -->
-      <section class="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
-        <h2 class="mb-3 text-[11px] font-semibold uppercase tracking-widest text-cyan-400/80">Grid Settings</h2>
-        <div class="space-y-4">
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="n" class="text-slate-300">Mesh Resolution <span class="text-xs text-slate-500">N × N</span></label>
-              <span id="n-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">20</span>
-            </div>
-            <input id="n" class="ctl" type="range" min="5" max="50" step="1" value="20" data-fmt="int" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="twaMin" class="text-slate-300">TWA Min <span class="text-xs text-slate-500">0° – 90°</span></label>
-              <span id="twaMin-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">25</span>
-            </div>
-            <input id="twaMin" class="ctl" type="range" min="0" max="90" step="1" value="25" data-fmt="int" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="twaMax" class="text-slate-300">TWA Max <span class="text-xs text-slate-500">90° – 180°</span></label>
-              <span id="twaMax-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">165</span>
-            </div>
-            <input id="twaMax" class="ctl" type="range" min="90" max="180" step="1" value="165" data-fmt="int" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="twsMin" class="text-slate-300">TWS Min <span class="text-xs text-slate-500">0 – 15 kts</span></label>
-              <span id="twsMin-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">4</span>
-            </div>
-            <input id="twsMin" class="ctl" type="range" min="0" max="15" step="0.5" value="4" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="twsMax" class="text-slate-300">TWS Max <span class="text-xs text-slate-500">15 – 40 kts</span></label>
-              <span id="twsMax-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">36</span>
-            </div>
-            <input id="twsMax" class="ctl" type="range" min="15" max="40" step="0.5" value="36" />
-          </div>
-
-        </div>
+      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
+        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Plotted domain <span class="font-normal normal-case text-gray-400">(display only)</span>
+        </h2>
+        <div id="secDomain"></div>
       </section>
 
-      <!-- ============ GLOBAL WEIGHT ============ -->
-      <section class="rounded-xl border border-slate-800 bg-slate-900 p-4 shadow-sm">
-        <h2 class="mb-3 text-[11px] font-semibold uppercase tracking-widest text-cyan-400/80">Global Weight</h2>
-        <div class="mb-1.5 flex items-center justify-between text-sm">
-          <label for="w1" class="text-slate-300">Mode 1 weight <span class="text-xs text-slate-500">w₁</span></label>
-          <span id="w1-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">0.55</span>
-        </div>
-        <input id="w1" class="ctl" type="range" min="0" max="1" step="0.01" value="0.55" data-fmt="f2" />
-        <div class="mt-3 flex h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
-          <div id="w1-bar" class="h-full bg-cyan-400 transition-all" style="width:55%"></div>
-          <div id="w2-bar" class="h-full bg-amber-400 transition-all" style="width:45%"></div>
-        </div>
-        <div class="mt-1 flex justify-between font-mono text-[10px] text-slate-500">
-          <span id="w1-pct">w1 = 0.55 (upwind)</span>
-          <span id="w2-pct">w2 = 0.45 (downwind)</span>
-        </div>
-      </section>
-
-      <!-- ============ MODE 1 · UPWIND ============ -->
-      <section class="rounded-xl border border-cyan-900/40 bg-slate-900 p-4 shadow-sm">
-        <div class="mb-3 flex items-center justify-between">
-          <h2 class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-cyan-400/80">
-            <span class="h-2 w-2 rounded-full bg-cyan-400"></span> Mode 1 · Upwind Peak
-          </h2>
-          <span id="m1Status" class="font-mono text-[10px] text-emerald-400">● in box</span>
-        </div>
-        <div class="space-y-4">
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m1Twa" class="text-slate-300">Center TWA 1</label>
-              <span id="m1Twa-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">45</span>
-            </div>
-            <input id="m1Twa" class="ctl" type="range" min="0" max="180" step="1" value="45" data-fmt="int" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m1Tws" class="text-slate-300">Center TWS 1</label>
-              <span id="m1Tws-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">12</span>
-            </div>
-            <input id="m1Tws" class="ctl" type="range" min="0" max="40" step="0.5" value="12" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m1SigTwa" class="text-slate-300">Spread σ TWA 1</label>
-              <span id="m1SigTwa-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">25</span>
-            </div>
-            <input id="m1SigTwa" class="ctl" type="range" min="1" max="45" step="0.5" value="25" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m1SigTws" class="text-slate-300">Spread σ TWS 1</label>
-              <span id="m1SigTws-val" class="rounded bg-cyan-950/70 px-2 py-0.5 font-mono text-xs text-cyan-300">4.5</span>
-            </div>
-            <input id="m1SigTws" class="ctl" type="range" min="1" max="15" step="0.5" value="4.5" />
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ============ MODE 2 · DOWNWIND ============ -->
-      <section class="rounded-xl border border-amber-900/40 bg-slate-900 p-4 shadow-sm">
-        <div class="mb-3 flex items-center justify-between">
-          <h2 class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-amber-400/80">
-            <span class="h-2 w-2 rounded-full bg-amber-400"></span> Mode 2 · Downwind Peak
-          </h2>
-          <span id="m2Status" class="font-mono text-[10px] text-emerald-400">● in box</span>
-        </div>
-        <div class="space-y-4">
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m2Twa" class="text-slate-300">Center TWA 2</label>
-              <span id="m2Twa-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">140</span>
-            </div>
-            <input id="m2Twa" class="ctl" type="range" min="0" max="180" step="1" value="140" data-fmt="int" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m2Tws" class="text-slate-300">Center TWS 2</label>
-              <span id="m2Tws-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">18</span>
-            </div>
-            <input id="m2Tws" class="ctl" type="range" min="0" max="40" step="0.5" value="18" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m2SigTwa" class="text-slate-300">Spread σ TWA 2</label>
-              <span id="m2SigTwa-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">25</span>
-            </div>
-            <input id="m2SigTwa" class="ctl" type="range" min="1" max="45" step="0.5" value="25" />
-          </div>
-
-          <div>
-            <div class="mb-1.5 flex items-center justify-between text-sm">
-              <label for="m2SigTws" class="text-slate-300">Spread σ TWS 2</label>
-              <span id="m2SigTws-val" class="rounded bg-amber-950/60 px-2 py-0.5 font-mono text-xs text-amber-300">5</span>
-            </div>
-            <input id="m2SigTws" class="ctl" type="range" min="1" max="15" step="0.5" value="5" />
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ============ EXPORT ============ -->
-      <div class="mt-auto space-y-2 pt-1">
-        <button id="exportBtn"
-                class="flex w-full items-center justify-center gap-2 rounded-lg bg-cyan-500 px-4 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/25 transition hover:bg-cyan-400 active:scale-[0.98]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          Export JSON
-        </button>
-        <p class="text-center text-[10px] leading-relaxed text-slate-500">
-          sailing_discretization_mesh.json<br />flat array · id / twa / tws / pdf · 4-decimal precision
+      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
+        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Quadrature nodes</h2>
+        <div id="secNodes"></div>
+        <p class="text-[11px] leading-snug text-gray-500">
+          Total 2·n² = <span id="nodesCount">18</span> nodes (n × n per mode), each with weight w_m / n²,
+          summing to 1.
         </p>
-        <button id="resetBtn"
-                class="w-full rounded-lg border border-slate-700 bg-slate-800/60 px-4 py-1.5 text-xs font-medium text-slate-300 transition hover:bg-slate-800">
+      </section>
+
+      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
+        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Global weight</h2>
+        <div id="secWeight"></div>
+      </section>
+
+      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
+        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Mode 1 · upwind</h2>
+        <p id="m1Warn" class="hidden mb-2 rounded border border-red-200 bg-red-50 px-2 py-1 text-xs text-red-600">
+          Mode has (near) zero mass inside its bounds. Export is disabled.
+        </p>
+        <div id="secM1"></div>
+      </section>
+
+      <section class="mb-4 rounded border border-gray-300 bg-white p-3">
+        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Mode 2 · downwind</h2>
+        <p id="m2Warn" class="hidden mb-2 rounded border border-red-200 bg-red-50 px-2 py-1 text-xs text-red-600">
+          Mode has (near) zero mass inside its bounds. Export is disabled.
+        </p>
+        <div id="secM2"></div>
+      </section>
+
+      <section class="mb-3 rounded border border-gray-300 bg-white p-3">
+        <h2 class="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-500">Profile</h2>
+
+        <label for="profileName" class="block mb-0.5 text-xs text-gray-600">Profile name</label>
+        <input id="profileName" type="text" value="bimodal_profile"
+               class="mb-2 w-full rounded border border-gray-300 px-2 py-1 text-sm" />
+
+        <label for="profileComment" class="block mb-0.5 text-xs text-gray-600">Comment</label>
+        <textarea id="profileComment" rows="2"
+                  class="mb-3 w-full rounded border border-gray-300 px-2 py-1 text-sm"></textarea>
+
+        <button id="exportBtn"
+                class="mb-2 w-full rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">
+          Export profile JSON
+        </button>
+        <button id="loadBtn"
+                class="mb-2 w-full rounded border border-gray-400 px-3 py-1.5 text-sm hover:bg-gray-100">
+          Load profile JSON
+        </button>
+        <input id="fileInput" type="file" accept=".json,application/json" class="hidden" />
+        <button id="resetDefaults"
+                class="w-full rounded border border-gray-400 px-3 py-1.5 text-xs hover:bg-gray-100">
           Reset to defaults
         </button>
-      </div>
+        <p class="mt-2 text-[11px] leading-snug text-gray-500">
+          Export writes <span class="font-mono">[name].json</span>; in Chrome/Edge a save dialog lets you choose
+          the folder, other browsers download it.
+        </p>
+      </section>
     </aside>
 
     <!-- ==================== MAIN PANEL ==================== -->
-    <main class="flex min-w-0 flex-1 flex-col bg-slate-950">
+    <main class="flex min-w-0 flex-1 flex-col bg-white">
+      <div id="banner" class="hidden border-b px-4 py-2 text-sm"></div>
 
-      <!-- plot header -->
-      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 bg-slate-900/40 px-4 py-2.5">
-        <div class="flex flex-wrap items-center gap-2">
-          <span id="stat-points" class="chip">—</span>
-          <span id="stat-box" class="chip">—</span>
-          <span id="stat-peak" class="chip">—</span>
-          <span id="stat-sum" class="chip border-emerald-500/30 bg-emerald-500/10 text-emerald-300">Σ PDF = 1.0000</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <label for="cmap" class="text-[11px] text-slate-400">Colormap</label>
-          <select id="cmap" class="rounded-md border border-slate-700 bg-slate-800 px-2 py-1 text-[11px] text-slate-200 outline-none focus:border-cyan-500">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gray-300 px-4 py-2">
+        <span id="statLine" class="text-sm text-gray-700"></span>
+        <div class="flex items-center gap-3">
+          <label for="cmap" class="text-xs text-gray-600">Colormap</label>
+          <select id="cmap" class="rounded border border-gray-300 px-2 py-1 text-xs">
             <option value="Viridis" selected>Viridis</option>
             <option value="Jet">Jet</option>
             <option value="Rainbow">Rainbow</option>
-            <option value="Electric">Electric</option>
           </select>
+          <button id="resetView" class="rounded border border-gray-400 px-3 py-1 text-xs hover:bg-gray-100">
+            Reset view
+          </button>
         </div>
       </div>
 
-      <!-- 3D plot -->
-      <div id="plot" class="min-h-0 flex-1"></div>
+      <div id="plot3d" class="min-h-0" style="flex: 3 1 0;"></div>
+      <div id="plot2d" class="min-h-0 border-t border-gray-300" style="flex: 2 1 0;"></div>
     </main>
   </div>
 
@@ -306,22 +114,16 @@
   <script>
     'use strict';
 
-    const TAU  = 2 * Math.PI;
-    const $    = (id) => document.getElementById(id);
-    const round4  = (v) => Math.round(v * 1e4) / 1e4;
-    const round1  = (v) => Math.round(v * 10) / 10;
-    const clamp   = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+    /* =========================================================
+     * 0. Small helpers
+     * ========================================================= */
+    const $ = (id) => document.getElementById(id);
+    const fmtVal = (v) => String(Math.round(v * 1e4) / 1e4);
+    const SQRT2PI = Math.sqrt(2 * Math.PI);
+    const LN_SQRT_PI = 0.5 * Math.log(Math.PI);
 
-    const DEFAULTS = {
-      n: '20', twaMin: '25', twaMax: '165', twsMin: '4', twsMax: '36', w1: '0.55',
-      m1Twa: '45', m1Tws: '12', m1SigTwa: '25', m1SigTws: '4.5',
-      m2Twa: '140', m2Tws: '18', m2SigTwa: '25', m2SigTws: '5'
-    };
-
-    /* ---------- math core ---------- */
-
-    // Deterministic regular grid: N values linearly spaced between a and b (inclusive).
     function linspace(a, b, n) {
+      if (n <= 0) return [];
       if (n === 1) return [a];
       const step = (b - a) / (n - 1);
       const out = new Array(n);
@@ -329,115 +131,385 @@
       return out;
     }
 
-    // 2D Gaussian PDF: exp(-0.5*((x-μx)/σx)² - 0.5*((y-μy)/σy)²) / (2π·σx·σy)
-    function gaussian2d(x, y, muX, sigX, muY, sigY) {
-      const e = -0.5 * Math.pow((x - muX) / sigX, 2) - 0.5 * Math.pow((y - muY) / sigY, 2);
-      return Math.exp(e) / (TAU * sigX * sigY);
+    /* =========================================================
+     * 1. High-accuracy normal CDF / quantile
+     *
+     * Phi(z) = 0.5 * erfc(-z / sqrt(2)).
+     * erfc through the incomplete gamma function of order 1/2 (Numerical Recipes §6.2):
+     *   small t = x^2: P(1/2, t) as a series, erfc(x) = 1 - P
+     *   large t:       Q(1/2, t) as a modified-Lentz continued fraction, erfc(x) = Q
+     * (Abramowitz–Stegun 7.1.26 is NOT used.)
+     * PhiInv: Peter Acklam's rational approximation + ONE Halley refinement step using Phi.
+     * ========================================================= */
+
+    function gammaSeriesS(a, x) {
+      // S = sum_{k>=0} x^k / (a (a+1) ... (a+k))
+      let ap = a, del = 1.0 / a, sum = 1.0 / a;
+      for (let i = 1; i <= 400; i++) {
+        ap += 1.0;
+        del *= x / ap;
+        sum += del;
+        if (Math.abs(del) < Math.abs(sum) * 1e-16) break;
+      }
+      return sum;
     }
 
-    // Enforce a minimum span so the grid never degenerates (min < max, strictly).
-    function resolveBounds(minId, maxId, hardLo, hardHi, minSpan) {
-      let lo = clamp(+$ (minId).value, hardLo, hardHi - minSpan);
-      let hi = clamp(+$ (maxId).value, hardLo + minSpan, hardHi);
-      if (hi - lo < minSpan) hi = Math.min(hardHi, lo + minSpan);
+    function gammaContFrac(a, x) {
+      // Modified Lentz evaluation of the continued fraction for Q(a, x).
+      const FPMIN = 1e-300;
+      let b = x + 1.0 - a;
+      let c = 1.0 / FPMIN;
+      let d = 1.0 / b;
+      let h = d;
+      for (let i = 1; i <= 400; i++) {
+        const an = -i * (i - a);
+        b += 2.0;
+        d = an * d + b;
+        if (Math.abs(d) < FPMIN) d = FPMIN;
+        c = b + an / c;
+        if (Math.abs(c) < FPMIN) c = FPMIN;
+        d = 1.0 / d;
+        const del = d * c;
+        h *= del;
+        if (Math.abs(del - 1.0) < 1e-16) break;
+      }
+      return h;
+    }
+
+    function erfcPos(x) {
+      // erfc(x) for x >= 0, via a = 1/2, argument t = x^2
+      if (x === 0) return 1.0;
+      const t = x * x;
+      if (t < 1.5) {
+        const P = Math.exp(-t + 0.5 * Math.log(t) - LN_SQRT_PI) * gammaSeriesS(0.5, t);
+        return 1.0 - P;
+      }
+      return Math.exp(-t + 0.5 * Math.log(t) - LN_SQRT_PI) * gammaContFrac(0.5, t);
+    }
+
+    function erfc(x) {
+      return x >= 0 ? erfcPos(x) : 2.0 - erfcPos(-x);
+    }
+
+    function Phi(z) {
+      return 0.5 * erfc(-z / Math.SQRT2);
+    }
+
+    // --- Acklam's rational approximation for the standard normal quantile ---
+    const ACK_A = [-3.969683028665376e+01, 2.209460984245205e+02, -2.759285104469687e+02,
+                   1.383577518672690e+02, -3.066479806614716e+01, 2.506628277459239e+00];
+    const ACK_B = [-5.447609879822406e+01, 1.615858368580409e+02, -1.556989798598866e+02,
+                   6.680131188771972e+01, -1.328068155288572e+01];
+    const ACK_C = [-7.784894002430293e-03, -3.223964580411365e-01, -2.400758277161838e+00,
+                   -2.549732539343734e+00, 4.374664141464968e+00, 2.938163982698783e+00];
+    const ACK_D = [7.784695709041462e-03, 3.224671290700398e-01, 2.445134137142996e+00,
+                   3.754408661907416e+00];
+    const ACK_PL = 0.02425;
+
+    function acklamInv(p) {
+      const ph = 1.0 - ACK_PL;
+      let q;
+      if (p < ACK_PL) {
+        q = Math.sqrt(-2.0 * Math.log(p));
+        return (((((ACK_C[0] * q + ACK_C[1]) * q + ACK_C[2]) * q + ACK_C[3]) * q + ACK_C[4]) * q + ACK_C[5])
+          / ((((ACK_D[0] * q + ACK_D[1]) * q + ACK_D[2]) * q + ACK_D[3]) * q + 1.0);
+      }
+      if (p > ph) {
+        q = Math.sqrt(-2.0 * Math.log(1.0 - p));
+        return -(((((ACK_C[0] * q + ACK_C[1]) * q + ACK_C[2]) * q + ACK_C[3]) * q + ACK_C[4]) * q + ACK_C[5])
+          / ((((ACK_D[0] * q + ACK_D[1]) * q + ACK_D[2]) * q + ACK_D[3]) * q + 1.0);
+      }
+      q = p - 0.5;
+      const r = q * q;
+      return ((((((ACK_A[0] * r + ACK_A[1]) * r + ACK_A[2]) * r + ACK_A[3]) * r + ACK_A[4]) * r + ACK_A[5]) * q)
+        / (((((ACK_B[0] * r + ACK_B[1]) * r + ACK_B[2]) * r + ACK_B[3]) * r + ACK_B[4]) * r + 1.0);
+    }
+
+    function PhiInv(p) {
+      if (p <= 0) return -Infinity;
+      if (p >= 1) return Infinity;
+      const x = acklamInv(p);
+      // one Halley refinement step (Acklam): u = (Phi(x) - p) / phi(x), x <- x - u / (1 + x u / 2)
+      const u = (Phi(x) - p) * SQRT2PI * Math.exp(0.5 * x * x);
+      const xr = x - u / (1 + 0.5 * x * u);
+      return Number.isFinite(xr) ? xr : x;
+    }
+
+    /* =========================================================
+     * 2. Truncated-normal model
+     *
+     * f(x; mu, sd, lo, hi) = phi((x-mu)/sd) / (sd (Phi(b) - Phi(a))),  lo <= x <= hi
+     * Nodes: x_i = mu + sd * PhiInv( Phi(a) + q_i (Phi(b) - Phi(a)) ), q_i = (i+0.5)/n
+     * ========================================================= */
+
+    function truncMass(mu, sd, lo, hi) {
+      return Phi((hi - mu) / sd) - Phi((lo - mu) / sd);
+    }
+
+    function pdfWithMass(x, c) {
+      // c = { mean, sd, lo, hi, mass }
+      if (x < c.lo || x > c.hi || c.mass <= 0) return 0;
+      const z = (x - c.mean) / c.sd;
+      return Math.exp(-0.5 * z * z) / (SQRT2PI * c.sd * c.mass);
+    }
+
+    function truncNodes(c, n) {
+      const Fa = Phi((c.lo - c.mean) / c.sd);
+      const Fb = Phi((c.hi - c.mean) / c.sd);
+      const out = [];
+      for (let i = 0; i < n; i++) out.push(c.mean + c.sd * PhiInv(Fa + (i + 0.5) / n * (Fb - Fa)));
+      return out;
+    }
+
+    function pAt(x, y, modes) {
+      let v = 0;
+      for (const m of modes) v += m.weight * pdfWithMass(x, m.twa) * pdfWithMass(y, m.tws);
+      return v;
+    }
+
+    /* =========================================================
+     * 3. Controls: spec, state, defaults, clamping
+     * ========================================================= */
+
+    // [id, label, min, max, step, default]
+    function modeSpecs(k, twa, tws) {
+      return [
+        [k + 'TwaMean', 'TWA mean (deg)', 0, 180, 1, twa[0]],
+        [k + 'TwaSd', 'TWA sd (deg)', 1, 45, 0.5, twa[1]],
+        [k + 'TwaLo', 'TWA min (deg)', 0, 180, 1, twa[2]],
+        [k + 'TwaHi', 'TWA max (deg)', 0, 180, 1, twa[3]],
+        [k + 'TwsMean', 'TWS mean (kts)', 0, 40, 0.5, tws[0]],
+        [k + 'TwsSd', 'TWS sd (kts)', 0.5, 15, 0.5, tws[1]],
+        [k + 'TwsLo', 'TWS min (kts)', 0, 40, 0.5, tws[2]],
+        [k + 'TwsHi', 'TWS max (kts)', 0, 40, 0.5, tws[3]]
+      ];
+    }
+
+    const SPECS = {
+      secDomain: [
+        ['N', 'Mesh resolution N', 10, 80, 1, 40],
+        ['domTwaLo', 'TWA min (deg)', 0, 180, 1, 25],
+        ['domTwaHi', 'TWA max (deg)', 0, 180, 1, 165],
+        ['domTwsLo', 'TWS min (kts)', 0, 40, 0.5, 4],
+        ['domTwsHi', 'TWS max (kts)', 0, 40, 0.5, 36]
+      ],
+      secNodes: [['nNodes', 'Nodes per dimension n', 2, 6, 1, 3]],
+      secWeight: [['w1', 'w1 (upwind), w2 = 1 − w1', 0, 1, 0.01, 0.5]],
+      secM1: modeSpecs('m1', [45, 4, 38, 52], [13, 3, 8, 18]),
+      secM2: modeSpecs('m2', [135, 7, 120, 148], [13, 3, 8, 18])
+    };
+
+    const ALL_SPECS = Object.values(SPECS).flat();
+    const CONTROL_IDS = ALL_SPECS.map((s) => s[0]);
+    const DEFAULTS = Object.fromEntries(ALL_SPECS.map((s) => [s[0], s[5]]));
+    const DEFAULT_NAME = 'bimodal_profile';
+    const DOMAIN_SPAN = { Twa: 5, Tws: 2 };    // smallest plotted domain [deg], [kts]
+    const MODE_SPAN = { Twa: 1, Tws: 0.5 };    // smallest mode bounds = one slider step
+
+    function buildControls() {
+      for (const [sec, specs] of Object.entries(SPECS)) {
+        $(sec).innerHTML = specs.map(([id, label, min, max, step, def]) => `
+          <div class="mb-2">
+            <div class="mb-0.5 flex items-center justify-between">
+              <label for="${id}" class="text-xs text-gray-600">${label}</label>
+              <input id="${id}_f" type="text" inputmode="decimal" value="${def}"
+                     class="w-16 rounded border border-gray-300 px-1 py-0.5 text-right text-xs" />
+            </div>
+            <input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${def}" class="w-full" />
+          </div>`).join('');
+      }
+    }
+
+    function readState() {
+      const st = {};
+      for (const id of CONTROL_IDS) st[id] = +$(id).value;
+      return st;
+    }
+
+    // Set a slider (the browser snaps to its step and range) and its text field; true if the value had to move.
+    function setCtl(id, v) {
+      const s = $(id);
+      s.value = v;
+      $(id + '_f').value = fmtVal(+s.value);
+      return Math.abs(+s.value - v) > 1e-9;
+    }
+
+    // Keep [lo, hi] inside [dLo, dHi] with hi - lo >= span.
+    function clampBounds(lo, hi, dLo, dHi, span) {
+      lo = Math.max(dLo, Math.min(dHi, lo));
+      hi = Math.max(dLo, Math.min(dHi, hi));
+      if (hi - lo < span) {
+        if (lo + span <= dHi) hi = lo + span;
+        else lo = hi - span;
+      }
       return [lo, hi];
     }
 
-    function readParams() {
-      const N    = Math.round(+$('n').value);
-      const twa  = resolveBounds('twaMin', 'twaMax', 0, 180, 5);
-      const tws  = resolveBounds('twsMin', 'twsMax', 0, 40, 5);
-      return {
-        N,
-        twaLo: twa[0], twaHi: twa[1],
-        twsLo: tws[0], twsHi: tws[1],
-        w1: +$('w1').value,
-        m1: { muT: +$('m1Twa').value, muS: +$('m1Tws').value, sigT: +$('m1SigTwa').value, sigS: +$('m1SigTws').value },
-        m2: { muT: +$('m2Twa').value, muS: +$('m2Tws').value, sigT: +$('m2SigTwa').value, sigS: +$('m2SigTws').value }
-      };
-    }
-
-    // Build the N×N mixture PDF grid, then normalize so Σ_grid = 1.0 exactly.
-    function computeGrid(p) {
-      const { N, twaLo, twaHi, twsLo, twsHi, w1, m1, m2 } = p;
-      const w2 = 1 - w1;
-      const twa = linspace(twaLo, twaHi, N);   // x-axis : TWA (deg)
-      const tws = linspace(twsLo, twsHi, N);   // y-axis : TWS (kts)
-      const z = Array.from({ length: N }, () => new Array(N).fill(0));
-
-      let total = 0, zmax = 0, peakI = 0, peakJ = 0;
-      for (let j = 0; j < N; j++) {
-        for (let i = 0; i < N; i++) {
-          const x = twa[i], y = tws[j];
-          const v = w1 * gaussian2d(x, y, m1.muT, m1.sigT, m1.muS, m1.sigS)
-                  + w2 * gaussian2d(x, y, m2.muT, m2.sigT, m2.muS, m2.sigS);
-          z[j][i] = v;
-          total  += v;
-          if (v > zmax) { zmax = v; peakI = i; peakJ = j; }
+    // Plotted domain first (min < max), then each mode's bounds inside it; pushed back into the sliders.
+    function syncClamps() {
+      for (const ax of ['Twa', 'Tws']) {
+        const loId = 'dom' + ax + 'Lo', hiId = 'dom' + ax + 'Hi';
+        const s = $(hiId);
+        const [lo, hi] = clampBounds(+$(loId).value, +s.value, +s.min, +s.max, DOMAIN_SPAN[ax]);
+        setCtl(loId, lo);
+        setCtl(hiId, hi);
+        for (const k of ['m1', 'm2']) {
+          const [mlo, mhi] = clampBounds(+$(k + ax + 'Lo').value, +$(k + ax + 'Hi').value, lo, hi, MODE_SPAN[ax]);
+          setCtl(k + ax + 'Lo', mlo);
+          setCtl(k + ax + 'Hi', mhi);
         }
       }
-      if (!Number.isFinite(total) || total <= 0) throw new Error('Degenerate grid — check bounds.');
-
-      for (let j = 0; j < N; j++)
-        for (let i = 0; i < N; i++)
-          z[j][i] /= total;
-
-      return { N, twa, tws, z, peak: { twa: twa[peakI], tws: tws[peakJ], pdf: zmax / total } };
     }
 
-    /* ---------- plotly rendering ---------- */
+    function modeLaw(st, k, ax) {
+      const c = { mean: st[k + ax + 'Mean'], sd: st[k + ax + 'Sd'], lo: st[k + ax + 'Lo'], hi: st[k + ax + 'Hi'] };
+      c.mass = truncMass(c.mean, c.sd, c.lo, c.hi);
+      return c;
+    }
 
-    const PLOTLY_CFG = { responsive: true, displaylogo: false, scrollZoom: true };
+    function computeModes(st) {
+      const mk = (k, name, weight, color, tint) => {
+        const twa = modeLaw(st, k, 'Twa'), tws = modeLaw(st, k, 'Tws');
+        return { name, weight, twa, tws, color, tint, degenerate: twa.mass < 1e-12 || tws.mass < 1e-12 };
+      };
+      return [mk('m1', 'upwind', st.w1, '#2563eb', 'rgba(37,99,235,0.04)'),
+              mk('m2', 'downwind', 1 - st.w1, '#f97316', 'rgba(249,115,22,0.04)')];
+    }
 
-    function buildPlot(g, p) {
-      const padT = (p.twaHi - p.twaLo) * 0.06 + 1;
-      const padS = (p.twsHi - p.twsLo) * 0.06 + 0.5;
+    /* =========================================================
+     * 4. Grid + nodes + rendering
+     * ========================================================= */
 
-      const data = [
+    const DEFAULT_CAMERA = { eye: { x: 1.55, y: -1.55, z: 0.72 }, up: { x: 0, y: 0, z: 1 } };
+    const PLOTLY_CFG = { responsive: true, displaylogo: false };
+
+    // uirevision: Plotly keeps the user's camera / zoom while it is unchanged; bumped on "Reset view" and when
+    // the plotted domain changes, so the fitted ranges are applied again.
+    let uiRev = 0;
+    let lastDomKey = '';
+    let ranges = null;
+    let applyDefaultCam = false;
+
+    function fitRanges(st) {
+      const mx = (st.domTwaHi - st.domTwaLo) * 0.05, my = (st.domTwsHi - st.domTwsLo) * 0.05;
+      return { x: [st.domTwaLo - mx, st.domTwaHi + mx], y: [st.domTwsLo - my, st.domTwsHi + my] };
+    }
+
+    function nextCamera3d() {
+      if (applyDefaultCam) {
+        applyDefaultCam = false;
+        return JSON.parse(JSON.stringify(DEFAULT_CAMERA));
+      }
+      const fl = $('plot3d')._fullLayout;
+      const cam = fl && fl.scene && fl.scene.camera;
+      return JSON.parse(JSON.stringify(cam || DEFAULT_CAMERA));
+    }
+
+    function buildGrid(st, modes) {
+      const N = Math.round(st.N);
+      const twa = linspace(st.domTwaLo, st.domTwaHi, N);
+      const tws = linspace(st.domTwsLo, st.domTwsHi, N);
+      const z = new Array(N);
+      let peak = 0;
+      for (let j = 0; j < N; j++) {
+        const row = new Array(N);
+        for (let i = 0; i < N; i++) {
+          const v = pAt(twa[i], tws[j], modes);
+          row[i] = v;
+          if (v > peak) peak = v;
+        }
+        z[j] = row;
+      }
+      return { twa, tws, z, peak };
+    }
+
+    function buildNodes(st, modes) {
+      const n = Math.round(st.nNodes);
+      const nodes = [];
+      for (const m of modes) {
+        if (m.degenerate) continue;
+        const w = m.weight / (n * n);
+        const size = 3 + 70 * w;   // marker size proportional to the node weight
+        for (const x of truncNodes(m.twa, n)) for (const y of truncNodes(m.tws, n)) {
+          nodes.push({ mode: m.name, twa: x, tws: y, z: pAt(x, y, modes), weight: w, size });
+        }
+      }
+      return nodes;
+    }
+
+    function nodeTrace(list, name, color, is3d) {
+      const t = {
+        type: is3d ? 'scatter3d' : 'scatter', mode: 'markers',
+        x: list.map((nd) => nd.twa),
+        y: list.map((nd) => nd.tws),
+        text: list.map(() => name),
+        customdata: list.map((nd) => nd.weight),
+        marker: { size: list.map((nd) => nd.size), color: color, opacity: 0.95,
+                  line: { color: '#ffffff', width: 1 } },
+        hovertemplate: '%{text}<br>TWA %{x:.2f}° · TWS %{y:.2f} kt<br>weight %{customdata:.4f}<extra></extra>'
+      };
+      if (is3d) t.z = list.map((nd) => nd.z);
+      return t;
+    }
+
+    function render3d(grid, nodes) {
+      const traces = [
         {
           type: 'surface',
-          x: g.twa, y: g.tws, z: g.z,
+          x: grid.twa, y: grid.tws, z: grid.z,
           colorscale: $('cmap').value,
-          showscale: true,
-          colorbar: { title: { text: 'PDF', side: 'right' }, thickness: 14, len: 0.8, outlinewidth: 0, x: 1.02 },
-          hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>PDF %{z:.5f}<extra>mesh</extra>'
+          colorbar: { title: { text: 'p', side: 'right' }, thickness: 12, len: 0.65 },
+          hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>p %{z:.6f}<extra></extra>'
         },
-        {
-          type: 'scatter3d', mode: 'markers',
-          x: [g.peak.twa], y: [g.peak.tws], z: [g.peak.pdf],
-          marker: { size: 6, color: '#f8fafc', line: { color: '#0f172a', width: 1 } },
-          hovertemplate: 'Grid peak · %{x:.1f}° / %{y:.1f} kt<extra></extra>'
-        }
+        nodeTrace(nodes.filter((nd) => nd.mode === 'upwind'), 'upwind', '#2563eb', true),
+        nodeTrace(nodes.filter((nd) => nd.mode === 'downwind'), 'downwind', '#f97316', true)
       ];
-
-      const axisBase = {
-        showbackground: true, backgroundcolor: 'rgba(15,23,42,0.25)',
-        gridcolor: '#293548', zerolinecolor: '#293548', linecolor: '#293548',
-        titlefont: { color: '#94a3b8', size: 13 },
-        tickfont:  { color: '#64748b', size: 11 }
-      };
-
       const layout = {
-        paper_bgcolor: 'rgba(0,0,0,0)',
-        plot_bgcolor:  'rgba(0,0,0,0)',
-        margin: { l: 0, r: 0, t: 8, b: 0 },
+        uirevision: uiRev,
+        margin: { l: 0, r: 0, t: 0, b: 0 },
+        paper_bgcolor: '#ffffff',
+        showlegend: false,
         scene: {
-          xaxis: Object.assign({ title: { text: 'TWA (°)' },   range: [p.twaLo - padT, p.twaHi + padT] }, axisBase),
-          yaxis: Object.assign({ title: { text: 'TWS (kts)' }, range: [p.twsLo - padS, p.twsHi + padS] }, axisBase),
-          zaxis: Object.assign({ title: { text: 'PDF (normalized)' }, range: [0, g.peak.pdf * 1.12] }, axisBase),
-          camera: { eye: { x: 1.55, y: -1.55, z: 0.72 }, up: { x: 0, y: 0, z: 1 } },
-          bgcolor: 'rgba(0,0,0,0)'
+          xaxis: { title: { text: 'TWA (deg)' }, range: ranges.x },
+          yaxis: { title: { text: 'TWS (kts)' }, range: ranges.y },
+          zaxis: { title: { text: 'p (density)' } },   // z follows the peak
+          camera: nextCamera3d()
         }
       };
-
-      return { data, layout };
+      Plotly.react($('plot3d'), traces, layout, PLOTLY_CFG);
     }
 
-    /* ---------- UI glue ---------- */
+    function render2d(modes, grid, nodes) {
+      const traces = [
+        {
+          type: 'heatmap',
+          x: grid.twa, y: grid.tws, z: grid.z,
+          colorscale: $('cmap').value, showscale: false,
+          hovertemplate: 'TWA %{x:.1f}° · TWS %{y:.1f} kt<br>p %{z:.6f}<extra></extra>'
+        },
+        nodeTrace(nodes.filter((nd) => nd.mode === 'upwind'), 'upwind', '#2563eb', false),
+        nodeTrace(nodes.filter((nd) => nd.mode === 'downwind'), 'downwind', '#f97316', false)
+      ];
+      const shapes = modes.map((m) => ({
+        type: 'rect', xref: 'x', yref: 'y',
+        x0: m.twa.lo, x1: m.twa.hi, y0: m.tws.lo, y1: m.tws.hi,
+        line: { color: m.color, width: 1.5, dash: 'dash' },
+        fillcolor: m.tint
+      }));
+      const layout = {
+        uirevision: uiRev,
+        margin: { l: 55, r: 20, t: 10, b: 40 },
+        paper_bgcolor: '#ffffff',
+        plot_bgcolor: '#ffffff',
+        showlegend: false,
+        xaxis: { title: { text: 'TWA (deg)' }, range: ranges.x },
+        yaxis: { title: { text: 'TWS (kts)' }, range: ranges.y },
+        shapes
+      };
+      Plotly.react($('plot2d'), traces, layout, PLOTLY_CFG);
+    }
 
-    let lastGrid = null;
     let rafPending = false;
-
     function scheduleUpdate() {
       if (rafPending) return;
       rafPending = true;
@@ -445,110 +517,267 @@
     }
 
     function updateAll() {
-      const p = readParams();
-      const g = computeGrid(p);
-      lastGrid = g;
+      const st = readState();
+      const key = [st.domTwaLo, st.domTwaHi, st.domTwsLo, st.domTwsHi].join('|');
+      if (key !== lastDomKey || ranges === null) {
+        lastDomKey = key;
+        ranges = fitRanges(st);
+        uiRev++;
+      }
+      const modes = computeModes(st);
+      const grid = buildGrid(st, modes);
+      const nodes = buildNodes(st, modes);
 
-      const { data, layout } = buildPlot(g, p);
-      Plotly.react($('plot'), data, layout, PLOTLY_CFG);
+      render3d(grid, nodes);
+      render2d(modes, grid, nodes);
 
-      // header stats
-      $('stat-points').textContent = `${p.N} × ${p.N} = ${p.N * p.N} pts`;
-      $('stat-box').textContent    = `box ${round1(p.twaHi - p.twaLo)}° × ${round1(p.twsHi - p.twsLo)} kt`;
-      $('stat-peak').textContent   = `peak @ ${g.peak.twa.toFixed(1)}° / ${g.peak.tws.toFixed(1)} kt`;
-
-      let sum = 0;
-      for (let j = 0; j < g.N; j++) for (let i = 0; i < g.N; i++) sum += g.z[j][i];
-      $('stat-sum').textContent = `Σ PDF = ${sum.toFixed(4)}`;
-
-      // weight split bar
-      $('w1-bar').style.width = (p.w1 * 100) + '%';
-      $('w2-bar').style.width = ((1 - p.w1) * 100) + '%';
-      $('w1-pct').textContent = `w1 = ${p.w1.toFixed(2)} (upwind)`;
-      $('w2-pct').textContent = `w2 = ${(1 - p.w1).toFixed(2)} (downwind)`;
-
-      modeStatus('m1', p);
-      modeStatus('m2', p);
+      const n = Math.round(st.nNodes);
+      $('statLine').textContent = `2 n² = ${2 * n * n} nodes · peak p = ${grid.peak.toFixed(6)}`;
+      $('nodesCount').textContent = String(2 * n * n);
+      $('m1Warn').classList.toggle('hidden', !modes[0].degenerate);
+      $('m2Warn').classList.toggle('hidden', !modes[1].degenerate);
+      $('exportBtn').disabled = modes.some((m) => m.degenerate);
     }
 
-    function modeStatus(prefix, p) {
-      const muT = +$(prefix + 'Twa').value;
-      const muS = +$(prefix + 'Tws').value;
-      const inside = muT >= p.twaLo && muT <= p.twaHi && muS >= p.twsLo && muS <= p.twsHi;
-      const el = $(prefix + 'Status');
-      el.textContent = inside ? '● in box' : '○ out of box';
-      el.classList.toggle('text-emerald-400', inside);
-      el.classList.toggle('text-amber-400', !inside);
+    function onAnyChange() {
+      syncClamps();
+      scheduleUpdate();
     }
 
-    function refreshBadge(el) {
-      const v = +el.value;
-      const f = el.dataset.fmt;
-      const out = f === 'int' ? String(v) : f === 'f2' ? v.toFixed(2) : String(v);
-      const badge = $(el.id + '-val');
-      if (badge) badge.textContent = out;
+    function resetView() {
+      applyDefaultCam = true;
+      ranges = null;   // re-fit and bump uirevision at the next update
+      scheduleUpdate();
     }
 
-    function applyFill(el) {
-      const min = +el.min, max = +el.max, v = +el.value;
-      const pct = ((v - min) / (max - min)) * 100;
-      el.style.background =
-        `linear-gradient(to right, #06b6d4 0%, #06b6d4 ${pct}%, #1e293b ${pct}%, #1e293b 100%)`;
+    function resetDefaults() {
+      for (const id of CONTROL_IDS) setCtl(id, DEFAULTS[id]);
+      $('profileName').value = DEFAULT_NAME;
+      $('profileComment').value = '';
+      onAnyChange();
     }
 
-    /* ---------- wiring ---------- */
+    /* =========================================================
+     * 5. Control binding (slider + editable text field)
+     * ========================================================= */
 
-    document.querySelectorAll('input[type="range"].ctl').forEach(el => {
-      el.addEventListener('input', () => { refreshBadge(el); applyFill(el); scheduleUpdate(); });
-      refreshBadge(el);
-      applyFill(el);
-    });
+    function bindCtl(id) {
+      const s = $(id);
+      const f = $(id + '_f');
 
-    $('cmap').addEventListener('change', scheduleUpdate);
+      s.addEventListener('input', () => { f.value = fmtVal(+s.value); onAnyChange(); });
 
-    $('resetBtn').addEventListener('click', () => {
-      Object.entries(DEFAULTS).forEach(([id, v]) => {
-        const el = $(id);
-        el.value = v;
-        refreshBadge(el);
-        applyFill(el);
+      const commit = () => {
+        const raw = f.value.trim().replace(',', '.');
+        const v = Number(raw);
+        if (raw === '' || !Number.isFinite(v)) { f.value = fmtVal(+s.value); return; }
+        const min = +s.min, max = +s.max, step = +s.step;
+        let snap = min + Math.round((v - min) / step) * step;
+        snap = Math.round(Math.min(max, Math.max(min, snap)) * 1e6) / 1e6;
+        setCtl(id, snap);
+        onAnyChange();
+      };
+
+      f.addEventListener('change', commit);
+      f.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); f.blur(); }   // blur fires "change" -> commit
       });
-      updateAll();
-    });
+    }
 
-    /* ---------- strict JSON export ---------- */
+    /* =========================================================
+     * 6. Messages, export, import
+     * ========================================================= */
 
-    $('exportBtn').addEventListener('click', () => {
-      if (!lastGrid) updateAll();
-      const { N, twa, tws, z } = lastGrid;
+    let bannerTimer = null;
+    function notice(kind, msg, sticky) {
+      const b = $('banner');
+      b.className = 'border-b px-4 py-2 text-sm ' + (
+        kind === 'err'  ? 'border-red-200 bg-red-50 text-red-700' :
+        kind === 'warn' ? 'border-amber-200 bg-amber-50 text-amber-800' :
+                          'border-green-200 bg-green-50 text-green-800');
+      b.textContent = msg;
+      clearTimeout(bannerTimer);
+      if (!sticky) bannerTimer = setTimeout(() => b.classList.add('hidden'), 6000);
+    }
 
-      // Flat array, ordered: TWA outer loop, TWS inner loop · 4-decimal precision.
-      const points = new Array(N * N);
-      let id = 1;
-      for (let i = 0; i < N; i++) {
-        for (let j = 0; j < N; j++) {
-          points[id - 1] = { id: id, twa: round4(twa[i]), tws: round4(tws[j]), pdf: round4(z[j][i]) };
-          id++;
+    const sanitizeName = (s) => s.replace(/[^A-Za-z0-9_-]/g, '');
+    const r2 = (v) => Math.round(v * 100) / 100;
+    const r4 = (v) => Math.round(v * 1e4) / 1e4;
+
+    function profileObject() {
+      const st = readState();
+      const modes = computeModes(st);
+      const law = (c) => ({ mean: r2(c.mean), std: r2(c.sd), lower: r2(c.lo), upper: r2(c.hi) });
+      return {
+        name: sanitizeName($('profileName').value) || DEFAULT_NAME,
+        comment: $('profileComment').value,
+        nodes_per_dim: Math.round(st.nNodes),
+        modes: modes.map((m) => ({ name: m.name, weight: r4(m.weight), twa: law(m.twa), tws: law(m.tws) }))
+      };
+    }
+
+    async function exportProfile() {
+      if ($('exportBtn').disabled) return;
+      const obj = profileObject();
+      $('profileName').value = obj.name;
+      const text = JSON.stringify(obj, null, 1) + '\n';
+      const fname = obj.name + '.json';
+
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: fname,
+            types: [{ description: 'Operating profile', accept: { 'application/json': ['.json'] } }]
+          });
+          const w = await handle.createWritable();
+          await w.write(text);
+          await w.close();
+          notice('ok', `Saved ${handle.name}`);
+          return;
+        } catch (e) {
+          if (e && e.name === 'AbortError') return;   // user cancelled the dialog
+          notice('warn', `Save dialog unavailable (${e.message}); downloading instead.`);
         }
       }
-
-      const blob = new Blob([JSON.stringify(points)], { type: 'application/json' });
-      const url  = URL.createObjectURL(blob);
-      const a    = document.createElement('a');
+      const url = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+      const a = document.createElement('a');
       a.href = url;
-      a.download = 'sailing_discretization_mesh.json';
+      a.download = fname;
       document.body.appendChild(a);
       a.click();
       a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1500);
+      notice('ok', `Downloaded ${fname}`);
+    }
 
-      const btn = $('exportBtn');
-      const original = btn.innerHTML;
-      btn.innerHTML = '✓ Downloaded';
-      setTimeout(() => { btn.innerHTML = original; }, 1400);
+    // Throws an Error naming the first problem of a profile file (2 modes, the first upwind).
+    function validateProfile(d) {
+      const num = (v, path) => {
+        if (typeof v !== 'number' || !Number.isFinite(v)) throw new Error(`${path} must be a number`);
+        return v;
+      };
+      if (!d || typeof d !== 'object' || Array.isArray(d)) throw new Error('top level must be an object');
+      if (!Array.isArray(d.modes) || d.modes.length !== 2) throw new Error('"modes" must hold exactly 2 modes');
+      if (d.nodes_per_dim !== undefined && !Number.isInteger(d.nodes_per_dim)) throw new Error('"nodes_per_dim" must be an integer');
+      d.modes.forEach((m, i) => {
+        if (!m || typeof m !== 'object') throw new Error(`modes[${i}] must be an object`);
+        if (num(m.weight, `modes[${i}].weight`) < 0) throw new Error(`modes[${i}].weight must be >= 0`);
+        for (const ax of ['twa', 'tws']) {
+          const c = m[ax], p = `modes[${i}].${ax}`;
+          if (!c || typeof c !== 'object') throw new Error(`${p} is missing`);
+          if (num(c.std, p + '.std') <= 0) throw new Error(`${p}.std must be > 0`);
+          num(c.mean, p + '.mean');
+          if (num(c.upper, p + '.upper') <= num(c.lower, p + '.lower')) throw new Error(`${p}: lower must be < upper`);
+        }
+      });
+      if (d.modes[0].weight + d.modes[1].weight <= 0) throw new Error('the mode weights sum to 0');
+    }
+
+    function applyProfile(d) {
+      const moved = [];
+      const set = (id, v) => { if (setCtl(id, v)) moved.push(`${id} ${fmtVal(v)} → ${$(id + '_f').value}`); };
+      // widen the plotted domain so it holds both modes' bounds
+      const lows = (ax) => Math.min(...d.modes.map((m) => m[ax].lower));
+      const highs = (ax) => Math.max(...d.modes.map((m) => m[ax].upper));
+      set('domTwaLo', Math.min(+$('domTwaLo').value, lows('twa')));
+      set('domTwaHi', Math.max(+$('domTwaHi').value, highs('twa')));
+      set('domTwsLo', Math.min(+$('domTwsLo').value, lows('tws')));
+      set('domTwsHi', Math.max(+$('domTwsHi').value, highs('tws')));
+      set('nNodes', d.nodes_per_dim === undefined ? 3 : d.nodes_per_dim);
+      set('w1', d.modes[0].weight / (d.modes[0].weight + d.modes[1].weight));   // OperatingProfile normalises
+      d.modes.forEach((m, i) => {
+        const k = 'm' + (i + 1);
+        for (const [ax, c] of [['Twa', m.twa], ['Tws', m.tws]]) {
+          set(k + ax + 'Mean', c.mean);
+          set(k + ax + 'Sd', c.std);
+          set(k + ax + 'Lo', c.lower);
+          set(k + ax + 'Hi', c.upper);
+        }
+      });
+      $('profileName').value = sanitizeName(String(d.name || '')) || DEFAULT_NAME;
+      $('profileComment').value = typeof d.comment === 'string' ? d.comment : '';
+      onAnyChange();
+      return moved;
+    }
+
+    function importFile(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        let d;
+        try {
+          d = JSON.parse(reader.result);
+          validateProfile(d);
+        } catch (e) {
+          notice('err', `Invalid profile file ${file.name}: ${e.message}. Nothing changed.`, true);
+          return;
+        }
+        const moved = applyProfile(d);
+        if (moved.length) notice('warn', `Loaded ${file.name}; values clamped to the slider ranges: ${moved.join('; ')}`, true);
+        else notice('ok', `Loaded ${file.name}`);
+      };
+      reader.onerror = () => notice('err', `Cannot read ${file.name}`, true);
+      reader.readAsText(file);
+    }
+
+    /* =========================================================
+     * 7. Self-check against scipy.stats.truncnorm
+     * ========================================================= */
+
+    function selfTest() {
+      const fails = [];
+      const close = (got, ref, tol, what) => {
+        if (!(Math.abs(got - ref) <= tol)) fails.push(`${what}: ${got} vs ${ref}`);
+      };
+      close(Phi(1), 0.8413447460685429, 1e-12, 'Phi(1)');
+      close(Phi(-3), 0.0013498980316301, 1e-12, 'Phi(-3)');
+      close(Phi(-6), 9.865876450376946e-10, 1e-15, 'Phi(-6)');
+
+      const modes = computeModes(DEFAULTS);
+      const refs = [
+        ['upwind TWA', modes[0].twa, 3, [41.5379, 45.0000, 48.4621]],
+        ['upwind TWS', modes[0].tws, 3, [10.4593, 13.0000, 15.5407]],
+        ['downwind TWA', modes[1].twa, 3, [128.4518, 134.8633, 141.1360]],
+        ['downwind TWS', modes[1].tws, 3, [10.4593, 13.0000, 15.5407]],
+        ['extra case', { mean: 140, sd: 25, lo: 25, hi: 165 }, 4, [108.6842, 127.9924, 141.6205, 155.7901]]
+      ];
+      for (const [what, c, n, ref] of refs) {
+        truncNodes(c, n).forEach((x, i) => close(x, ref[i], 1e-3, `${what} node ${i}`));
+      }
+      const nodes = buildNodes(DEFAULTS, modes);
+      if (nodes.length !== 2 * DEFAULTS.nNodes ** 2) fails.push(`node count ${nodes.length}`);
+      close(nodes.reduce((s, nd) => s + nd.weight, 0), 1, 1e-12, 'sum of the weights');
+
+      if (fails.length) {
+        console.error('selfTest FAIL\n' + fails.join('\n'));
+        notice('err', 'Self-test FAILED (see the console): ' + fails.join('; '), true);
+      } else {
+        console.log('selfTest PASS');
+      }
+      return fails.length === 0;
+    }
+
+    /* =========================================================
+     * 8. Wiring + init
+     * ========================================================= */
+
+    buildControls();
+    CONTROL_IDS.forEach(bindCtl);
+    $('cmap').addEventListener('change', scheduleUpdate);
+    $('resetView').addEventListener('click', resetView);
+    $('resetDefaults').addEventListener('click', resetDefaults);
+    $('exportBtn').addEventListener('click', exportProfile);
+    $('loadBtn').addEventListener('click', () => $('fileInput').click());
+    $('fileInput').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) importFile(file);
+      e.target.value = '';   // the same file can be loaded again
+    });
+    $('profileName').addEventListener('input', (e) => {
+      const clean = sanitizeName(e.target.value);
+      if (clean !== e.target.value) e.target.value = clean;
     });
 
-    /* ---------- init ---------- */
+    selfTest();
     updateAll();
   </script>
 </body>
