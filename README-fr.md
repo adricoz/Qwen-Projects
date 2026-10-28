@@ -3,7 +3,7 @@
 > Version française. La version anglaise est dans [`README.md`](README.md).
 
 Ce dépôt regroupe les essais et l'étude consacrés à l'utilisation d'un modèle local
-**Qwen3.8-27B** (`qwen-science`, servi par llama.cpp, 200k de contexte, outils et images)
+**Qwen3.8-27B** (`qwen-science`, servi par llama.cpp, 204k de contexte, outils et images)
 piloté en agent par un harnais (`qwen_agent.py`) pour écrire du code Python de taille moyenne
 jusqu'au bout : paquet, tests, exemple, README.
 
