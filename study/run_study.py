@@ -6,6 +6,8 @@ every run with Claude's acceptance suite (always the pristine copy in ../accepta
 
 Variants (prompts/): A = base task, B = base + acceptance tests given, C = base + formulas,
 D = base + imposed verification method.
+H (2026-10-29, harness v7) = base task only, but the acceptance suite is HIDDEN and run by the harness:
+`finish` refused while it fails, up to 3 fresh-agent rounds of 50 min (python run_study.py H1 H2).
 """
 import json
 import os
@@ -61,7 +63,7 @@ def ensure_server():
 
 def write_task(run_dir, arm):
     text = open(os.path.join(HERE, "prompts", "base.md"), encoding="utf-8").read()
-    if arm != "A":
+    if arm not in ("A", "H"):
         text += open(os.path.join(HERE, "prompts", f"{arm}.md"), encoding="utf-8").read()
     with open(os.path.join(run_dir, "TASK.md"), "w", encoding="utf-8") as f:
         f.write(text)
@@ -113,19 +115,23 @@ def run_one(run):
     cmd = [sys.executable, AGENT, "@" + os.path.join(run_dir, "TASK.md"), "--workdir", run_dir, "--read-root", READ_ROOT,
            "--effort", "medium", "--max-steps", "90", "--max-minutes", "60",
            "--deliverables", DELIVERABLES, "--test-cmd", test_cmd]
+    if arm == "H":   # hidden pristine acceptance suite, finish gate, fresh rounds (50 min each)
+        cmd += ["--accept-cmd", f"-m pytest -q -p no:cacheprovider {os.path.abspath(ACCEPTANCE)}",
+                "--accept-cwd", os.path.dirname(os.path.abspath(ACCEPTANCE)),
+                "--accept-env", f"GP_LITE_DIR={run_dir}", "--rounds", "3", "--max-minutes", "50"]
     log(f"{run}: agent start")
     t0 = time.time()
     with open(os.path.join(run_dir, "agent_run.log"), "w", encoding="utf-8") as out:
         try:
-            subprocess.run(cmd, stdout=out, stderr=subprocess.STDOUT, timeout=100 * 60)
+            subprocess.run(cmd, stdout=out, stderr=subprocess.STDOUT, timeout=(170 if arm == "H" else 100) * 60)
         except subprocess.TimeoutExpired:
-            out.write("\n[run_study] killed after 100 min\n")
+            out.write("\n[run_study] killed (timeout)\n")
     wall = (time.time() - t0) / 60
     transcript = os.path.join(run_dir, ".qwen_agent", "transcript.json")
     meta = {}
     if os.path.exists(transcript):
         t = json.load(open(transcript, encoding="utf-8"))
-        meta = {"stop": t["stop"], "steps": t["steps"], "minutes": t["minutes"]}
+        meta = {"stop": t["stop"], "steps": t["steps"], "minutes": t["minutes"], "rounds": t.get("rounds")}
     agent_out = open(os.path.join(run_dir, "agent_run.log"), encoding="utf-8", errors="replace").read()
     report = agent_out.split("=== REPORT ===", 1)[1].split("[qwen_agent] stop:", 1)[0].strip() if "=== REPORT ===" in agent_out else ""
     acc = acceptance(run_dir)

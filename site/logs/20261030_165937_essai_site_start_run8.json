@@ -1,0 +1,33 @@
+{
+ "key": "20261030_165937_essai_site_start_run8",
+ "name": "essai_site_start_run8",
+ "cmd": [
+  "C:\\Users\\SIM\\Desktop\\Code-Adri\\Multifidelity-GP-Clean\\.venv-mds\\Scripts\\python.exe",
+  "C:\\Users\\SIM\\Desktop\\Code-Adri\\Multifidelity-GP-Clean\\vpp_acceleration\\scripts\\run_real_vpp.py",
+  "--name",
+  "essai_site_start_run8",
+  "--box",
+  "current",
+  "--time-limit-min",
+  "4",
+  "--box-scale",
+  "3",
+  "--workers",
+  "4",
+  "--vpp-workers",
+  "2",
+  "--batch",
+  "1",
+  "--fsi",
+  "--start-section",
+  "C:\\Users\\SIM\\Desktop\\Code-Adri\\Multifidelity-GP-Clean\\vpp_acceleration\\runs\\2026-10-29_1002_profile_v2_box3_3h\\results\\best_section.json",
+  "--compare",
+  "C:\\Users\\SIM\\Desktop\\Code-Adri\\Multifidelity-GP-Clean\\vpp_acceleration\\runs\\2026-10-28_1747_profile_v1_box075\\results\\best_section.json",
+  "--smoke"
+ ],
+ "pid": 28772,
+ "started": 1793375977.4677258,
+ "out_log": "C:\\Users\\SIM\\Desktop\\Code-Adri\\Qwen-Projects\\site\\logs\\20261030_165937_essai_site_start_run8.out",
+ "status": "terminé",
+ "ended": 1793376264.2710862
+}

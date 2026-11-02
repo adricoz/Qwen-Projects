@@ -139,3 +139,28 @@ python make_plots.py           # figures/etude_prompts.html
 
 `runs/<passe>/` contient le paquet livré, `agent_run.log` et `.qwen_agent/log.md`, le journal complet.
 `results/<passe>.json` contient les scores test par test et le rapport final de l'agent.
+
+## Complément du 29 octobre 2026 : bras H, tests cachés et tours successifs
+
+**Ce qui change par rapport au bras A** : l'énoncé est le même (`prompts/base.md`, sans formules ni tests). Seul le harness change (`qwen_agent.py` v7) :
+- les 23 tests d'acceptation sont cachés, lancés par le harness sur la copie intacte, et jamais lisibles par l'agent ;
+- `finish` est refusé une fois tant qu'ils échouent ;
+- en fin de tour, s'ils échouent encore, un agent neuf repart des mêmes fichiers. Il reçoit seulement le rapport précédent et les noms des tests en échec, avec leur message court ;
+- au-delà de 40 000 tokens, l'historique est résumé par Qwen au lieu d'être tronqué.
+
+On lance ce bras avec `python run_study.py H1 H2`.
+
+| Passe | Tour 1 | Tour 2 | Tests d'acceptation (copie intacte) | Durée | Correction par Claude |
+|---|---|---|---|---|---|
+| A1 (rappel) | — | — | 13/23 | 15 min | nécessaire |
+| A2 (rappel) | — | — | 17/23 | 37 min | nécessaire |
+| **H1** | 90 pas atteints, 17/23 (les 6 `test_fit_branin`) | `finish`, 23/23 | **23/23** | 73 min | **aucune** |
+| **H2** | 90 pas atteints, 17/23 (les 6 mêmes ; 1 refus de `finish`) | `finish`, 23/23 | **23/23** | 63 min | **aucune** |
+
+**Lecture** :
+- **Les deux passes atteignent 23/23 sans aucune correction de Claude, au 2ᵉ tour.** Avec le même énoncé, le bras A plafonnait à 13 et 17.
+- **Au 1ᵉʳ tour, le défaut est celui déjà vu dans 5 passes sur 8** : bornes d'optimisation trop étroites, d'où une vraisemblance optimale fausse. Au 2ᵉ tour, l'agent neuf, qui n'a reçu que les noms des tests `test_fit_branin` en échec, élargit lui-même les bornes : bruit jusqu'à 1e-10 (H1) ou 1e-12 (H2).
+- **Les 4 résumés de contexte ont été acceptés.**
+- **Limites** : 2 passes seulement. Les 23 tests sont ceux de Claude, écrits pour cette tâche, et le message d'échec (« LML 12.63 … ») donne un indice à l'agent. C'est ce qui le rend utile, mais cela suppose des tests bien conçus.
+
+**Conséquence** : pour une tâche de cette taille, la chaîne « Claude écrit les tests cachés → Qwen agent avec 3 tours → lecture de la seule ligne verdict » remplace l'étape « Claude corrige ». Le coût passe en temps GPU, environ 1 h 10 par passe, sans tokens Claude après le lancement.

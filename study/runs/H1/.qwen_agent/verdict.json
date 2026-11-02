@@ -1,0 +1,58 @@
+{
+ "status": "PASS",
+ "rounds": [
+  {
+   "round": 1,
+   "stop": "max steps (90) reached",
+   "steps": 90,
+   "minutes": 33.1,
+   "passed": false,
+   "feedback": "hidden acceptance tests result: 6 failed, 17 passed, 9 warnings in 3.31s\nfailing:\nFAILED test_acceptance.py::test_fit_branin[se-0] - AssertionError: LML 12.63 ...\nFAILED test_acceptance.py::test_fit_branin[se-1] - AssertionError: LML 21.16 ...\nFAILED test_acceptance.py::test_fit_branin[se-2] - AssertionError: LML -42.57...\nFAILED test_acceptance.py::test_fit_branin[m52-0] - AssertionError: LML -5.41...\nFAILED test_acceptance.py::test_fit_branin[m52-1] - AssertionError: LML 3.32 ...\nFAILED test_acceptance.py::test_fit_branin[m52-2] - AssertionError: LML -4.22..."
+  },
+  {
+   "round": 2,
+   "stop": "finished",
+   "steps": 82,
+   "minutes": 39.6,
+   "passed": true,
+   "feedback": "hidden acceptance tests result: 23 passed, 9 warnings in 6.39s\noutput tail:\ny installed).\n    from pandas.core.computation.check import NUMEXPR_INSTALLED\n\ntest_acceptance.py::test_fit_branin[se-1]\ntest_acceptance.py::test_fit_branin[se-2]\n  C:\\ProgramData\\Anaconda3\\Lib\\site-packages\\sklearn\\gaussian_process\\_gpr.py:660: ConvergenceWarning: lbfgs failed to converge (status=2):\n  ABNORMAL: .\n  \n  Increase the number of iterations (max_iter) or scale the data as shown in:\n      https://scikit-learn.org/stable/modules/preprocessing.html\n    _check_optimize_result(\"lbfgs\", opt_res)\n\ntest_acceptance.py::test_fit_branin[m52-0]\ntest_acceptance.py::test_fit_branin[m52-1]\ntest_acceptance.py::test_fit_branin[m52-2]\n  C:\\ProgramData\\Anaconda3\\Lib\\site-packages\\sklearn\\gaussian_process\\kernels.py:452: ConvergenceWarning: The optimal value found for dimension 0 of parameter k1__k1__constant_value is close to the specified upper bound 1000.0. Increasing the bound and calling fit again may find a better value.\n    warnings.warn(\n\ntest_acceptance.py::test_fit_branin[m52-0]\ntest_acceptance.py::test_fit_branin[m52-1]\ntest_acceptance.py::test_fit_branin[m52-2]\n  C:\\ProgramData\\Anaconda3\\Lib\\site-packages\\sklearn\\gaussian_process\\kernels.py:442: ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__noise_level is close to the specified lower bound 1e-10. Decreasing the bound and calling fit again may find a better value.\n    warnings.warn(\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n23 passed, 9 warnings in 6.39s\nexit=0"
+  }
+ ],
+ "minutes": 72.8,
+ "deliverables_missing": [],
+ "changed": [
+  {
+   "path": "README.md",
+   "new": true
+  },
+  {
+   "path": "agent_run.log",
+   "new": false
+  },
+  {
+   "path": "examples\\branin_demo.png",
+   "new": true
+  },
+  {
+   "path": "examples\\branin_demo.py",
+   "new": true
+  },
+  {
+   "path": "gp_lite\\__init__.py",
+   "new": true
+  },
+  {
+   "path": "gp_lite\\gp.py",
+   "new": true
+  },
+  {
+   "path": "gp_lite\\kernels.py",
+   "new": true
+  },
+  {
+   "path": "tests\\test_gp_lite.py",
+   "new": true
+  }
+ ],
+ "deleted": []
+}

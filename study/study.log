@@ -16,3 +16,9 @@
 [13:07:24] D2: agent start
 [13:42:29] D2: finished | 72 steps | 35 min | acceptance 14/23 | own tests: 22 passed, 6 warnings in 4.91s | missing: none
 [13:42:29] study: done
+[18:02:55] study: runs ['H1', 'H2']
+[18:02:55] H1: agent start
+[19:15:55] H1: finished | 172 steps | 73 min | acceptance 23/23 | own tests: 7 passed, 1 warning in 1.48s | missing: none
+[19:15:55] H2: agent start
+[20:19:08] H2: finished | 174 steps | 63 min | acceptance 23/23 | own tests: 12 passed, 1 warning in 3.73s | missing: none
+[20:19:08] study: done

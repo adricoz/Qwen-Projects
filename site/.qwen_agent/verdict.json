@@ -1,0 +1,36 @@
+{
+ "status": "PASS",
+ "rounds": [
+  {
+   "round": 1,
+   "stop": "finished",
+   "steps": 112,
+   "minutes": 14.0,
+   "passed": true,
+   "feedback": "`python -m pytest -q` result: 24 passed in 15.31s\noutput tail:\n........................                                                 [100%]\n24 passed in 15.31s\nexit=0"
+  }
+ ],
+ "minutes": 14.0,
+ "deliverables_missing": [],
+ "changed": [
+  {
+   "path": "README.md",
+   "new": false
+  },
+  {
+   "path": "app.py",
+   "new": false
+  },
+  {
+   "path": "figures.py",
+   "new": false
+  },
+  {
+   "path": "tests\\test_site.py",
+   "new": false
+  }
+ ],
+ "deleted": [
+  "scratch_check.py"
+ ]
+}

@@ -1,0 +1,673 @@
+16:35:51 [  0.0 min] run folder C:\Users\SIM\Desktop\Code-Adri\Multifidelity-GP-Clean\vpp_acceleration\runs\2026-10-30_1635_test_run_qwen
+16:35:51 [  0.0 min] family: box centred on the current section, scale 1.2, Ixx >= 6.7174e-05
+16:36:04 [  0.2 min] PCA: rank 16, k = 10 modes carry 99.87 % of the geometric variance
+16:36:17 [  0.4 min] start of the search: closest_to_current
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+case 0 (c+0.6034_r-0.8365_y-5.9758_s+0.0000): AVL near-field and Trefftz totals differ by 2.81 % (> 2.00 %)
+case 0 (c+6.8397_r+1.3200_y-5.5091_s+0.0000): AVL near-field and Trefftz totals differ by 14.98 % (> 2.00 %)
+case 0 (c+1.9693_r-0.2877_y-3.6790_s+0.0000): AVL near-field and Trefftz totals differ by 14.60 % (> 2.00 %)
+polar interior gap filled by interpolation at alpha = 9
+case 0 (c+0.0959_r-1.2065_y-4.1242_s+0.0000): AVL near-field and Trefftz totals differ by 13.27 % (> 2.00 %)
+polar interior gap filled by interpolation at alpha = 4
+polar interior gap filled by interpolation at alpha = 0.5
+case 0 (c+1.4093_r+1.4188_y-4.0141_s+0.0000): AVL near-field and Trefftz totals differ by 4.92 % (> 2.00 %)
+polar interior gap filled by interpolation at alpha = 7.5
+case 0 (c+6.3551_r-0.0080_y-2.9711_s+0.0000): AVL near-field and Trefftz totals differ by 2.87 % (> 2.00 %)
+case 0 (c+7.9882_r-0.6847_y-5.2063_s+0.0000): AVL near-field and Trefftz totals differ by 7.86 % (> 2.00 %)
+polar interior gap filled by interpolation at alpha = -5, -4.5
+polar interior gap filled by interpolation at alpha = -5, -4.5
+polar interior gap filled by interpolation at alpha = 2.5
+polar interior gap filled by interpolation at alpha = -6.5, -6, -5.5
+polar end gap: 44/49 alphas converged, truncated to [-9.5, 12] (missing -12, -11.5, -11, -10.5, -10)
+1 polar(s) truncated to their converged alphas (XFOIL end gap): k9cc4a739a255@Re 4.217e+06 [-9.5, 12]
+polar interior gap filled by interpolation at alpha = 5
+polar end gap: 43/49 alphas converged, truncated to [-9.5, 12] (missing -12, -11.5, -11, -10.5, -10)
+polar interior gap filled by interpolation at alpha = 3.5
+1 polar(s) truncated to their converged alphas (XFOIL end gap): kc9acb7636671@Re 5.623e+06 [-9.5, 12]
+polar end gap: 46/49 alphas converged, truncated to [-10.5, 12] (missing -12, -11.5, -11)
+polar end gap: 43/49 alphas converged, truncated to [-9, 12] (missing -12, -11.5, -11, -10.5, -10, -9.5)
+2 polar(s) truncated to their converged alphas (XFOIL end gap): k81273b9defaf@Re 4.217e+06 [-9, 12]; k81273b9defaf@Re 5.623e+06 [-10.5, 12]
+case 0 (c+3.3504_r-0.0463_y-4.4139_s+0.0000): AVL near-field and Trefftz totals differ by 37.92 % (> 2.00 %)
+case 0 (c+0.4866_r+0.3177_y-3.9768_s+0.0000): AVL near-field and Trefftz totals differ by 10.88 % (> 2.00 %)
+case 0 (c+1.8385_r-0.2219_y-4.3087_s+0.0000): AVL near-field and Trefftz totals differ by 14.94 % (> 2.00 %)
+polar interior gap filled by interpolation at alpha = -1
+polar end gap: 41/49 alphas converged, truncated to [-8, 12] (missing -12, -11.5, -11, -10.5, -10, -9.5, -9, -8.5)
+polar end gap: 39/49 alphas converged, truncated to [-7, 12] (missing -12, -11.5, -11, -10.5, -10, -9.5, -9, -8.5, -8, -7.5)
+2 polar(s) truncated to their converged alphas (XFOIL end gap): ka4ec62309bb3@Re 4.217e+06 [-7, 12]; ka4ec62309bb3@Re 5.623e+06 [-8, 12]
+polar end gap: 43/49 alphas converged, truncated to [-9, 12] (missing -12, -11.5, -11, -10.5, -10, -9.5)
+polar interior gap filled by interpolation at alpha = -7.5, -7, -6.5
+1 polar(s) truncated to their converged alphas (XFOIL end gap): k2ae7497807dc@Re 5.623e+06 [-9, 12]
+16:37:56 [  2.1 min] start design: level 1 120 ok / 120, level 2 30 ok / 30
+C:\Users\SIM\Desktop\Code-Adri\MDS\Code\Math\rotation.py:267: NumbaPerformanceWarning: [1m[1m[1mnp.dot() is faster on contiguous arrays, called on (array(float64, 1d, A), array(float64, 1d, A))[0m[0m[0m
+  np.around(np.array([np.cos(angle_A / 2) * np.cos(angle_B / 2) - np.sin(angle_A / 2) * np.sin(angle_B / 2) * np.dot(vector_A, vector_B)]), int(14), round_value)
+C:\Users\SIM\Desktop\Code-Adri\MDS\Code\Math\rotation.py:267: NumbaPerformanceWarning: [1m[1mnp.dot() is faster on contiguous arrays, called on (array(float64, 1d, A), array(float64, 1d, A))[0m[0m
+  np.around(np.array([np.cos(angle_A / 2) * np.cos(angle_B / 2) - np.sin(angle_A / 2) * np.sin(angle_B / 2) * np.dot(vector_A, vector_B)]), int(14), round_value)
+16:38:07 [  2.3 min] batch 0: hyperparameters refitted on 150 points
+C:\Users\SIM\.conda\envs\bdToolbox\lib\site-packages\scipy\optimize\_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+C:\Users\SIM\.conda\envs\bdToolbox\lib\site-packages\scipy\optimize\_slsqp_py.py:438: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  g = append(wrapped_grad(x), 0.0)
+C:\Users\SIM\.conda\envs\bdToolbox\lib\site-packages\scipy\optimize\_slsqp_py.py:492: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  a_eq = vstack([con['jac'](x, *con['args'])
+16:46:57 [ 11.1 min] speed sensitivities: 12 failed solves, previous values kept
+16:46:57 [ 11.1 min] speed sensitivities dV/dC (rows = conditions): [[ 31.65  -0.69   0.07   0.01   0.05   0.03]
+ [ 31.29  -0.97   0.18  -0.     0.05   0.02]
+ [ 48.7   -1.69   0.68  -0.04   0.11   0.02]
+ [126.27  -3.16   4.    -0.14   0.28   0.09]
+ [ 29.42  -0.53   0.09   0.01   0.04   0.  ]
+ [ 35.12  -0.89   0.28  -0.01   0.07  -0.01]
+ [ 69.29  -1.71   1.4   -0.06   0.16  -0.04]
+ [227.22  -1.42   9.51  -0.56   0.4    0.22]
+ [ 29.2   -0.44   0.11   0.01   0.04  -0.01]
+ [ 40.23  -0.85   0.42  -0.02   0.08  -0.04]
+ [102.67  -1.62   2.75  -0.1    0.2   -0.09]
+ [105.84   4.13  10.67   4.91   0.52   0.11]
+ [ 29.99  -0.34   0.14   0.     0.05  -0.03]
+ [ 49.32  -0.77   0.68  -0.04   0.09  -0.07]
+ [164.    -0.38   5.7   -0.18   0.22  -0.03]
+ [110.     0.19   5.42   2.95   0.54   0.11]
+ [ 31.94  -0.09   0.19  -0.01   0.05  -0.02]
+ [ 66.17   0.04   1.23  -0.06   0.11   0.02]
+ [230.84   4.85   9.75  -0.37   0.21   0.46]
+ [111.92   1.22   6.89   4.07   0.52   0.15]
+ [ 32.13   0.11   0.19  -0.01   0.05   0.  ]
+ [ 67.02   1.06   1.26  -0.06   0.12   0.17]
+ [232.13   7.03   9.92  -0.36   0.19   0.71]
+ [125.24   1.59   8.32   4.93   0.58   0.16]
+ [ 31.74   0.27   0.18  -0.01   0.05   0.02]
+ [ 62.46   1.98   1.13  -0.06   0.12   0.3 ]
+ [221.42   8.34   9.22  -0.3    0.2    0.91]
+ [ 23.44   1.17   1.17   0.59   0.76   0.12]
+ [ 30.74   0.46   0.15  -0.     0.05   0.04]
+ [ 52.05   2.91   0.83  -0.05   0.11   0.42]
+ [193.04  10.16   7.45  -0.21   0.24   1.26]
+ [380.47  23.88  25.94  -1.12  -0.34   2.13]
+ [ 40.39  -0.26   0.41  -0.02   0.07  -0.03]
+ [112.69   1.28   6.42   3.18   0.42   0.17]
+ [ 34.35   1.34   0.28  -0.02   0.06   0.19]
+ [239.41  13.64  11.03  -0.37   0.14   1.55]
+ [ 48.79  -0.68   0.09   0.03   0.07   0.  ]
+ [ 30.5   -0.16   0.08   0.01   0.04  -0.04]
+ [ 30.21   0.06   0.09   0.01   0.04  -0.04]
+ [ 31.38   0.28   0.08   0.01   0.04  -0.04]
+ [100.86  -0.61   5.85   2.31   0.51   0.13]
+ [  0.     0.     0.     0.     0.     0.  ]
+ [  0.     0.     0.     0.     0.     0.  ]
+ [324.12  16.21  16.21  -1.13  -0.63   2.42]
+ [ 29.18  -0.87   0.09   0.01   0.04   0.05]
+ [ 55.52  -2.31   0.91  -0.05   0.13   0.06]
+ [ 28.82   1.15   0.14  -0.01   0.05   0.15]
+ [124.64  14.39   4.51  -0.12   0.22   1.93]
+ [110.61  -0.38   3.02  -0.11   0.17  -0.05]]
+16:50:54 [ 15.1 min] update 0: incumbent speed 13.5462 kt (new, gain 0.2053 kt), candidates [13.341 13.546 13.461 13.455], on 98 % of the probability, radius 1.00, region 0, 767 s
+[session.py:214 -             __init__() ] polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+[session.py:214 -             __init__() ] boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+16:54:12 [ 18.4 min] update 1: incumbent speed 13.5325 kt (kept, gain 0.0000 kt), candidates [13.533 13.494 13.485 13.464], on 98 % of the probability, radius 1.00, region 0, 193 s
+16:54:12 [ 18.4 min] loop done: 1 choices in 1 batches, design per level (121, 30), runs {1: 121, 2: 30}, code time {1: 75.40374679999968, 2: 822.2696370999996}
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+polars.provider : NeuralFoil ne donne pas de Cpmin : les colonnes Cpmin seront vides et le critère de cavitation (sigma contre -Cpmin) ne pourra pas être lu ; XFOIL pour la cavitation
+boundary.zsym : racine inclinée sur la paroi (coin de 41° avec son image, attitude c+0.0000_r+0.0000_y+0.0000_s+0.0000) : la charge de la bande contre la paroi croît avec le maillage et les efforts intégrés dérivent (C-foil : 0,1 à 0,5 % par doublement des panneaux)
+16:58:25 [ 22.6 min] validation done
+run 2026-10-30_1635_test_run_qwen: 1 steps in 22.6 min
+code runs: level 1 268 (114 s), level 2 177 (2530 s); final design per level (121, 30)
+speed of the validated sections (final surrogate corrected against HF, weighted mean over the 47 conditions solved for all, 98 % of the probability): best 13.5346 kt, best_2026-10-29_1002_profile_v2_box3_3h 13.5633 kt, closest_to_current 13.3461 kt
+speeds of the incumbent: 35/7: 7.746, 35/10: 9.036, 35/12: 10.617, 35/15: 13.446, 40/7: 8.095, 40/10: 9.558, 40/12: 11.654, 40/15: 16.188, 45/7: 8.378, 45/10: 10.041, 45/12: 12.807, 45/15: 18.639, 53/7: 8.704, 53/10: 10.666, 53/12: 14.630, 53/15: 20.173, 68/7: 9.107, 68/10: 11.557, 68/12: 17.326, 68/15: 22.557, 77/7: 9.175, 77/10: 11.693, 77/12: 17.628, 77/15: 23.785, 83/7: 9.158, 83/10: 11.611, 83/12: 17.319, 83/15: 24.000, 92/7: 9.051, 92/10: 11.286, 92/12: 16.284, 92/15: 23.982, 64/8: 10.051, 64/14: 21.302, 96/8: 9.873, 96/14: 18.839, 40/5: 7.260, 60/5: 8.050, 80/5: 8.256, 100/5: 8.057, 40/17: 17.843, 60/17: nan, 80/17: nan, 100/17: 24.000, 32/8: 8.091, 32/14: 10.946, 110/8: 9.231, 110/14: 14.874, 60/11: 13.055
+validation best: first-order speed error of the surrogate against AVL x XFOIL RMS 0.0070 kt, max 0.0219 kt; predicted sigma RMS 0.0414 kt; |z| <= 2 on 100 %
+   against the lf code: speed error mean +0.0018 kt, RMS 0.0083 kt
+   Fx     |surrogate - HF| / |HF| median 0.65 %
+   Fy     |surrogate - HF| / |HF| median 0.06 %
+   Fz     |surrogate - HF| / |HF| median 0.35 %
+   Mx     |surrogate - HF| / |HF| median 0.12 %
+   My     |surrogate - HF| / |HF| median 0.33 %
+   Mz     |surrogate - HF| / |HF| median 1.28 %
+   Cpmin  |surrogate - HF| / |HF| median 99.83 %
+validation best_2026-10-29_1002_profile_v2_box3_3h: first-order speed error of the surrogate against AVL x XFOIL RMS 0.0268 kt, max 0.0859 kt; predicted sigma RMS 0.1083 kt; |z| <= 2 on 100 %
+   against the lf code: speed error mean -0.0115 kt, RMS 0.0226 kt
+   Fx     |surrogate - HF| / |HF| median 1.95 %
+   Fy     |surrogate - HF| / |HF| median 0.34 %
+   Fz     |surrogate - HF| / |HF| median 0.18 %
+   Mx     |surrogate - HF| / |HF| median 0.24 %
+   My     |surrogate - HF| / |HF| median 2.08 %
+   Mz     |surrogate - HF| / |HF| median 3.69 %
+   Cpmin  |surrogate - HF| / |HF| median 116.75 %
+validation closest_to_current: first-order speed error of the surrogate against AVL x XFOIL RMS 0.0113 kt, max 0.0303 kt; predicted sigma RMS 0.0255 kt; |z| <= 2 on 100 %
+   against the lf code: speed error mean +0.0040 kt, RMS 0.0153 kt
+   Fx     |surrogate - HF| / |HF| median 0.63 %
+   Fy     |surrogate - HF| / |HF| median 0.18 %
+   Fz     |surrogate - HF| / |HF| median 0.08 %
+   Mx     |surrogate - HF| / |HF| median 0.39 %
+   My     |surrogate - HF| / |HF| median 0.63 %
+   Mz     |surrogate - HF| / |HF| median 0.23 %
+   Cpmin  |surrogate - HF| / |HF| median 88.64 %
+figures written to C:\Users\SIM\Desktop\Code-Adri\Multifidelity-GP-Clean\vpp_acceleration\runs\2026-10-30_1635_test_run_qwen\figures
+16:58:26 [ 22.6 min] done
