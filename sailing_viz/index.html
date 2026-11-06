@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+  <title>Vocabulaire nautique — Yacht à foils 3D</title>
+<style>
+  :root {
+    --bg: #0e1520;
+    --panel: #151f2e;
+    --panel2: #1b2839;
+    --border: #2a3a50;
+    --text: #d8e1ec;
+    --dim: #8fa2b8;
+    --accent: #3f8cff;
+    --hl: #ffaa00;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+    font: 14px/1.45 "Segoe UI", Roboto, Arial, sans-serif; }
+  #app { display: flex; height: 100vh; width: 100vw; overflow: hidden; }
+  #view { position: relative; flex: 1 1 auto; min-width: 0; }
+  #view canvas { display: block; }
+  #readout {
+    position: absolute; top: 12px; left: 12px; z-index: 5;
+    background: rgba(13, 20, 31, 0.82); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; font-size: 13px; min-width: 190px;
+  }
+  #readout .row { display: flex; justify-content: space-between; gap: 14px; }
+  #readout .row span:first-child { color: var(--dim); }
+  #cambar {
+    position: absolute; left: 12px; bottom: 12px; z-index: 5;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  #cambar button, .btn {
+    background: var(--panel2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; cursor: pointer; font-size: 12.5px;
+  }
+  #cambar button:hover, .btn:hover { border-color: var(--accent); color: #fff; }
+  #side {
+    width: 360px; flex: 0 0 360px; border-left: 1px solid var(--border);
+    background: var(--panel); display: flex; flex-direction: column; min-height: 0;
+  }
+  .side-scroll { overflow-y: auto; min-height: 0; }
+  #controls-scroll { padding: 10px 12px 4px; border-bottom: 1px solid var(--border); max-height: 52%; }
+  .ctl { margin: 7px 0; }
+  .ctl-head { display: flex; align-items: center; gap: 6px; }
+  .ctl-head label { flex: 1 1 auto; cursor: default; }
+  .ctl-head .en { color: var(--text); }
+  .ctl-head .fr { color: var(--dim); font-size: 12px; }
+  .ctl-head .value { min-width: 44px; text-align: right; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .help {
+    width: 16px; height: 16px; flex: 0 0 16px; border-radius: 50%;
+    border: 1px solid var(--border); color: var(--dim); font-size: 11px;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: help; user-select: none;
+  }
+  .help:hover { color: var(--hl); border-color: var(--hl); }
+  input[type="range"] { width: 100%; margin: 4px 0 0; accent-color: var(--accent); }
+  select {
+    width: 100%; background: var(--panel2); color: var(--text);
+    border: 1px solid var(--border); border-radius: 6px; padding: 4px; font-size: 13px;
+  }
+  #btn-reset { width: 100%; margin-top: 8px; }
+  #definition-box {
+    margin: 8px 0 10px; padding: 8px 10px; border: 1px solid var(--border);
+    border-left: 3px solid var(--hl); border-radius: 6px; background: var(--panel2);
+    display: none; font-size: 13px;
+  }
+  #definition-box.show { display: block; }
+  #definition-box h4 { margin: 0 0 4px; font-size: 13.5px; color: var(--hl); }
+  #definition-box p { margin: 0; color: var(--text); }
+  #glossary-scroll { padding: 8px 12px 14px; }
+  #glossary-search {
+    width: 100%; padding: 6px 8px; margin: 4px 0 8px;
+    background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--text); font-size: 13px;
+  }
+  .grp h3 {
+    margin: 10px 0 4px; font-size: 13px; color: var(--accent);
+    text-transform: none; border-bottom: 1px solid var(--border); padding-bottom: 2px;
+  }
+  .term {
+    padding: 4px 8px; border-radius: 5px; cursor: pointer; margin: 1px 0;
+  }
+  .term:hover { background: var(--panel2); }
+  .term.active { background: #2c3c22; outline: 1px solid var(--hl); }
+  .term .en { color: var(--text); }
+  .term .fr { color: var(--dim); font-size: 12.5px; }
+  #loading {
+    position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px;
+    background: radial-gradient(circle at 50% 40%, #16233a 0%, #0a101a 75%);
+  }
+  #loading .spinner {
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 3px solid #2a3a50; border-top-color: var(--accent);
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #loading p { color: var(--dim); margin: 0; }
+  .hint { color: var(--dim); font-size: 12px; margin: 6px 0 0; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="view">
+    <div id="readout">
+      <div class="row"><span>AWA</span><span id="readout-awa">–</span></div>
+      <div class="row"><span>AWS</span><span id="readout-aws">–</span></div>
+      <div class="row"><span>VMG</span><span id="readout-vmg">–</span></div>
+      <div class="row"><span>Heading</span><span id="readout-heading">–</span></div>
+      <div class="row"><span>Course</span><span id="readout-course">–</span></div>
+    </div>
+    <div id="cambar">
+      <button id="cam-3quarter" title="Vue 3/4 avant">3/4 avant</button>
+      <button id="cam-side" title="Vue de profil">Profil</button>
+      <button id="cam-top" title="Vue de dessus">Dessus</button>
+      <button id="cam-stern" title="Vue de l'arrière">Arrière</button>
+      <button id="cam-bow" title="Vue de la proue">Proue</button>
+    </div>
+    <div id="loading">
+      <div class="spinner"></div>
+      <p>Chargement du modèle 3D…</p>
+    </div>
+  </div>
+  <div id="side">
+    <div class="side-scroll" id="controls-scroll">
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-heel"><span class="en">Heel</span> <span class="fr">(gîte)</span></label>
+          <span class="help" data-term="heel" title="Définition : heel">?</span>
+          <span class="value" id="value-heel"></span></div>
+        <input type="range" id="slider-heel" data-param="heel" min="-40" max="40" step="1" value="-15">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-trim"><span class="en">Trim / pitch</span> <span class="fr">(assiette)</span></label>
+          <span class="help" data-term="trim" title="Définition : trim">?</span>
+          <span class="value" id="value-trim"></span></div>
+        <input type="range" id="slider-trim" data-param="trim" min="-15" max="15" step="0.5" value="2">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-yaw"><span class="en">Yaw / heading</span> <span class="fr">(lacet, cap)</span></label>
+          <span class="help" data-term="yaw" title="Définition : yaw">?</span>
+          <span class="value" id="value-yaw"></span></div>
+        <input type="range" id="slider-yaw" data-param="yaw" min="-180" max="180" step="1" value="0">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-leeway"><span class="en">Leeway</span> <span class="fr">(dérive)</span></label>
+          <span class="help" data-term="leeway" title="Définition : leeway">?</span>
+          <span class="value" id="value-leeway"></span></div>
+        <input type="range" id="slider-leeway" data-param="leeway" min="-15" max="15" step="0.5" value="4">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-cant"><span class="en">Cant</span> <span class="fr">(foil)</span></label>
+          <span class="help" data-term="cant" title="Définition : cant">?</span>
+          <span class="value" id="value-cant"></span></div>
+        <input type="range" id="slider-cant" data-param="cant" min="-20" max="40" step="1" value="10">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-rake"><span class="en">Rake</span> <span class="fr">(foil)</span></label>
+          <span class="help" data-term="rake" title="Définition : rake">?</span>
+          <span class="value" id="value-rake"></span></div>
+        <input type="range" id="slider-rake" data-param="rake" min="-5" max="10" step="0.25" value="2">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-foil-extension"><span class="en">Foil extension</span></label>
+          <span class="help" data-term="foil" title="Définition : foil">?</span>
+          <span class="value" id="value-foil-extension"></span></div>
+        <input type="range" id="slider-foil-extension" data-param="foilExtension" min="0" max="1" step="0.05" value="1">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-ride-height"><span class="en">Ride height</span> <span class="fr">(hauteur de vol)</span></label>
+          <span class="help" data-term="ride_height" title="Définition : ride height">?</span>
+          <span class="value" id="value-ride-height"></span></div>
+        <input type="range" id="slider-ride-height" data-param="rideHeight" min="0" max="1.5" step="0.05" value="0.6">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-rudder"><span class="en">Rudder</span> <span class="fr">(safran)</span></label>
+          <span class="help" data-term="rudder" title="Définition : rudder">?</span>
+          <span class="value" id="value-rudder"></span></div>
+        <input type="range" id="slider-rudder" data-param="rudder" min="-30" max="30" step="1" value="0">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-twa"><span class="en">TWA</span> <span class="fr">(angle du vent réel)</span></label>
+          <span class="help" data-term="twa" title="Définition : twa">?</span>
+          <span class="value" id="value-twa"></span></div>
+        <input type="range" id="slider-twa" data-param="twa" min="-180" max="180" step="1" value="45">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-tws"><span class="en">TWS</span> <span class="fr">(vitesse du vent réel)</span></label>
+          <span class="help" data-term="tws" title="Définition : tws">?</span>
+          <span class="value" id="value-tws"></span></div>
+        <input type="range" id="slider-tws" data-param="tws" min="0" max="40" step="1" value="15">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="slider-boat-speed"><span class="en">Boat speed</span> <span class="fr">(vitesse bateau)</span></label>
+          <span class="help" data-term="vmg" title="Définition : vmg">?</span>
+          <span class="value" id="value-boat-speed"></span></div>
+        <input type="range" id="slider-boat-speed" data-param="boatSpeed" min="0" max="40" step="0.5" value="18">
+      </div>
+      <div class="ctl">
+        <div class="ctl-head"><label for="sail-config"><span class="en">Sail plan</span> <span class="fr">(voiles)</span></label>
+          <span class="help" data-term="mainsail" title="Définition : mainsail">?</span></div>
+        <select id="sail-config" data-param="sailConfig">
+          <option value="main_jib" selected>Grand-voile + foc (mainsail + jib)</option>
+          <option value="main_genoa">Grand-voile + génois (mainsail + genoa)</option>
+          <option value="main_gennaker">Grand-voile + gennaker (mainsail + gennaker)</option>
+          <option value="main_spinnaker">Grand-voile + spi (mainsail + spinnaker)</option>
+          <option value="main_code_zero">Grand-voile + code 0 (mainsail + code 0)</option>
+        </select>
+      </div>
+      <button id="btn-reset" class="btn">Réinitialiser (defaults)</button>
+      <div id="definition-box"><h4></h4><p></p></div>
+      <p class="hint">Glisser : orbite · molette : zoom · clic droit : panoramique.</p>
+    </div>
+    <div class="side-scroll" id="glossary-scroll">
+      <input id="glossary-search" type="text" placeholder="Rechercher un terme (ex. heel, foc, vent)…">
+      <div id="glossary"></div>
+    </div>
+  </div>
+</div>
+<script id="glossary-data" type="application/json">[
+  {"id": "heel", "en": "Heel", "fr": "Gîte", "group": "attitude", "control": "slider-heel", "nodes": ["aluminium mast"],
+   "definition": "Inclinaison latérale du bateau autour de son axe longitudinal, sous l'effet du vent dans les voiles. Convention ici : gîte positive = le mât penche vers tribord. Sur un bateau à foils, la gîte change l'orientation du foil dans l'eau et donc sa portance verticale."},
+  {"id": "trim", "en": "Trim", "fr": "Assiette", "group": "attitude", "control": "slider-trim", "nodes": ["exact8m finite hull"],
+   "definition": "Inclinaison longitudinale statique du bateau : étrave haute ou basse. Convention ici : assiette positive = étrave vers le haut. Elle fixe l'angle d'attaque des foils et du plan porteur du safran, donc la hauteur de vol (trim)."},
+  {"id": "pitch", "en": "Pitch", "fr": "Tangage", "group": "attitude", "control": "slider-trim", "nodes": ["exact8m finite hull"],
+   "definition": "Mouvement d'oscillation du bateau autour de son axe transversal (l'étrave monte et descend dans la houle). L'assiette (trim) est la valeur moyenne ; le tangage (pitch) est la variation dynamique autour de cette valeur. Le slider Trim pilote les deux ici."},
+  {"id": "yaw", "en": "Yaw", "fr": "Lacet", "group": "attitude", "control": "slider-yaw", "nodes": ["exact8m finite hull"],
+   "definition": "Rotation du bateau autour de son axe vertical : c'est le cap qui change. Convention ici : lacet positif = l'étrave tourne vers tribord (sens horaire vu de dessus). En VPP, le lacet est aussi l'angle entre l'axe du bateau et sa route, voir leeway."},
+  {"id": "roll", "en": "Roll", "fr": "Roulis", "group": "attitude", "control": "slider-heel", "nodes": ["aluminium mast"],
+   "definition": "Oscillation dynamique autour de l'axe longitudinal, typiquement au portant dans la houle. La gîte (heel) est la valeur moyenne, le roulis (roll) la variation autour de cette valeur, comme trim et pitch."},
+  {"id": "leeway", "en": "Leeway", "fr": "Dérive", "group": "attitude", "control": "slider-leeway", "nodes": ["arrow_course"],
+   "definition": "Angle entre le cap du bateau (où pointe l'étrave) et sa route réelle sur l'eau : le vent pousse le bateau latéralement sous le vent. Convention ici : dérive positive = le bateau glisse vers tribord de son cap. C'est cet angle qui donne à la quille et aux foils leur angle d'incidence latéral, donc leur portance anti-dérive (leeway)."},
+  {"id": "heading", "en": "Heading", "fr": "Cap", "group": "attitude", "control": "slider-yaw", "nodes": ["arrow_heading"],
+   "definition": "Direction vers laquelle pointe l'axe du bateau, mesurée en degrés par rapport au nord (ou ici par rapport à l'axe de la scène). Flèche verte : cap (heading)."},
+  {"id": "course", "en": "Course over ground", "fr": "Route fond", "group": "attitude", "control": "slider-leeway", "nodes": ["arrow_course"],
+   "definition": "Direction réelle du déplacement du bateau = cap + dérive (+ courant). Flèche orange : route (course). Pour un routage, c'est la route qui compte, pas le cap."},
+  {"id": "ride_height", "en": "Ride height", "fr": "Hauteur de vol", "group": "attitude", "control": "slider-ride-height", "nodes": ["exact8m finite hull"],
+   "definition": "Hauteur de la coque au-dessus de la surface de l'eau quand le bateau vole sur ses foils. Plus elle est grande, moins la coque traîne, mais plus le foil est proche de la surface (risque de ventilation) et moins la partie immergée est longue."},
+
+  {"id": "foil", "en": "Foil", "fr": "Foil", "group": "foil", "control": "slider-foil-extension", "nodes": ["foil_port", "foil_starboard"],
+   "definition": "Aile immergée qui crée une portance hydrodynamique pour soulever le bateau et réduire la traînée de coque. Sur un monocoque, un foil par bord ; seul celui sous le vent travaille, l'autre est relevé. Nos foils en C sont des primitives ajoutées au modèle."},
+  {"id": "foil_shaft", "en": "Foil shaft", "fr": "Fût du foil", "group": "foil", "nodes": ["foil_shaft"],
+   "definition": "Partie du foil qui traverse la coque et descend dans l'eau ; c'est elle qui est coulissée pour régler l'extension. Elle fournit surtout la portance latérale (anti-dérive) et porte le plan horizontal (tip)."},
+  {"id": "foil_tip", "en": "Foil tip", "fr": "Plan porteur (tip)", "group": "foil", "nodes": ["foil_tip"],
+   "definition": "Partie quasi horizontale au bout du foil : c'est elle qui porte le bateau verticalement. Son angle par rapport à l'eau dépend de l'assiette, de la gîte, du cant et du rake."},
+  {"id": "cant", "en": "Cant", "fr": "Cant (inclinaison latérale)", "group": "foil", "control": "slider-cant", "nodes": ["foil_shaft"],
+   "definition": "Rotation du foil autour de l'axe longitudinal du bateau, au point de sortie de coque : le foil s'écarte ou se rapproche de la coque dans le plan transversal. Convention ici : cant positif = la pointe s'écarte vers l'extérieur. Le cant répartit la portance entre composante verticale (soulever) et composante latérale (anti-dérive)."},
+  {"id": "rake", "en": "Rake", "fr": "Rake (inclinaison longitudinale)", "group": "foil", "control": "slider-rake", "nodes": ["foil_shaft"],
+   "definition": "Rotation du foil autour de l'axe transversal du bateau : son bord d'attaque monte ou descend. Convention ici : rake positif = bord d'attaque vers le haut = plus d'angle d'attaque = plus de portance. C'est le réglage principal de la hauteur de vol."},
+  {"id": "angle_of_attack", "en": "Angle of attack", "fr": "Angle d'incidence", "group": "foil", "control": "slider-rake", "nodes": ["foil_tip"],
+   "definition": "Angle entre la corde du profil (foil, safran, voile) et l'écoulement qui l'aborde. Pour le plan porteur, il vaut environ rake + assiette ; la portance croît avec lui jusqu'au décrochage (angle of attack, AoA)."},
+  {"id": "lift", "en": "Lift", "fr": "Portance", "group": "foil", "nodes": ["foil_tip"],
+   "definition": "Force perpendiculaire à l'écoulement créée par un profil (foil, quille, voile). Elle croît avec le carré de la vitesse et avec l'angle d'incidence ; sur un foil elle se décompose en une part verticale (porte le bateau) et une part latérale (s'oppose à la dérive)."},
+  {"id": "drag", "en": "Drag", "fr": "Traînée", "group": "foil", "nodes": ["exact8m finite hull"],
+   "definition": "Force parallèle à l'écoulement, opposée au mouvement : frottement, traînée induite par la portance, traînée de vagues de la coque. Voler sur les foils supprime l'essentiel de la traînée de coque, au prix de la traînée des foils."},
+  {"id": "elevator", "en": "Elevator", "fr": "Plan porteur de safran", "group": "foil", "nodes": ["elevator"],
+   "definition": "Petite aile horizontale en bas du safran, en forme de T. Elle contrôle l'assiette en vol, comme la gouverne de profondeur d'un avion, et empêche l'arrière de retomber."},
+  {"id": "rudder", "en": "Rudder", "fr": "Safran", "group": "foil", "control": "slider-rudder", "nodes": ["transom rudder blade", "rudder post"],
+   "definition": "Surface verticale à l'arrière qui pivote pour faire tourner le bateau (contrôle du lacet). Convention ici : angle positif = bord de fuite vers tribord, le bateau vient sur tribord. Le safran est aussi un profil : il crée une portance latérale et participe à l'anti-dérive."},
+  {"id": "keel", "en": "Keel", "fr": "Quille", "group": "foil", "nodes": ["swept finite fin keel"],
+   "definition": "Aileron vertical fixe sous la coque : il s'oppose à la dérive (portance latérale) et, avec son lest, redresse le bateau contre la gîte. Sur un bateau à foils, la quille et le foil se partagent l'anti-dérive."},
+  {"id": "bulb", "en": "Bulb", "fr": "Bulbe", "group": "foil", "nodes": ["shaped ballast bulb"],
+   "definition": "Masse de plomb profilée en bas de la quille. Placée le plus bas possible, elle donne le couple de redressement qui limite la gîte (moment de rappel) et fixe en grande partie l'inertie Ixx du bateau."},
+  {"id": "daggerboard", "en": "Daggerboard", "fr": "Dérive sabre", "group": "foil", "nodes": ["swept finite fin keel"],
+   "definition": "Aileron anti-dérive droit et relevable, coulissant verticalement dans un puits (contrairement à la quille, fixe). Sur un multicoque ou un dériveur, elle joue le rôle de la quille sans le lest. Un foil en C ou L est une dérive sabre à laquelle on a ajouté un plan porteur."},
+
+  {"id": "mainsail", "en": "Mainsail", "fr": "Grand-voile", "group": "sail", "nodes": ["mainsail"],
+   "definition": "Voile principale hissée le long du mât et bordée sur la bôme. Son orientation est réglée par l'écoute de grand-voile selon l'angle du vent apparent. C'est la voile toujours présente dans le visualisateur."},
+  {"id": "jib", "en": "Jib", "fr": "Foc", "group": "sail", "control": "sail-config", "nodes": ["foresail"],
+   "definition": "Voile d'avant triangulaire hissée sur l'étai, dont le point d'écoute reste en avant du mât. Petite surface, utilisée au près et dans la brise."},
+  {"id": "genoa", "en": "Genoa", "fr": "Génois", "group": "sail", "control": "sail-config", "nodes": ["foresail"],
+   "definition": "Grand foc dont le point d'écoute recouvre la grand-voile (il dépasse en arrière du mât). Plus de surface que le foc, pour le petit temps au près et au travers."},
+  {"id": "gennaker", "en": "Gennaker", "fr": "Gennaker", "group": "sail", "control": "sail-config", "nodes": ["gennaker"],
+   "definition": "Voile de portant asymétrique, amurée sur le bout-dehors, intermédiaire entre le génois et le spi. Utilisée au largue (vent de travers à arrière), facile à manier car elle n'a pas de tangon."},
+  {"id": "spinnaker", "en": "Spinnaker", "fr": "Spi", "group": "sail", "control": "sail-config", "nodes": ["spinnaker"],
+   "definition": "Grande voile ballon légère, très creuse, pour le vent arrière et le grand largue. Le spi symétrique se tient avec un tangon, l'asymétrique s'amure sur le bout-dehors."},
+  {"id": "code_zero", "en": "Code 0", "fr": "Code 0", "group": "sail", "control": "sail-config", "nodes": ["code_zero"],
+   "definition": "Voile d'avant très grande et presque plate, enroulée sur son propre câble, pour le près bon plein et le travers dans le petit temps. C'est la plus « près » des voiles de portant."},
+  {"id": "mast", "en": "Mast", "fr": "Mât", "group": "sail", "nodes": ["aluminium mast"],
+   "definition": "Espar vertical qui porte les voiles. Il est tenu par le gréement dormant : étai (avant), pataras (arrière), haubans (côtés)."},
+  {"id": "boom", "en": "Boom", "fr": "Bôme", "group": "sail", "nodes": ["attached boom"],
+   "definition": "Espar horizontal articulé au pied du mât (vit-de-mulet) sur lequel est bordée la bordure de la grand-voile. Son angle par rapport à l'axe du bateau est réglé par l'écoute : près = bôme presque dans l'axe, vent arrière = bôme très ouverte."},
+  {"id": "bowsprit", "en": "Bowsprit", "fr": "Bout-dehors", "group": "sail", "nodes": ["bowsprit"],
+   "definition": "Espar qui prolonge l'étrave vers l'avant pour amurer le gennaker, le spi asymétrique ou le code 0 loin devant le foc. Primitive ajoutée au modèle."},
+  {"id": "sheet", "en": "Sheet", "fr": "Écoute", "group": "sail", "nodes": ["mainsheet", "jibsheet"],
+   "definition": "Cordage qui règle l'angle d'une voile par rapport au vent : on « borde » (on tire, la voile se rapproche de l'axe) ou on « choque » (on relâche, la voile s'ouvre). Chaque voile a son écoute (écoute de grand-voile, écoute de foc)."},
+  {"id": "luff", "en": "Luff", "fr": "Guindant", "group": "sail", "nodes": ["luff boltrope"],
+   "definition": "Bord avant d'une voile : le long du mât pour la grand-voile, le long de l'étai pour le foc. C'est le bord d'attaque du profil."},
+  {"id": "leech", "en": "Leech", "fr": "Chute", "group": "sail", "nodes": ["leech boltrope"],
+   "definition": "Bord arrière (libre) d'une voile, du point de drisse au point d'écoute. C'est le bord de fuite ; sa tension règle le vrillage de la voile."},
+  {"id": "foot", "en": "Foot", "fr": "Bordure", "group": "sail", "nodes": ["foot boltrope"],
+   "definition": "Bord inférieur d'une voile, entre le point d'amure et le point d'écoute. Pour la grand-voile, la bordure est tendue le long de la bôme."},
+  {"id": "head", "en": "Head", "fr": "Point de drisse (têtière)", "group": "sail", "nodes": ["mainsail finite cambered cloth"],
+   "definition": "Sommet de la voile, là où la drisse la hisse en haut du mât ou de l'étai."},
+  {"id": "tack_corner", "en": "Tack (corner)", "fr": "Point d'amure", "group": "sail", "nodes": ["foresail finite cambered cloth"],
+   "definition": "Coin avant-bas de la voile, fixé au pied du mât (grand-voile), à l'étrave ou au bout-dehors (voiles d'avant). Ne pas confondre avec tack = virement de bord ou amure (bord sur lequel on navigue)."},
+  {"id": "clew", "en": "Clew", "fr": "Point d'écoute", "group": "sail", "nodes": ["mainsail finite cambered cloth"],
+   "definition": "Coin arrière-bas de la voile, là où l'écoute est frappée. C'est par ce point qu'on règle l'angle et le creux de la voile."},
+  {"id": "reef", "en": "Reef", "fr": "Ris", "group": "sail", "nodes": ["mainsail finite cambered cloth"],
+   "definition": "Réduction de la surface de la grand-voile quand le vent forcit : on abaisse la voile d'une bande (« prendre un ris »). Moins de surface = moins de gîte et de puissance."},
+
+  {"id": "twa", "en": "True wind angle (TWA)", "fr": "Angle du vent réel", "group": "wind", "control": "slider-twa", "nodes": ["arrow_true_wind"],
+   "definition": "Angle entre l'axe du bateau et la direction d'où vient le vent réel (vent mesuré par un observateur immobile sur l'eau). Convention ici : TWA positif = vent venant de tribord (tribord amures), 0 = vent debout, 180 = vent arrière. Avec TWS et la vitesse bateau, c'est l'entrée principale d'un VPP."},
+  {"id": "tws", "en": "True wind speed (TWS)", "fr": "Vitesse du vent réel", "group": "wind", "control": "slider-tws", "nodes": ["arrow_true_wind"],
+   "definition": "Vitesse du vent réel, en nœuds (1 kt = 0,514 m/s). Flèche bleue : elle pointe dans la direction où le vent souffle, longueur proportionnelle à la vitesse."},
+  {"id": "awa", "en": "Apparent wind angle (AWA)", "fr": "Angle du vent apparent", "group": "wind", "nodes": ["arrow_apparent_wind"],
+   "definition": "Angle entre l'axe du bateau et le vent apparent, celui ressenti à bord. Il est toujours plus « près de l'avant » que le TWA car la vitesse du bateau ajoute un vent de face. Un bateau à foils rapide navigue presque toujours avec un AWA faible, même au portant."},
+  {"id": "aws", "en": "Apparent wind speed (AWS)", "fr": "Vitesse du vent apparent", "group": "wind", "nodes": ["arrow_apparent_wind"],
+   "definition": "Norme du vent apparent = vent réel moins vitesse du bateau (vecteurs). Au près, AWS > TWS (les vents s'additionnent) ; au vent arrière, AWS < TWS. Flèche cyan au sommet du mât."},
+  {"id": "vmg", "en": "Velocity made good (VMG)", "fr": "Vitesse utile", "group": "wind", "nodes": ["arrow_course"],
+   "definition": "Projection de la vitesse du bateau sur l'axe du vent réel : VMG = vitesse x cos(TWA). Positive au près (on remonte le vent), négative au portant (on le descend). On règle le TWA pour maximiser |VMG|, pas la vitesse brute."},
+  {"id": "apparent_wind", "en": "Apparent wind", "fr": "Vent apparent", "group": "wind", "nodes": ["arrow_apparent_wind"],
+   "definition": "Vent ressenti sur le bateau en mouvement : vecteur vent réel moins vecteur vitesse du bateau. C'est lui qui agit sur les voiles ; en changeant la vitesse bateau, regardez la flèche cyan tourner vers l'avant."},
+  {"id": "true_wind", "en": "True wind", "fr": "Vent réel", "group": "wind", "nodes": ["arrow_true_wind"],
+   "definition": "Vent météo, mesuré par rapport à l'eau (immobile). Décrit par TWS (vitesse) et TWD (direction géographique) ou TWA (angle par rapport au bateau)."},
+  {"id": "port_tack", "en": "Port tack", "fr": "Bâbord amures", "group": "wind", "control": "slider-twa", "nodes": ["attached boom"],
+   "definition": "Le bateau reçoit le vent par bâbord (gauche) ; la bôme et les voiles sont à tribord. Ici : TWA négatif. Un bateau bâbord amures doit laisser la priorité à un bateau tribord amures."},
+  {"id": "starboard_tack", "en": "Starboard tack", "fr": "Tribord amures", "group": "wind", "control": "slider-twa", "nodes": ["attached boom"],
+   "definition": "Le bateau reçoit le vent par tribord (droite) ; la bôme et les voiles sont à bâbord. Ici : TWA positif. C'est le bord prioritaire."},
+  {"id": "close_hauled", "en": "Close-hauled", "fr": "Près", "group": "wind", "control": "slider-twa", "nodes": ["arrow_true_wind"],
+   "definition": "Allure la plus proche du vent, TWA d'environ 30 à 45 degrés ; voiles bordées au maximum. Au-delà (plus près du vent), les voiles faseyent et le bateau s'arrête."},
+  {"id": "reaching", "en": "Reaching", "fr": "Travers / largue", "group": "wind", "control": "slider-twa", "nodes": ["arrow_true_wind"],
+   "definition": "Allures intermédiaires : vent de travers (beam reach, TWA 90), petit largue (close reach, 60-80) et grand largue (broad reach, 110-150). Les plus rapides pour un bateau à foils."},
+  {"id": "running", "en": "Running", "fr": "Vent arrière", "group": "wind", "control": "slider-twa", "nodes": ["arrow_true_wind"],
+   "definition": "Vent venant de l'arrière, TWA proche de 180 ; bôme très ouverte, spi. Le vent apparent est faible (AWS = TWS - vitesse bateau), donc souvent plus lent que le grand largue."},
+  {"id": "windward", "en": "Windward", "fr": "Au vent", "group": "wind", "nodes": ["exact8m finite hull"],
+   "definition": "Côté du bateau (ou objet) qui fait face au vent, d'où vient le vent. L'équipage se place au vent pour contrer la gîte ; le foil au vent est relevé."},
+  {"id": "leeward", "en": "Leeward", "fr": "Sous le vent", "group": "wind", "nodes": ["attached boom"],
+   "definition": "Côté opposé au vent, vers où le vent souffle. Les voiles et la bôme sont toujours sous le vent ; le bateau gîte et dérive sous le vent ; le foil sous le vent est celui qui travaille."},
+  {"id": "tacking", "en": "Tacking", "fr": "Virement de bord", "group": "wind", "nodes": ["aluminium mast"],
+   "definition": "Manœuvre où l'étrave passe par le vent debout (TWA traverse 0) pour changer d'amure. Les voiles passent d'un bord à l'autre ; au près, on remonte au vent en zigzag par virements successifs (to tack)."},
+  {"id": "gybing", "en": "Gybing", "fr": "Empannage", "group": "wind", "nodes": ["attached boom"],
+   "definition": "Changement d'amure en passant par le vent arrière (TWA traverse 180). La bôme balaie brusquement le pont d'un bord à l'autre : manœuvre délicate dans la brise (to gybe / jibe)."},
+
+  {"id": "hull", "en": "Hull", "fr": "Coque", "group": "hull", "nodes": ["exact8m finite hull"],
+   "definition": "Corps flottant du bateau. En navigation archimédienne elle porte tout le poids par sa flottabilité ; en vol sur foils elle sort de l'eau et sa traînée disparaît."},
+  {"id": "deck", "en": "Deck", "fr": "Pont", "group": "hull", "nodes": ["sheer-following deck"],
+   "definition": "Surface supérieure qui ferme la coque, sur laquelle on circule et où sont fixés mât, winchs et accastillage."},
+  {"id": "bow", "en": "Bow", "fr": "Étrave / proue", "group": "hull", "marker": [4.1, 2.3, 0],
+   "definition": "Partie avant de la coque. L'étrave (stem) est l'arête qui fend l'eau ; « proue » désigne l'avant en général. Axe +x dans la scène."},
+  {"id": "stern", "en": "Stern", "fr": "Poupe / arrière", "group": "hull", "marker": [-3.95, 2.3, 0],
+   "definition": "Partie arrière de la coque ; le tableau arrière (transom) est la surface plate qui la ferme, où est souvent fixé le safran. Axe -x dans la scène."},
+  {"id": "port", "en": "Port", "fr": "Bâbord", "group": "hull", "marker": [0, 2.4, -1.35],
+   "definition": "Côté gauche du bateau quand on regarde vers l'avant. Feu rouge. Ici : axe -z. Moyen mnémotechnique anglais : port et left ont quatre lettres."},
+  {"id": "starboard", "en": "Starboard", "fr": "Tribord", "group": "hull", "marker": [0, 2.4, 1.35],
+   "definition": "Côté droit du bateau quand on regarde vers l'avant. Feu vert. Ici : axe +z."},
+  {"id": "waterline", "en": "Waterline", "fr": "Ligne de flottaison", "group": "hull", "nodes": ["waterline"],
+   "definition": "Intersection de la coque avec la surface de l'eau au repos. Au-dessus : les œuvres mortes (topsides) ; en dessous : les œuvres vives (la carène, le mouillé)."},
+  {"id": "freeboard", "en": "Freeboard", "fr": "Franc-bord", "group": "hull", "nodes": ["exact8m finite hull"],
+   "definition": "Hauteur verticale entre la ligne de flottaison et le pont. Plus il est grand, plus le bateau reste sec mais plus il prend le vent."},
+  {"id": "beam", "en": "Beam", "fr": "Bau (largeur)", "group": "hull", "nodes": ["sheer-following deck"],
+   "definition": "Largeur maximale de la coque. Un bateau large est plus stable de forme (moins de gîte) mais présente plus de surface mouillée."},
+  {"id": "draft", "en": "Draft", "fr": "Tirant d'eau", "group": "hull", "nodes": ["shaped ballast bulb"],
+   "definition": "Profondeur verticale entre la ligne de flottaison et le point le plus bas (bulbe de quille ou foil déployé). Il augmente avec le cant négatif et l'extension des foils."},
+  {"id": "lwl", "en": "Length at waterline (LWL)", "fr": "Longueur à la flottaison", "group": "hull", "nodes": ["waterline"],
+   "definition": "Longueur de la coque mesurée au niveau de l'eau, plus courte que la longueur hors tout (LOA). Elle fixe la vitesse de carène limite d'un bateau archimédien ; voler sur foils permet de s'en affranchir."}
+]
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+/* =====================================================================
+   Pure zone — executed in Node too (no DOM, no THREE).
+   Must stay dependency-free.
+   ===================================================================== */
+'use strict';
+
+/* Apparent wind, all in knots. Boat frame: +x = bow, +z = starboard.
+ * True wind TO the boat: TWS * (-cos TWA, -sin TWA) (positive TWA = wind
+ * FROM starboard). Apparent wind = true wind - boat speed.
+ * @param {number} twa true wind angle in degrees, [-180, 180]
+ * @param {number} tws true wind speed in knots
+ * @param {number} boatSpeed boat speed over ground in knots
+ * @returns {{awa:number, aws:number, vmg:number}} rounded to 0.1 kt/deg
+ */
+function computeApparentWind(twa, tws, boatSpeed) {
+  function normDeg(a) { while (a > 180) a -= 360; while (a < -180) a += 360; return a; }
+  var r = twa * Math.PI / 180;
+  var awX = tws * -Math.cos(r) - boatSpeed;
+  var awZ = tws * -Math.sin(r);
+  var aws = Math.hypot(awX, awZ);
+  var awa = normDeg(Math.atan2(-awZ, -awX) * 180 / Math.PI);
+  var vmg = boatSpeed * Math.cos(r);
+  return { awa: awa, aws: aws, vmg: vmg };
+}
+
+/* Boom angle (degrees) from |TWA|: luffing below 35 deg ignored, clamped 5..80. */
+function boomAngleDeg(twa) {
+  var a = Math.abs(twa);
+  if (a < 35) { return 5; }
+  return Math.min(80, Math.max(5, 5 + 75 * (a - 35) / 145));
+}
+
+/* Shared state (single source of truth for sliders and scene). */
+var VIZ_STATE_DEFAULTS = {
+  heel: -15, trim: 2, yaw: 0, leeway: 4,
+  cant: 10, rake: 2, foilExtension: 1, rideHeight: 0.6, rudder: 0,
+  twa: 45, tws: 15, boatSpeed: 18, sailConfig: 'main_jib'
+};
+
+var VIZ = {
+  state: null,
+  TERMS: null,
+  _sceneReady: false,
+  _apply: null, _highlight: null, _readout: null, _resetControls: null,
+  setParam: function (name, value) {
+    if (!(name in this.state)) { return; }
+    if (typeof value === 'string') { this.state[name] = value; }
+    else { this.state[name] = Number(value); }
+    if (this._syncControl) { this._syncControl(name, this.state[name]); }
+    if (this._sceneReady && this._apply) { this._apply(); }
+  },
+  getParam: function (name) { return this.state[name]; },
+  applyState: function () { if (this._sceneReady && this._apply) { this._apply(); } },
+  highlight: function (termId) { if (this._highlight) { this._highlight(termId); } },
+  computeApparentWind: computeApparentWind
+};
+if (typeof window !== 'undefined') { window.VIZ = VIZ; }
+VIZ.state = Object.assign({}, VIZ_STATE_DEFAULTS);
+VIZ.PARAM_KEYS = Object.keys(VIZ_STATE_DEFAULTS);
+
+if (typeof document !== 'undefined' && typeof THREE !== 'undefined') { init(); }
+function init() {
+  /* ------------------------------------------------------------------
+     Glossary data + panel
+     ------------------------------------------------------------------ */
+  var TERMS = JSON.parse(document.getElementById('glossary-data').textContent);
+  VIZ.TERMS = TERMS;
+  var TERM_BY_ID = {};
+  TERMS.forEach(function (t) { TERM_BY_ID[t.id] = t; });
+  var GROUP_TITLES = {
+    attitude: 'Attitude du bateau',
+    foil: 'Foils et appendices',
+    sail: 'Voiles et gréement',
+    wind: 'Vent et allures',
+    hull: 'Coque'
+  };
+  var norm = function (s) {
+    return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+  var glossaryEl = document.getElementById('glossary');
+  var termEls = {};
+  (function buildPanel() {
+    var groups = ['attitude', 'foil', 'sail', 'wind', 'hull'];
+    groups.forEach(function (g) {
+      var list = TERMS.filter(function (t) { return t.group === g; });
+      if (!list.length) { return; }
+      var h = document.createElement('h3');
+      h.textContent = GROUP_TITLES[g] || g;
+      var box = document.createElement('div');
+      box.className = 'grp';
+      box.appendChild(h);
+      list.forEach(function (t) {
+        var el = document.createElement('div');
+        el.className = 'term';
+        el.dataset.term = t.id;
+        el.innerHTML = '<span class="en"></span> <span class="fr"></span>';
+        el.querySelector('.en').textContent = t.en;
+        el.querySelector('.fr').textContent = '(' + t.fr + ')';
+        el.addEventListener('click', function () {
+          showDefinition(t);
+          VIZ.highlight(t.id);
+          termEls[t.id].classList.add('active');
+          setTimeout(function () { termEls[t.id].classList.remove('active'); }, 2000);
+        });
+        box.appendChild(el);
+        termEls[t.id] = el;
+      });
+      glossaryEl.appendChild(box);
+    });
+  })();
+  var searchEl = document.getElementById('glossary-search');
+  searchEl.addEventListener('input', function () {
+    var q = norm(searchEl.value);
+    Object.keys(termEls).forEach(function (id) {
+      var t = TERM_BY_ID[id];
+      var hit = !q || norm(t.en + ' ' + t.fr + ' ' + t.id + ' ' + t.definition).indexOf(q) >= 0;
+      termEls[id].style.display = hit ? '' : 'none';
+    });
+    Array.prototype.forEach.call(glossaryEl.children, function (grp) {
+      grp.style.display = grp.querySelector('.term:not([style*="none"])') ? '' : 'none';
+    });
+  });
+  var defBox = document.getElementById('definition-box');
+  function showDefinition(t) {
+    defBox.querySelector('h4').textContent = t.en + ' (' + t.fr + ')';
+    defBox.querySelector('p').textContent = t.definition;
+    defBox.classList.add('show');
+  }
+  function termOfControl(el) {
+    if (!el) { return null; }
+    if (el.dataset && el.dataset.term) { return TERM_BY_ID[el.dataset.term] || null; }
+    if (el.dataset && el.dataset.param) {
+      var k = el.dataset.param;
+      for (var i = 0; i < TERMS.length; i++) {
+        if (TERMS[i].control === idOfParam(k)) { return TERMS[i]; }
+      }
+    }
+    return null;
+  }
+  function idOfParam(k) {
+    return k === 'sailConfig' ? 'sail-config' : 'slider-' + k;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.help'), function (el) {
+    el.addEventListener('mouseenter', function () { var t = termOfControl(el); if (t) { showDefinition(t); } });
+    el.addEventListener('click', function () { var t = termOfControl(el); if (t) { showDefinition(t); VIZ.highlight(t.id); } });
+  });
+  /* ------------------------------------------------------------------
+     Scene, camera, environment
+     ------------------------------------------------------------------ */
+  var view = document.getElementById('view');
+  var scene = new THREE.Scene();
+  VIZ.scene = scene; // exposed for debugging and scripted checks
+  scene.background = new THREE.Color(0x232f3d);
+  var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+  camera.position.set(12, 8, 12);
+  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  view.insertBefore(renderer.domElement, view.firstChild);
+  var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.target.set(0, 1.8, 0);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.minDistance = 2;
+  controls.maxDistance = 120;
+
+  var hemi = new THREE.HemisphereLight(0xbfd4ff, 0x2c3540, 0.9);
+  scene.add(hemi);
+  var sun = new THREE.DirectionalLight(0xfff2d8, 0.85);
+  sun.position.set(18, 26, 12);
+  scene.add(sun);
+  scene.add(new THREE.AxesHelper(3));
+  var grid = new THREE.GridHelper(200, 100, 0x3a4a63, 0x28344a);
+  grid.position.y = -0.02;
+  scene.add(grid);
+  var seaMat = new THREE.MeshStandardMaterial({
+    color: 0x1c4d8f, transparent: true, opacity: 0.6,
+    roughness: 0.35, metalness: 0.1
+  });
+  var sea = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), seaMat);
+  sea.rotation.x = -Math.PI / 2;
+  scene.add(sea);
+
+  /* Hierarchy: boatRoot (yaw, ride) > attitudeGroup (heel, trim) >
+     modelGroup (y = -1.5, GLB + added parts). */
+  var boatRoot = new THREE.Group();
+  var attitudeGroup = new THREE.Group();
+  var modelGroup = new THREE.Group();
+  boatRoot.add(attitudeGroup);
+  attitudeGroup.add(modelGroup);
+  modelGroup.position.y = -1.5;
+  scene.add(boatRoot);
+
+  /* ------------------------------------------------------------------
+     Added parts (primitives), children of modelGroup
+     ------------------------------------------------------------------ */
+  var addedParts = [];
+  var partByName = {};
+  function addPart(obj) {
+    obj.userData.base = {
+      pos: obj.position.clone(), rot: obj.rotation.clone(),
+      scale: obj.scale.clone(),
+      parent: obj.parent ? obj.parent.uuid : null
+    };
+    modelGroup.add(obj);
+    addedParts.push(obj);
+    return obj;
+  }
+
+  // Waterline outline at model y = 1.5 (ellipse x -3.9..4.05, z +/-1.3)
+  (function addWaterline() {
+    var pts = [];
+    for (var i = 0; i <= 64; i++) {
+      var a = i / 64 * Math.PI * 2;
+      pts.push(new THREE.Vector3(-3.9 + 7.95 * (Math.cos(a) * 0.5 + 0.5), 1.5, 1.3 * Math.sin(a)));
+    }
+    var geo = new THREE.BufferGeometry().setFromPoints(pts);
+    var mat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.85 });
+    var wl = new THREE.Line(geo, mat);
+    wl.name = 'waterline';
+    addPart(wl);
+  })();
+
+  // Bowsprit: cylinder along x from 4.0 to 5.6 at y = 2.3
+  (function addBowsprit() {
+    var geo = new THREE.CylinderGeometry(0.04, 0.04, 1.6, 12);
+    var mat = new THREE.MeshStandardMaterial({ color: 0xd8d2c4, roughness: 0.5, metalness: 0.3 });
+    var b = new THREE.Mesh(geo, mat);
+    b.name = 'bowsprit';
+    b.position.set(4.8, 2.3, 0);
+    b.rotation.z = Math.PI / 2;
+    addPart(b);
+  })();
+
+  // C-foils: group at hull exit point; shaft = tube, tip = wing box
+  function makeFoil(name, side) {
+    // side = +1 starboard (+z), -1 port (-z)
+    var g = new THREE.Group();
+    g.name = name;
+    g.position.set(1.0, 1.7, side * 1.25);
+    var mat = new THREE.MeshStandardMaterial({ color: 0x2e343c, roughness: 0.35, metalness: 0.85 });
+    var pts = [
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(0, -0.9, side * 0.75),
+      new THREE.Vector3(0, -1.9, side * 0.9),
+      new THREE.Vector3(0, -2.6, side * 0.45)
+    ];
+    var curve = new THREE.CatmullRomCurve3(pts);
+    var shaft = new THREE.Mesh(new THREE.TubeGeometry(curve, 48, 0.07, 10, false), mat);
+    shaft.name = 'foil_shaft';
+    var tip = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.06, 1.3), mat);
+    tip.name = 'foil_tip';
+    tip.position.set(0, -2.65, -side * 0.25);
+    tip.rotation.x = side * 0.18;
+    g.add(shaft, tip);
+    // tangent at the top of the shaft, unit
+    var t = curve.getTangent(0).normalize();
+    g.userData.tangent = t;
+    return g;
+  }
+  var foilPort = makeFoil('foil_port', -1);
+  var foilStarboard = makeFoil('foil_starboard', 1);
+  addPart(foilPort);
+  addPart(foilStarboard);
+  var FOIL_RAISE = 2.4; // raised distance at extension = 0
+
+  // Glossary marker spheres (hidden by default), named after entry id
+  var markers = [];
+  TERMS.forEach(function (t) {
+    if (!t.marker) { return; }
+    var m = new THREE.Mesh(
+      new THREE.SphereGeometry(0.12, 12, 12),
+      new THREE.MeshBasicMaterial({ color: 0xffaa00 })
+    );
+    m.name = 'marker_' + t.id;
+    m.position.set(t.marker[0], t.marker[1], t.marker[2]);
+    m.visible = false;
+    addPart(m);
+    markers.push({ id: t.id, mesh: m });
+  });
+
+  /* ------------------------------------------------------------------
+     Arrows (in scene, re-parented to boatRoot to follow yaw)
+     ------------------------------------------------------------------ */
+  var arrowHeading = new THREE.ArrowHelper(
+    new THREE.Vector3(1, 0, 0), new THREE.Vector3(3.4, 0, 0), 4, 0x2ecc40, 0.6, 0.35
+  );
+  arrowHeading.name = 'arrow_heading';
+  var arrowCourse = new THREE.ArrowHelper(
+    new THREE.Vector3(1, 0, 0), new THREE.Vector3(3.4, 0, 0), 4, 0xff851b, 0.6, 0.35
+  );
+  arrowCourse.name = 'arrow_course';
+  var MAST_TOP = new THREE.Vector3(0.92, 12.76, 0); // local to boatRoot
+  var arrowTrueWind = new THREE.ArrowHelper(
+    new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 1, 0), 1, 0x2e6ee0, 0.5, 0.3
+  );
+  arrowTrueWind.name = 'arrow_true_wind';
+  var arrowApparentWind = new THREE.ArrowHelper(
+    new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 1, 0), 1, 0x35d0e0, 0.5, 0.3
+  );
+  arrowApparentWind.name = 'arrow_apparent_wind';
+  [arrowHeading, arrowCourse, arrowTrueWind, arrowApparentWind].forEach(function (a) {
+    scene.add(a);
+  });
+
+  var arrows = {};
+  [arrowHeading, arrowCourse, arrowTrueWind, arrowApparentWind].forEach(function (a) { arrows[a.name] = a; });
+
+  /* Arrow update: dir/len in local (boat) frame; position set by caller. */
+  function setArrow(a, dir, len) {
+    a.setDirection(dir.clone().normalize());
+    a.setLength(len, Math.min(0.6, len * 0.22), Math.min(0.35, len * 0.14));
+  }
+  /* ------------------------------------------------------------------
+     Sails re-parenting (flat in model; rotate groups about y to trim)
+     ------------------------------------------------------------------ */
+  var mainGroup = new THREE.Group();
+  mainGroup.name = 'mainGroup';
+  mainGroup.position.set(0.92, 0, 0);
+  modelGroup.add(mainGroup);
+  var jibGroup = new THREE.Group();
+  jibGroup.name = 'jibGroup';
+  jibGroup.position.set(3.75, 0, 0);
+  modelGroup.add(jibGroup);
+  var rudderGroup = new THREE.Group();
+  rudderGroup.name = 'rudderGroup';
+  rudderGroup.position.set(-3.85, 0, 0);
+  modelGroup.add(rudderGroup);
+
+  // Elevator under the rudder, part of the rudder group
+  (function addElevator() {
+    var mat = new THREE.MeshStandardMaterial({ color: 0x2e343c, roughness: 0.4, metalness: 0.7 });
+    var e = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.04, 0.9), mat);
+    e.name = 'elevator';
+    e.position.set(0, 0.33, 0);
+    rudderGroup.add(e);
+    return e;
+  })();
+
+  // Headsails: ShapeGeometry triangle pivoting about y at the tack
+  function makeHeadsail(name, tack, head, clew, color, opacity) {
+    var shape = new THREE.Shape();
+    shape.moveTo(0, 0);
+    shape.lineTo(head[0] - tack[0], head[1] - tack[1]);
+    shape.lineTo(clew[0] - tack[0], clew[1] - tack[1]);
+    shape.closePath();
+    var geo = new THREE.ShapeGeometry(shape);
+    var mat = new THREE.MeshStandardMaterial({
+      color: color, side: THREE.DoubleSide, transparent: true,
+      opacity: opacity, roughness: 0.6, metalness: 0.0,
+      emissive: 0x000000
+    });
+    var mesh = new THREE.Mesh(geo, mat);
+    mesh.name = name;
+    var g = new THREE.Group();
+    g.name = name + '_pivot';
+    g.position.set(tack[0], tack[1], 0);
+    g.add(mesh);
+    mesh.userData.base = {
+      pos: new THREE.Vector3(0, 0, 0), rot: new THREE.Euler(),
+      scale: new THREE.Vector3(1, 1, 1), parent: g.uuid
+    };
+    return g;
+  }
+  var TACK = [5.5, 2.3];
+  var headsails = {
+    gennaker: makeHeadsail('gennaker', TACK, [0.95, 12.2], [0.5, 3.5], 0xff7f2a, 0.9),
+    spinnaker: makeHeadsail('spinnaker', TACK, [0.95, 12.2], [-1.5, 4.0], 0xd8262c, 0.9),
+    code_zero: makeHeadsail('code_zero', TACK, [0.95, 12.2], [1.5, 3.0], 0xf2f2f2, 0.95)
+  };
+  Object.keys(headsails).forEach(function (k) {
+    var g = headsails[k];
+    g.visible = false;
+    modelGroup.add(g);
+  });
+
+  var gltfMeshes = {};
+  var mainMeshes = [];
+  var jibMeshes = [];
+  var rudderMeshes = [];
+  var namedMeshes = [];
+
+  function reparentInto(mesh, group, px) {
+    // GLB meshes carry no own transform; offset by -pivotX so the geometry
+    // keeps its world position after moving under the pivot group.
+    var p = mesh.parent;
+    mesh.position.set(-px, 0, 0);
+    p.remove(mesh);
+    group.add(mesh);
+    mesh.userData.parentGroup = group.name;
+  }
+  function attachSails() {
+    // Collect first, re-parent after: removing children during traverse()
+    // skips siblings and can hit an undefined child.
+    var found = [];
+    modelGroup.traverse(function (o) { if (o.isMesh && !o.userData._seen) { found.push(o); } });
+    found.forEach(function (o) {
+    o.userData._seen = true;
+    var n = o.name || '';
+    namedMeshes.push(o);
+    if (n.indexOf('mainsail') >= 0 || n.indexOf('attached boom') >= 0 || n.indexOf('mainsheet') >= 0) {
+      mainMeshes.push(o);
+      reparentInto(o, mainGroup, 0.92);
+    } else if (n.indexOf('foresail') >= 0 || n.indexOf('jibsheet') >= 0) {
+      jibMeshes.push(o);
+      reparentInto(o, jibGroup, 3.75);
+    } else if (n.indexOf('transom rudder blade') >= 0 || n.indexOf('rudder post') >= 0 || n.indexOf('teak tiller') >= 0) {
+      rudderMeshes.push(o);
+      reparentInto(o, rudderGroup, -3.85);
+    }
+  });
+  jibMeshes.forEach(function (m) {
+    // keep geometry anchored: jib meshes had no own transform, group at 3.75
+    m.position.set(-3.75, 0, 0);
+  });
+  mainMeshes.forEach(function (m) {
+    m.position.set(-0.92, 0, 0);
+  });
+  rudderMeshes.forEach(function (m) {
+    m.position.set(3.85, 0, 0);
+  });
+  }
+  /* ------------------------------------------------------------------
+     Load the GLB (base64 inline in standalone build, file otherwise)
+     ------------------------------------------------------------------ */
+  var loadingEl = document.getElementById('loading');
+  function showLoading(msg) {
+    loadingEl.style.display = 'flex';
+    loadingEl.querySelector('p').textContent = msg;
+  }
+  function hideLoading() { loadingEl.style.display = 'none'; }
+  function base64ToArrayBuffer(b64) {
+    var bin = atob(b64);
+    var len = bin.length;
+    var bytes = new Uint8Array(len);
+    for (var i = 0; i < len; i++) { bytes[i] = bin.charCodeAt(i); }
+    return bytes.buffer;
+  }
+  function onLoad(gltf) {
+    var root = gltf.scene || gltf.scenes[0];
+    // GLTFLoader sanitises node names (spaces -> underscores): restore the
+    // original names so the substring matching below and in the glossary works.
+    root.traverse(function (o) { if (o.name) { o.name = o.name.replace(/_/g, ' '); } });
+    // all nodes are untransformed; attach under modelGroup
+    modelGroup.add(root);
+    // register GLB meshes for re-parenting / highlighting
+    attachSails();
+    applyState();
+    hideLoading();
+  }
+  function onError(err) {
+    console.error('GLTF load error', err);
+    showLoading('Erreur de chargement du modèle 3D.');
+  }
+  function loadModel() {
+    var loader = new THREE.GLTFLoader();
+    if (typeof window !== 'undefined' && window.MODEL_B64) {
+      loader.parse(base64ToArrayBuffer(window.MODEL_B64), '', onLoad, onError);
+    } else {
+      loader.load('assets/sailing-yacht-8-m.glb', onLoad, undefined, onError);
+    }
+  }
+  loadModel();
+
+  /* ------------------------------------------------------------------
+     applyState: whole state -> scene (idempotent)
+     ------------------------------------------------------------------ */
+  // Arrows are children of boatRoot: work in boat (local) frame.
+  function updateArrows() {
+    var s = VIZ.state;
+    var deg = Math.PI / 180;
+    boatRoot.updateMatrixWorld(true);
+    // full boat attitude in world (yaw * heel * trim)
+    var q = new THREE.Quaternion();
+    attitudeGroup.getWorldQuaternion(q);
+    function toWorld(v) { return v.applyMatrix4(modelGroup.matrixWorld); }
+
+    // heading = boat x axis; course = heading rotated about y by -leeway
+    // (positive leeway -> drift to starboard, +z)
+    var heading = new THREE.Vector3(1, 0, 0).applyQuaternion(q);
+    heading.y = 0; heading.normalize();
+    var cYaw = new THREE.Quaternion().setFromAxisAngle(
+      new THREE.Vector3(0, 1, 0), -s.leeway * deg);
+    var course = heading.clone().applyQuaternion(cYaw);
+
+    var bow = toWorld(new THREE.Vector3(3.4, 1.0, 0));
+    arrows.arrow_heading.position.copy(bow);
+    arrows.arrow_course.position.copy(bow);
+    setArrow(arrows.arrow_heading, heading, 4);
+    setArrow(arrows.arrow_course, course, 4);
+
+    // wind vectors in the boat frame (wind FROM starboard -> TWA > 0),
+    // then rotated into the world frame
+    var twa = s.twa * deg;
+    var tw = new THREE.Vector3(-Math.cos(twa), 0, -Math.sin(twa)).applyQuaternion(q);
+    var aw = new THREE.Vector3(
+      -Math.cos(twa) * s.tws - s.boatSpeed,
+      0,
+      -Math.sin(twa) * s.tws
+    ).applyQuaternion(q);
+    var aws = Math.hypot(aw.x, aw.y, aw.z) || 0.0001;
+    var mastTop = toWorld(new THREE.Vector3(0.92, 12.76, 0));
+    arrows.arrow_true_wind.position.copy(mastTop);
+    arrows.arrow_apparent_wind.position.copy(mastTop);
+    setArrow(arrows.arrow_true_wind, tw.clone().normalize(), Math.max(0.5, 0.25 * s.tws));
+    setArrow(arrows.arrow_apparent_wind, aw.clone().normalize(), Math.max(0.5, 0.25 * aws));
+  }
+
+  function setFoil(g, side) {
+    var s = VIZ.state;
+    var deg = Math.PI / 180;
+    g.rotation.set(-side * s.cant * deg, 0, s.rake * deg);
+    var e = s.foilExtension;
+    var t = g.userData.tangent;
+    g.position.set(
+      1.0 - t.x * FOIL_RAISE * (1 - e),
+      1.7 - t.y * FOIL_RAISE * (1 - e),
+      side * 1.25 - t.z * FOIL_RAISE * (1 - e)
+    );
+  }
+  function setSails() {
+    var s = VIZ.state;
+    var deg = Math.PI / 180;
+    var sign = s.twa >= 0 ? -1 : 1; // TWA>0 -> boom to port (-z)
+    var bang = boomAngleDeg(s.twa) * deg;
+    mainGroup.rotation.y = sign * bang;
+    jibGroup.rotation.y = sign * 0.6 * bang;
+    var useJibMeshes = s.sailConfig === 'main_jib' || s.sailConfig === 'main_genoa';
+    jibGroup.visible = useJibMeshes;
+    jibMeshes.forEach(function (m) {
+      if (s.sailConfig === 'main_genoa') { m.scale.set(1.3, 1, 1); }
+      else { m.scale.set(1, 1, 1); }
+      m.visible = true;
+    });
+    var hs = { gennaker: 'main_gennaker', spinnaker: 'main_spinnaker', code_zero: 'main_code_zero' };
+    Object.keys(hs).forEach(function (k) {
+      headsails[k].visible = (s.sailConfig === hs[k]);
+      headsails[k].rotation.y = sign * 0.8 * bang; // trimmed to leeward, pivot at the tack
+    });
+  }
+  function applyState() {
+    var s = VIZ.state;
+    var deg = Math.PI / 180;
+    // attitude
+    boatRoot.rotation.y = -s.yaw * deg;
+    boatRoot.position.y = s.rideHeight;
+    attitudeGroup.rotation.x = s.heel * deg;   // + = mast leans to starboard (+z)
+    attitudeGroup.rotation.z = s.trim * deg;   // + = bow up
+    // foils
+    setFoil(foilPort, -1);
+    setFoil(foilStarboard, +1);
+    // rudder (elevator follows as child of rudderGroup)
+    rudderGroup.rotation.y = s.rudder * deg;   // + = trailing edge to starboard
+    // sails
+    setSails();
+    // arrows
+    updateArrows();
+    // readout
+    updateReadout();
+  }
+  VIZ._apply = applyState;
+
+  function updateReadout() {
+    var s = VIZ.state;
+    var aw = computeApparentWind(s.twa, s.tws, s.boatSpeed);
+    function txt(id, x, unit) {
+      var el = document.getElementById(id);
+      var v = (typeof x === 'number') ? x.toFixed(1) : (x === undefined || x === null ? '–' : x);
+      el.textContent = v + (unit ? ' ' + unit : '');
+    }
+    txt('readout-awa', aw.awa, '°');
+    txt('readout-aws', aw.aws, 'kt');
+    txt('readout-vmg', aw.vmg, 'kt');
+    txt('readout-heading', s.yaw, '°');
+    txt('readout-course', s.yaw + s.leeway, '°');
+  }
+  /* ------------------------------------------------------------------
+     Controls wiring
+     ------------------------------------------------------------------ */
+  var paramEls = {};
+  Array.prototype.forEach.call(document.querySelectorAll('input[data-param], select[data-param]'), function (el) {
+    paramEls[el.dataset.param] = el;
+    var evt = (el.tagName === 'SELECT') ? 'change' : 'input';
+    el.addEventListener(evt, function () {
+      var v = (el.tagName === 'SELECT') ? el.value : parseFloat(el.value);
+      VIZ.setParam(el.dataset.param, v);
+    });
+  });
+  function syncControl(name, value) {
+    var el = paramEls[name];
+    if (!el) { return; }
+    if (String(el.value) !== String(value)) { el.value = value; }
+    var idName = String(name).replace(/([A-Z])/g, function (c) { return '-' + c.toLowerCase(); });
+    var span = document.getElementById('value-' + idName);
+    if (span) {
+      if (typeof value === 'number') {
+        var unit = name === 'foilExtension' ? '' :
+          name === 'rideHeight' ? ' m' :
+          (name === 'twa' || name === 'yaw' || name === 'rudder' || name === 'heel' ||
+           name === 'cant' || name === 'rake' || name === 'trim' || name === 'leeway') ? '°' :
+          ' kt';
+        span.textContent = (Math.round(value * 100) / 100) + unit;
+      } else { span.textContent = value; }
+    }
+  }
+  VIZ._syncControl = syncControl;
+  function resetControls() {
+    VIZ.PARAM_KEYS.forEach(function (k) { syncControl(k, VIZ.state[k]); });
+  }
+  document.getElementById('btn-reset').addEventListener('click', function () {
+    VIZ.state = Object.assign({}, VIZ_STATE_DEFAULTS);
+    resetControls();
+    applyState();
+  });
+
+  /* ------------------------------------------------------------------
+     Highlighting (cloned materials, emissive 0xffaa00, restored after 2 s)
+     ------------------------------------------------------------------ */
+  var hlTimer = null;
+  function clearHighlight() {
+    if (hlTimer) { clearTimeout(hlTimer); hlTimer = null; }
+    scene.traverse(function (o) {
+      if (o.userData._origMat) {
+        if (o.material && o.material !== o.userData._origMat) { o.material.dispose(); }
+        o.material = o.userData._origMat;
+        o.userData._origMat = null;
+      }
+    });
+    markers.forEach(function (m) { m.mesh.visible = false; });
+  }
+  function applyGlow(o) {
+    if (!o.material) {
+      // Group: glow each child that has a material
+      (o.children || []).forEach(function (c) { if (c.material) { applyGlow(c); } });
+      return;
+    }
+    var orig = o.material;
+    var clone = orig.clone();
+    if (clone.emissive) {
+      clone.emissive = new THREE.Color(0xffaa00);
+      clone.emissiveIntensity = 0.9;
+    } else {
+      clone.color = orig.color.clone().lerp(new THREE.Color(0xffaa00), 0.6);
+    }
+    o.material = clone;
+    o.userData._origMat = orig;
+  }
+  function highlight(termId) {
+    var t = null;
+    for (var i = 0; i < VIZ.TERMS.length; i++) { if (VIZ.TERMS[i].id === termId) { t = VIZ.TERMS[i]; } }
+    if (!t) { return; }
+    var subs = t.nodes || [];
+    clearHighlight();
+    var any = false;
+    namedMeshes.forEach(function (o) {
+      for (var i = 0; i < subs.length; i++) {
+        if ((o.name || '').indexOf(subs[i]) >= 0) { any = true; applyGlow(o); break; }
+      }
+    });
+    addedParts.forEach(function (o) {
+      if (subs.indexOf(o.name) >= 0) { any = true; applyGlow(o); }
+      if ((o.name || '').indexOf('foil') === 0 && subs.indexOf('foil') >= 0) { any = true; }
+    });
+    [arrows.arrow_heading, arrows.arrow_course, arrows.arrow_true_wind, arrows.arrow_apparent_wind].forEach(function (a) {
+      if (subs.indexOf(a.name) >= 0) {
+        any = true;
+        if (a.line && a.line.material) {
+          var om = a.line.material;
+          var cm = om.clone();
+          cm.color = new THREE.Color(0xffaa00);
+          a.line.material = cm;
+          a.line.userData._origMat = om;
+        }
+      }
+    });
+    if (t.marker) {
+      var mk = markers.filter(function (m) { return m.id === termId; })[0];
+      if (mk) { mk.mesh.visible = true; any = true; }
+    }
+    if (any) {
+      hlTimer = setTimeout(clearHighlight, 2000);
+    }
+  }
+  VIZ._highlight = highlight;
+
+  /* ------------------------------------------------------------------
+     Camera presets, resize, render loop
+     ------------------------------------------------------------------ */
+  var CAM_PRESETS = {
+    'cam-3quarter': [12, 8, 12],
+    'cam-side':     [0, 4, 16],
+    'cam-top':      [0.5, 26, 0.5],
+    'cam-stern':    [-16, 5, 4],
+    'cam-bow':      [18, 6, 5]
+  };
+  Object.keys(CAM_PRESETS).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) { return; }
+    el.addEventListener('click', function () {
+      camera.position.set(CAM_PRESETS[id][0], CAM_PRESETS[id][1], CAM_PRESETS[id][2]);
+      controls.target.set(0, 1.8, 0);
+      controls.update();
+    });
+  });
+
+  function resize() {
+    var w = view.clientWidth || 1;
+    var h = view.clientHeight || 1;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  VIZ._sceneReady = true;
+  applyState(); // initial pose; onLoad() re-applies once the GLB arrives
+
+  renderer.setAnimationLoop(function () {
+    controls.update();
+    renderer.render(scene, camera);
+  });
+}
+</script>
+</body>
+</html>

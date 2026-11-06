@@ -1,2 +1,9 @@
 __pycache__/
 .pytest_cache/
+
+# sailing_viz: agent logs and the 9 MB generated standalone page (rebuild with build_standalone.py)
+sailing_viz/.qwen_agent/
+sailing_viz/sailing_viz_standalone.html
+sailing_viz_launch.log
+__pycache__/
+.pytest_cache/

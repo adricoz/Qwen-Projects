@@ -1,0 +1,14 @@
+{
+ "deliverables": [
+  "index.html",
+  "build_standalone.py",
+  "serve.bat",
+  "README.md",
+  "tests/test_structure.py"
+ ],
+ "test_cmd": "-m pytest -q tests",
+ "effort": "xhigh",
+ "max_steps": 90,
+ "max_minutes": 75,
+ "rounds": 3
+}
